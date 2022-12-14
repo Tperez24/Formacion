@@ -1,28 +1,28 @@
 using System;
 using Demo.Input_Adapter;
+using Demo.Scripts.StaticClasses;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Player.Player_Scripts
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
+        public GameObject projectile;
+        
         private IInput Input { get; set; }
         private Animator _playerAnimator;
-        private InputAction _moveAction,_attackAction;
+        private InputAction _moveAction,_attackAction,_specialAction;
         private Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
        
-        private readonly float _speed = 2f;
+        private float _speed = 2f;
         private readonly UnityEvent _onDirectionChanged = new UnityEvent();
 
         //TODO Al hacer qwue el player se instancie en tiempo real el input se le seteara en su constructor
-        public void SetInput(IInput input)
-        {
-            Input = input;
-        }
+        public void SetInput(IInput input) => Input = input;
 
         private Vector2 Direction
         {
@@ -47,6 +47,7 @@ namespace Player.Player_Scripts
         {
             _moveAction.performed -= ChangeDirection;
             _attackAction.performed -= Attack;
+            _specialAction.performed -= LaunchSpecialAttack;
         }
 
         private void Getters()
@@ -58,12 +59,15 @@ namespace Player.Player_Scripts
         {
             _moveAction = Input.GetInput().Find(input => input.name == ActionNames.Movement());
             _attackAction = Input.GetInput().Find(input => input.name == ActionNames.Attack());
+            _specialAction = Input.GetInput().Find(input => input.name == ActionNames.Special());
         }
 
         private void SubscribeToInputs()
         {
             _moveAction.performed += ChangeDirection;
             _attackAction.performed += Attack;
+            _specialAction.performed += LaunchSpecialAttack;
+            _specialAction.started += AimSpecialAttack;
         }
         private void SubscribeToEvents() => _onDirectionChanged.AddListener(MovePlayer);
 
@@ -112,9 +116,23 @@ namespace Player.Player_Scripts
             AnimationAction(animationName, type).Invoke();
         }
         
-        private void Attack(InputAction.CallbackContext context)
+        private void Attack(InputAction.CallbackContext context) => AnimationAction(AnimationNames.IsSwordAttack(),null).Invoke();
+
+        private void Update()
         {
-            AnimationAction(AnimationNames.IsSwordAttack(),null).Invoke();
+            Debug.Log(_specialAction.IsPressed());
+        }
+        private void AimSpecialAttack(InputAction.CallbackContext obj)
+        {
+            AnimationAction(AnimationNames.IsSpecialAttack(), null).Invoke();
+            _speed = 0;
+        }
+        private void LaunchSpecialAttack(InputAction.CallbackContext obj)
+        {
+            //TODO Instanciar con factoria
+            Instantiate(projectile);
+            ResumeAnimatior();
+            _speed = 2;
         }
         
         private Action AnimationAction (string animationName,object type)
@@ -134,6 +152,10 @@ namespace Player.Player_Scripts
         private void SetDirectionWithoutNotify(Vector2 direction) => _direction = direction;
 
         private void SetDirectionNotifying(Vector2 direction) => Direction = direction;
+        
+        //EventFunction from the animator
+        public void PauseAnimator() => _playerAnimator.speed = 0;
+        public void ResumeAnimatior() => _playerAnimator.speed = 1;
     }
 }
 

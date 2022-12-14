@@ -53,6 +53,15 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpecialAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba1d9bc3-de98-4ac0-86b6-17d59e6cd2a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""action"": ""SwordAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8b85916-8c45-446a-ae52-9545b3fcec2e"",
+                    ""path"": ""<XInputController>/buttonNorth"",
+                    ""interactions"": ""Hold(duration=2,pressPoint=1.401298E-45)"",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -161,6 +181,15 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""name"": ""SwordAttack"",
                     ""type"": ""Button"",
                     ""id"": ""1db44ed3-2b36-487c-983a-79b37fa0e297"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpecialAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c44da700-73ec-46c9-a6b2-4309b4b32aba"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -244,6 +273,17 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""action"": ""SwordAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ac80143-9ac4-4695-93ca-f6c2cdc5e6b9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -278,11 +318,13 @@ public partial class @Master : IInputActionCollection2, IDisposable
         m_PlayerInputXbox_Dash = m_PlayerInputXbox.FindAction("Dash", throwIfNotFound: true);
         m_PlayerInputXbox_Movement = m_PlayerInputXbox.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInputXbox_SwordAttack = m_PlayerInputXbox.FindAction("SwordAttack", throwIfNotFound: true);
+        m_PlayerInputXbox_SpecialAttack = m_PlayerInputXbox.FindAction("SpecialAttack", throwIfNotFound: true);
         // PlayerInputKeyboard
         m_PlayerInputKeyboard = asset.FindActionMap("PlayerInputKeyboard", throwIfNotFound: true);
         m_PlayerInputKeyboard_Dash = m_PlayerInputKeyboard.FindAction("Dash", throwIfNotFound: true);
         m_PlayerInputKeyboard_Movement = m_PlayerInputKeyboard.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInputKeyboard_SwordAttack = m_PlayerInputKeyboard.FindAction("SwordAttack", throwIfNotFound: true);
+        m_PlayerInputKeyboard_SpecialAttack = m_PlayerInputKeyboard.FindAction("SpecialAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,6 +387,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInputXbox_Dash;
     private readonly InputAction m_PlayerInputXbox_Movement;
     private readonly InputAction m_PlayerInputXbox_SwordAttack;
+    private readonly InputAction m_PlayerInputXbox_SpecialAttack;
     public struct PlayerInputXboxActions
     {
         private @Master m_Wrapper;
@@ -352,6 +395,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_PlayerInputXbox_Dash;
         public InputAction @Movement => m_Wrapper.m_PlayerInputXbox_Movement;
         public InputAction @SwordAttack => m_Wrapper.m_PlayerInputXbox_SwordAttack;
+        public InputAction @SpecialAttack => m_Wrapper.m_PlayerInputXbox_SpecialAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputXbox; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -370,6 +414,9 @@ public partial class @Master : IInputActionCollection2, IDisposable
                 @SwordAttack.started -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSwordAttack;
                 @SwordAttack.performed -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSwordAttack;
                 @SwordAttack.canceled -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSwordAttack;
+                @SpecialAttack.started -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSpecialAttack;
+                @SpecialAttack.performed -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSpecialAttack;
+                @SpecialAttack.canceled -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSpecialAttack;
             }
             m_Wrapper.m_PlayerInputXboxActionsCallbackInterface = instance;
             if (instance != null)
@@ -383,6 +430,9 @@ public partial class @Master : IInputActionCollection2, IDisposable
                 @SwordAttack.started += instance.OnSwordAttack;
                 @SwordAttack.performed += instance.OnSwordAttack;
                 @SwordAttack.canceled += instance.OnSwordAttack;
+                @SpecialAttack.started += instance.OnSpecialAttack;
+                @SpecialAttack.performed += instance.OnSpecialAttack;
+                @SpecialAttack.canceled += instance.OnSpecialAttack;
             }
         }
     }
@@ -394,6 +444,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInputKeyboard_Dash;
     private readonly InputAction m_PlayerInputKeyboard_Movement;
     private readonly InputAction m_PlayerInputKeyboard_SwordAttack;
+    private readonly InputAction m_PlayerInputKeyboard_SpecialAttack;
     public struct PlayerInputKeyboardActions
     {
         private @Master m_Wrapper;
@@ -401,6 +452,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_PlayerInputKeyboard_Dash;
         public InputAction @Movement => m_Wrapper.m_PlayerInputKeyboard_Movement;
         public InputAction @SwordAttack => m_Wrapper.m_PlayerInputKeyboard_SwordAttack;
+        public InputAction @SpecialAttack => m_Wrapper.m_PlayerInputKeyboard_SpecialAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInputKeyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -419,6 +471,9 @@ public partial class @Master : IInputActionCollection2, IDisposable
                 @SwordAttack.started -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSwordAttack;
                 @SwordAttack.performed -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSwordAttack;
                 @SwordAttack.canceled -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSwordAttack;
+                @SpecialAttack.started -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSpecialAttack;
+                @SpecialAttack.performed -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSpecialAttack;
+                @SpecialAttack.canceled -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSpecialAttack;
             }
             m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface = instance;
             if (instance != null)
@@ -432,6 +487,9 @@ public partial class @Master : IInputActionCollection2, IDisposable
                 @SwordAttack.started += instance.OnSwordAttack;
                 @SwordAttack.performed += instance.OnSwordAttack;
                 @SwordAttack.canceled += instance.OnSwordAttack;
+                @SpecialAttack.started += instance.OnSpecialAttack;
+                @SpecialAttack.performed += instance.OnSpecialAttack;
+                @SpecialAttack.canceled += instance.OnSpecialAttack;
             }
         }
     }
@@ -459,11 +517,13 @@ public partial class @Master : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnSwordAttack(InputAction.CallbackContext context);
+        void OnSpecialAttack(InputAction.CallbackContext context);
     }
     public interface IPlayerInputKeyboardActions
     {
         void OnDash(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnSwordAttack(InputAction.CallbackContext context);
+        void OnSpecialAttack(InputAction.CallbackContext context);
     }
 }

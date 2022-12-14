@@ -16,7 +16,7 @@ namespace Demo.Input_Adapter
             master.Enable();
             
             return new List<InputAction>
-            { master.PlayerInputXbox.Dash, master.PlayerInputXbox.Movement, master.PlayerInputXbox.SwordAttack };
+            { master.PlayerInputXbox.Dash, master.PlayerInputXbox.Movement, master.PlayerInputXbox.SwordAttack, master.PlayerInputXbox.SpecialAttack };
         }
     }
 
@@ -30,7 +30,7 @@ namespace Demo.Input_Adapter
             return new List<InputAction>
             {
                 master.PlayerInputKeyboard.Dash, master.PlayerInputKeyboard.Movement,
-                master.PlayerInputKeyboard.SwordAttack
+                master.PlayerInputKeyboard.SwordAttack,master.PlayerInputKeyboard.SpecialAttack
             };
         }
     }

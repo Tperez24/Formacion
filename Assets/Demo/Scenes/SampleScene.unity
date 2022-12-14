@@ -340,6 +340,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2302495554975365362, guid: 3b6c4373383043d42ba13581c694a443, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302495554975365362, guid: 3b6c4373383043d42ba13581c694a443, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: c9ee2decd2975774eb310b1f207cca17, type: 2}
     - target: {fileID: 3267947896414490798, guid: 3b6c4373383043d42ba13581c694a443, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -407,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a7e484651ebc442859f663f9859181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 8831252622869957527, guid: 673ae9576eff25e4c94ba89bbc65cfc3, type: 3}
 --- !u!50 &331680960294222187
 Rigidbody2D:
   serializedVersion: 4
