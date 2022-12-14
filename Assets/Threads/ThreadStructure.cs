@@ -1,23 +1,25 @@
 using System;
 using System.Threading;
-using UnityEngine;
 
-public class CreateAThread
+namespace Threads
 {
-    public static Thread SetThread(Action onFinished, Thread th, Action doThis)
+    public class ThreadStructure
     {
-        th = new Thread(() =>
+        public static Thread SetThread(Action onFinished, Thread th, Action doThis)
         {
-            try
+            th = new Thread(() =>
             {
-                doThis();
-            }
-            finally
-            {
-                onFinished();
-            }
+                try
+                {
+                    doThis();
+                }
+                finally
+                {
+                    onFinished();
+                }
 
-        });
-        return th;
+            });
+            return th;
+        }
     }
 }

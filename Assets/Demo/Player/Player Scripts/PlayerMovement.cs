@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using Demo.Input_Adapter;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,8 +8,8 @@ namespace Player.Player_Scripts
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private IInput Input { get; set; }
         private Animator _playerAnimator;
-        private Master _master;
         private InputAction _moveAction,_attackAction;
         private Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
@@ -17,6 +17,12 @@ namespace Player.Player_Scripts
        
         private readonly float _speed = 2f;
         private readonly UnityEvent _onDirectionChanged = new UnityEvent();
+
+        //TODO Al hacer qwue el player se instancie en tiempo real el input se le seteara en su constructor
+        public void SetInput(IInput input)
+        {
+            Input = input;
+        }
 
         private Vector2 Direction
         {
@@ -32,30 +38,26 @@ namespace Player.Player_Scripts
         private void Start()
         {
             Getters();
-            SetMaster();
             SetActions();
             SubscribeToInputs();
             SubscribeToEvents();
         }
 
-        private void OnDisable() => _moveAction.performed -= ChangeDirection;
+        private void OnDisable()
+        {
+            _moveAction.performed -= ChangeDirection;
+            _attackAction.performed -= Attack;
+        }
 
         private void Getters()
         {
             TryGetComponent(out _playerAnimator);
             TryGetComponent(out _rigidbody);
         }
-
-        private void SetMaster()
-        {
-            _master = new Master();
-            _master.Enable();
-        }
-        
         private void SetActions()
         {
-            _moveAction = _master.FindAction(ActionNames.Movement());
-            _attackAction = _master.FindAction(ActionNames.Attack());
+            _moveAction = Input.GetInput().Find(input => input.name == ActionNames.Movement());
+            _attackAction = Input.GetInput().Find(input => input.name == ActionNames.Attack());
         }
 
         private void SubscribeToInputs()

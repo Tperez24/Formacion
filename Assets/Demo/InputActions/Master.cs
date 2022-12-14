@@ -24,7 +24,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
     ""name"": ""Master"",
     ""maps"": [
         {
-            ""name"": ""PlayerInput"",
+            ""name"": ""PlayerInputXbox"",
             ""id"": ""bd8d9707-fd15-41e0-ab3b-30a3252e035f"",
             ""actions"": [
                 {
@@ -106,7 +106,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -117,7 +117,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""path"": ""<XInputController>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -129,6 +129,118 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
+                    ""action"": ""SwordAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerInputKeyboard"",
+            ""id"": ""a14928ab-4651-474f-be85-768e13881977"",
+            ""actions"": [
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f06563e-1ec4-4019-960b-8619422f6fcb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f14e5fa1-fa91-4f85-82b6-146e99d7c870"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwordAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""1db44ed3-2b36-487c-983a-79b37fa0e297"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b1201c60-0abd-475a-8dcf-29c3f54c9379"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""ceb36622-dd0e-4721-ab56-3966e67ff6e9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2,StickDeadzone(min=0.2)"",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""015b67aa-829f-414b-8c4c-1c5f9b6f8980"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""9ae67c1e-86e9-4c13-ac0f-083cf70dc017"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""37eae724-0b7f-472f-8ff8-1f40433aeed3"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""815da659-a213-47fb-9aa8-b6037d111488"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""595a916b-5808-409d-bcc9-c654d2075b53"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""SwordAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -147,14 +259,30 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
-        // PlayerInput
-        m_PlayerInput = asset.FindActionMap("PlayerInput", throwIfNotFound: true);
-        m_PlayerInput_Dash = m_PlayerInput.FindAction("Dash", throwIfNotFound: true);
-        m_PlayerInput_Movement = m_PlayerInput.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerInput_SwordAttack = m_PlayerInput.FindAction("SwordAttack", throwIfNotFound: true);
+        // PlayerInputXbox
+        m_PlayerInputXbox = asset.FindActionMap("PlayerInputXbox", throwIfNotFound: true);
+        m_PlayerInputXbox_Dash = m_PlayerInputXbox.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerInputXbox_Movement = m_PlayerInputXbox.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerInputXbox_SwordAttack = m_PlayerInputXbox.FindAction("SwordAttack", throwIfNotFound: true);
+        // PlayerInputKeyboard
+        m_PlayerInputKeyboard = asset.FindActionMap("PlayerInputKeyboard", throwIfNotFound: true);
+        m_PlayerInputKeyboard_Dash = m_PlayerInputKeyboard.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerInputKeyboard_Movement = m_PlayerInputKeyboard.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerInputKeyboard_SwordAttack = m_PlayerInputKeyboard.FindAction("SwordAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -211,39 +339,39 @@ public partial class @Master : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // PlayerInput
-    private readonly InputActionMap m_PlayerInput;
-    private IPlayerInputActions m_PlayerInputActionsCallbackInterface;
-    private readonly InputAction m_PlayerInput_Dash;
-    private readonly InputAction m_PlayerInput_Movement;
-    private readonly InputAction m_PlayerInput_SwordAttack;
-    public struct PlayerInputActions
+    // PlayerInputXbox
+    private readonly InputActionMap m_PlayerInputXbox;
+    private IPlayerInputXboxActions m_PlayerInputXboxActionsCallbackInterface;
+    private readonly InputAction m_PlayerInputXbox_Dash;
+    private readonly InputAction m_PlayerInputXbox_Movement;
+    private readonly InputAction m_PlayerInputXbox_SwordAttack;
+    public struct PlayerInputXboxActions
     {
         private @Master m_Wrapper;
-        public PlayerInputActions(@Master wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Dash => m_Wrapper.m_PlayerInput_Dash;
-        public InputAction @Movement => m_Wrapper.m_PlayerInput_Movement;
-        public InputAction @SwordAttack => m_Wrapper.m_PlayerInput_SwordAttack;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
+        public PlayerInputXboxActions(@Master wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Dash => m_Wrapper.m_PlayerInputXbox_Dash;
+        public InputAction @Movement => m_Wrapper.m_PlayerInputXbox_Movement;
+        public InputAction @SwordAttack => m_Wrapper.m_PlayerInputXbox_SwordAttack;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerInputXbox; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerInputActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerInputActions instance)
+        public static implicit operator InputActionMap(PlayerInputXboxActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerInputXboxActions instance)
         {
-            if (m_Wrapper.m_PlayerInputActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerInputXboxActionsCallbackInterface != null)
             {
-                @Dash.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnDash;
-                @Movement.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnMovement;
-                @SwordAttack.started -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSwordAttack;
-                @SwordAttack.performed -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSwordAttack;
-                @SwordAttack.canceled -= m_Wrapper.m_PlayerInputActionsCallbackInterface.OnSwordAttack;
+                @Dash.started -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnDash;
+                @Movement.started -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnMovement;
+                @SwordAttack.started -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSwordAttack;
+                @SwordAttack.performed -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSwordAttack;
+                @SwordAttack.canceled -= m_Wrapper.m_PlayerInputXboxActionsCallbackInterface.OnSwordAttack;
             }
-            m_Wrapper.m_PlayerInputActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerInputXboxActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Dash.started += instance.OnDash;
@@ -258,7 +386,56 @@ public partial class @Master : IInputActionCollection2, IDisposable
             }
         }
     }
-    public PlayerInputActions @PlayerInput => new PlayerInputActions(this);
+    public PlayerInputXboxActions @PlayerInputXbox => new PlayerInputXboxActions(this);
+
+    // PlayerInputKeyboard
+    private readonly InputActionMap m_PlayerInputKeyboard;
+    private IPlayerInputKeyboardActions m_PlayerInputKeyboardActionsCallbackInterface;
+    private readonly InputAction m_PlayerInputKeyboard_Dash;
+    private readonly InputAction m_PlayerInputKeyboard_Movement;
+    private readonly InputAction m_PlayerInputKeyboard_SwordAttack;
+    public struct PlayerInputKeyboardActions
+    {
+        private @Master m_Wrapper;
+        public PlayerInputKeyboardActions(@Master wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Dash => m_Wrapper.m_PlayerInputKeyboard_Dash;
+        public InputAction @Movement => m_Wrapper.m_PlayerInputKeyboard_Movement;
+        public InputAction @SwordAttack => m_Wrapper.m_PlayerInputKeyboard_SwordAttack;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerInputKeyboard; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerInputKeyboardActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerInputKeyboardActions instance)
+        {
+            if (m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface != null)
+            {
+                @Dash.started -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnDash;
+                @Movement.started -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnMovement;
+                @SwordAttack.started -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSwordAttack;
+                @SwordAttack.performed -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSwordAttack;
+                @SwordAttack.canceled -= m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface.OnSwordAttack;
+            }
+            m_Wrapper.m_PlayerInputKeyboardActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @SwordAttack.started += instance.OnSwordAttack;
+                @SwordAttack.performed += instance.OnSwordAttack;
+                @SwordAttack.canceled += instance.OnSwordAttack;
+            }
+        }
+    }
+    public PlayerInputKeyboardActions @PlayerInputKeyboard => new PlayerInputKeyboardActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -268,7 +445,22 @@ public partial class @Master : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_XboxSchemeIndex];
         }
     }
-    public interface IPlayerInputActions
+    private int m_KeyboardSchemeIndex = -1;
+    public InputControlScheme KeyboardScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    public interface IPlayerInputXboxActions
+    {
+        void OnDash(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnSwordAttack(InputAction.CallbackContext context);
+    }
+    public interface IPlayerInputKeyboardActions
     {
         void OnDash(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);

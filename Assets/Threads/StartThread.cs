@@ -1,6 +1,6 @@
 using System;
 using System.Threading;
-using EWorldsCore.Base.Scripts.ObjetosInteractivos;
+using Threads;
 using UnityEngine;
 
 
@@ -41,7 +41,7 @@ namespace StartThread
 
         public void SetThread()
         {
-            _thread = CreateAThread.CreateAThread.GetThread(AfterFinish,DoThings);
+            _thread = ThreadStructure.SetThread(AfterFinish, _thread, DoThings);
         }
 
         private void AfterFinish() => print("AFTER FINISH");
