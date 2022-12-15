@@ -1,13 +1,13 @@
 using System;
+using Demo.Player.Player_Scripts.Player_Creator;
 using UnityEngine;
 
 namespace Demo.Player.Player_Scripts.Player_Creator
 {
     public class PlayerInstantiator : MonoBehaviour
     {
-        public PlayerBuilder.PlayerType playerType;
-        public GameObject normalPlayerPrefab;
-
+        public PlayerTypes selectPlayer;
+        
         private void Start()
         {
             var director = new BuilderOptions();
@@ -22,11 +22,19 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
         private IPlayerBuilder GetBuilder()
         {
-            return playerType switch
+            return selectPlayer.playerType switch
             {
-                PlayerBuilder.PlayerType.NormalPlayer => new NormalPlayer(normalPlayerPrefab),
+                PlayerBuilder.PlayerType.MalePlayer => new MalePlayer(selectPlayer.playerPrefab),
+                PlayerBuilder.PlayerType.FemalePlayer => new FemalePlayer(selectPlayer.playerPrefab),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
     }
+}
+
+[Serializable]
+public struct PlayerTypes
+{
+    public PlayerBuilder.PlayerType playerType;
+    public GameObject playerPrefab;
 }

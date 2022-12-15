@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Demo.Player.Player_Scripts.Player_Creator
 {
-    public class NormalPlayer : IPlayerBuilder
+    public class MalePlayer : IPlayerBuilder
     {
         private readonly PlayerBuilder _player;
         private PlayerController _behaviour;
         private PlayerConfigurationInstaller _installer;
         
-        public NormalPlayer(GameObject playerPrefab)
+        public MalePlayer(GameObject playerPrefab)
         {
             var player = Object.Instantiate(playerPrefab);
             _player = player.AddComponent<PlayerBuilder>();
@@ -43,5 +43,35 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         }
 
         public PlayerBuilder GetPlayer() => _player;
+    }
+
+    public class FemalePlayer : IPlayerBuilder
+    {
+        private readonly PlayerBuilder _player;
+
+        public FemalePlayer(GameObject playerPrefab)
+        {
+            var player = Object.Instantiate(playerPrefab);
+            _player = player.AddComponent<PlayerBuilder>();
+        }
+        public void AddPlayerConfiguration()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddPlayerBehaviour()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public PlayerBuilder GetPlayer()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Initialize()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

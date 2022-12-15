@@ -9,9 +9,12 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         public List<Component> parts = new List<Component>();
 
         public void Add(Component part) => parts.Add(part);
+        
+        //TODO enum con builder
         public enum PlayerType
         {
-            NormalPlayer,
+            MalePlayer,
+            FemalePlayer
         }
     }
 }
