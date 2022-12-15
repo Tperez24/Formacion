@@ -5,9 +5,9 @@ namespace Threads
 {
     public class ThreadStructure
     {
-        public static Thread SetThread(Action onFinished, Thread th, Action doThis)
+        public static Thread SetThread(Action onFinished, Action doThis)
         {
-            th = new Thread(() =>
+            var thread = new Thread(() =>
             {
                 try
                 {
@@ -19,7 +19,24 @@ namespace Threads
                 }
 
             });
-            return th;
+            return thread;
+        }
+
+        public static void PlayThread(Action onFinished, Action doThis)
+        {
+            var thread = new Thread(() =>
+            {
+                try
+                {
+                    doThis();
+                }
+                finally
+                {
+                    onFinished();
+                }
+
+            });
+            thread.Start();
         }
     }
 }

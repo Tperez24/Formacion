@@ -1,3 +1,4 @@
+using Demo.Player.Player_Scripts.Player_Behaviour;
 using Player.Player_Scripts;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             
             playerBehaviour.transform.SetParent(_player.transform);
             _behaviour = playerBehaviour.AddComponent<PlayerController>();
-            
+
             _player.Add(_behaviour);
         }
 
@@ -32,7 +33,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             
             _installer = playerConfig.AddComponent<PlayerConfigurationInstaller>();
             _installer.SetPlayerController(_behaviour);
-            
+
             _player.Add(_installer);
         }
 

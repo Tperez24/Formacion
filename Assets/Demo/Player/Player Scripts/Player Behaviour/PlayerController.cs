@@ -1,7 +1,6 @@
 using System;
 using Demo.Input_Adapter;
 using Demo.Player.Player_Scripts.Player_Behaviour;
-using Demo.Projectile_Abstract_Factory;
 using Demo.Scripts.StaticClasses;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,14 +10,13 @@ namespace Player.Player_Scripts
 {
     public class PlayerController : MonoBehaviour
     {
-        private IAbstractPointer pointer;
-        private IAbstractSpell spell;
         private IInput Input { get; set; }
         private Animator _playerAnimator;
         private InputAction _moveAction,_attackAction,_specialAction;
         private Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
+        private AttackAdapter _attackController;
        
         private float _speed = 2f;
         private readonly UnityEvent _onDirectionChanged = new UnityEvent();
@@ -39,6 +37,7 @@ namespace Player.Player_Scripts
         public void Initialize()
         {
             Getters();
+            Setters();
             SetActions();
             SubscribeToInputs();
             SubscribeToEvents();
@@ -49,13 +48,23 @@ namespace Player.Player_Scripts
             _moveAction.performed -= ChangeDirection;
             _attackAction.performed -= Attack;
             _specialAction.performed -= LaunchSpecialAttack;
+            _specialAction.started -= AimSpecialAttack;
         }
 
         private void Getters()
         {
             _playerAnimator = GetComponentInParent<Animator>();
             _rigidbody = GetComponentInParent<Rigidbody2D>();
+
+            _attackController = gameObject.AddComponent<AttackAdapter>();
         }
+
+        private void Setters()
+        {
+            _attackController.SetAnimator(_playerAnimator, AttackAdapter.AttackType.Normal);
+            _attackController.SetAnimator(_playerAnimator, AttackAdapter.AttackType.Spell);
+        }
+
         private void SetActions()
         {
             _moveAction = Input.GetInput().Find(input => input.name == ActionNames.Movement());
@@ -69,7 +78,9 @@ namespace Player.Player_Scripts
             _attackAction.performed += Attack;
             _specialAction.performed += LaunchSpecialAttack;
             _specialAction.started += AimSpecialAttack;
+            _specialAction.canceled += SpecialAttackCanceled;
         }
+        
         private void SubscribeToEvents() => _onDirectionChanged.AddListener(MovePlayer);
 
         private void ChangeDirection(InputAction.CallbackContext context)
@@ -117,21 +128,18 @@ namespace Player.Player_Scripts
             AnimationAction(animationName, type).Invoke();
         }
         
-        private void Attack(InputAction.CallbackContext context) => AnimationAction(AnimationNames.IsSwordAttack(),null).Invoke();
-        private void AimSpecialAttack(InputAction.CallbackContext obj)
+        private void Attack(InputAction.CallbackContext context)
         {
-            (pointer,spell) = SpellCreator.LaunchSpell(SpellCreator.SpellTypes.IceSpell);
-            
-            AnimationAction(AnimationNames.IsSpecialAttack(), null).Invoke();
-            
-            _speed = 0;
+            _attackController.LaunchAttack(AttackAdapter.AttackType.Normal);
+            AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
         }
-        private void LaunchSpecialAttack(InputAction.CallbackContext obj)
-        {
-            ResumeAnimatior();
-            _speed = 2;
-        }
-        
+
+        private void AimSpecialAttack(InputAction.CallbackContext obj) => _attackController.StartCharging(AttackAdapter.AttackType.Spell);
+
+        private void LaunchSpecialAttack(InputAction.CallbackContext obj) => _attackController.LaunchAttack(AttackAdapter.AttackType.Spell);
+
+        private void SpecialAttackCanceled(InputAction.CallbackContext obj) => _attackController.AttackCanceled(AttackAdapter.AttackType.Spell);
+
         private Action AnimationAction (string animationName,object type)
         {
             return type switch
@@ -149,10 +157,6 @@ namespace Player.Player_Scripts
         private void SetDirectionWithoutNotify(Vector2 direction) => _direction = direction;
 
         private void SetDirectionNotifying(Vector2 direction) => Direction = direction;
-        
-        //EventFunction from the animator
-        public void PauseAnimator() => _playerAnimator.speed = 0;
-        public void ResumeAnimatior() => _playerAnimator.speed = 1;
     }
 }
 

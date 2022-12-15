@@ -41,7 +41,7 @@ namespace StartThread
 
         public void SetThread()
         {
-            _thread = ThreadStructure.SetThread(AfterFinish, _thread, DoThings);
+            _thread = ThreadStructure.SetThread(AfterFinish, DoThings);
         }
 
         private void AfterFinish() => print("AFTER FINISH");

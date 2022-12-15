@@ -1,4 +1,4 @@
-﻿using Unity.Plastic.Newtonsoft.Json;
+﻿
 
 namespace Patrones_Estructurales.Flyweight
 {
@@ -14,8 +14,7 @@ namespace Patrones_Estructurales.Flyweight
 
         public void Operation(Car uniqueState)
         {
-            string s = JsonConvert.SerializeObject(_sharedState);
-            string u = JsonConvert.SerializeObject(uniqueState);
+            
         }
     }
 }
