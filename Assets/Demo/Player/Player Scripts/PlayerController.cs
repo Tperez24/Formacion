@@ -20,8 +20,7 @@ namespace Player.Player_Scripts
        
         private float _speed = 2f;
         private readonly UnityEvent _onDirectionChanged = new UnityEvent();
-
-        //TODO Al hacer qwue el player se instancie en tiempo real el input se le seteara en su constructor
+        
         public void SetInput(IInput input) => Input = input;
 
         private Vector2 Direction
@@ -35,7 +34,7 @@ namespace Player.Player_Scripts
             } 
         }
 
-        private void Start()
+        public void Initialize()
         {
             Getters();
             SetActions();
@@ -52,8 +51,8 @@ namespace Player.Player_Scripts
 
         private void Getters()
         {
-            TryGetComponent(out _playerAnimator);
-            TryGetComponent(out _rigidbody);
+            _playerAnimator = GetComponentInParent<Animator>();
+            _rigidbody = GetComponentInParent<Rigidbody2D>();
         }
         private void SetActions()
         {
@@ -117,11 +116,6 @@ namespace Player.Player_Scripts
         }
         
         private void Attack(InputAction.CallbackContext context) => AnimationAction(AnimationNames.IsSwordAttack(),null).Invoke();
-
-        private void Update()
-        {
-            Debug.Log(_specialAction.IsPressed());
-        }
         private void AimSpecialAttack(InputAction.CallbackContext obj)
         {
             AnimationAction(AnimationNames.IsSpecialAttack(), null).Invoke();

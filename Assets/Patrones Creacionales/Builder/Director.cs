@@ -1,4 +1,6 @@
-namespace Builder
+using Builder;
+
+namespace Patrones_Creacionales.Builder
 {
    public class Director
    {

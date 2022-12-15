@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Builder
+namespace Patrones_Creacionales.Builder
 {
     public class EnemyBuilded : MonoBehaviour
     {

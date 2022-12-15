@@ -1,7 +1,8 @@
 using System;
+using Builder;
 using UnityEngine;
 
-namespace Builder
+namespace Patrones_Creacionales.Builder
 {
    public class EnemyInstantiator : MonoBehaviour
    {

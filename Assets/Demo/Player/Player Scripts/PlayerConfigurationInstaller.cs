@@ -8,13 +8,11 @@ namespace Demo.Player.Player_Scripts
 {
     public class PlayerConfigurationInstaller : MonoBehaviour
     {
-        //TODO Mas tarde el player no estará referenciado si no que se creará en tiempo real, entonces tendrá un constructor que añadirá el input directamente
-        [SerializeField] private PlayerController player;
+        private PlayerController _playerBehaviour;
 
-        public void Awake()
-        {
-            player.SetInput(GetInput());
-        }
+        public void SetPlayerController(PlayerController behaviour) => _playerBehaviour = behaviour;
+
+        public void Initialize() => _playerBehaviour.SetInput(GetInput());
 
         private IInput GetInput()
         {
