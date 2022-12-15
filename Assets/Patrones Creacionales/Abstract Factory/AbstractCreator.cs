@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Abstract_Factory
+namespace Patrones_Creacionales.Abstract_Factory
 {
     public class AbstractCreator : MonoBehaviour
     {

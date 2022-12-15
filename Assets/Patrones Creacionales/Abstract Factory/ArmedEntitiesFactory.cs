@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abstract_Factory
+namespace Patrones_Creacionales.Abstract_Factory
 {
     // Esta factoria produce familias de npcs y enemigos garantizando que las creaciones sean compatibles(estan armados)
     //Se crean productos abstractos que se definen luego

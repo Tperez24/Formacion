@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abstract_Factory
+namespace Patrones_Creacionales.Abstract_Factory
 {
     //Los tipos de Npcs de una misma familia con caracteristicas diferentes
     public class NpcArmed : MonoBehaviour,IAbstractNpc

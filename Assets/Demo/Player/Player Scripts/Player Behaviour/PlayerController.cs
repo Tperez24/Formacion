@@ -1,5 +1,7 @@
 using System;
 using Demo.Input_Adapter;
+using Demo.Player.Player_Scripts.Player_Behaviour;
+using Demo.Projectile_Abstract_Factory;
 using Demo.Scripts.StaticClasses;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,8 +11,8 @@ namespace Player.Player_Scripts
 {
     public class PlayerController : MonoBehaviour
     {
-        public GameObject projectile;
-        
+        private IAbstractPointer pointer;
+        private IAbstractSpell spell;
         private IInput Input { get; set; }
         private Animator _playerAnimator;
         private InputAction _moveAction,_attackAction,_specialAction;
@@ -118,13 +120,14 @@ namespace Player.Player_Scripts
         private void Attack(InputAction.CallbackContext context) => AnimationAction(AnimationNames.IsSwordAttack(),null).Invoke();
         private void AimSpecialAttack(InputAction.CallbackContext obj)
         {
+            (pointer,spell) = SpellCreator.LaunchSpell(SpellCreator.SpellTypes.IceSpell);
+            
             AnimationAction(AnimationNames.IsSpecialAttack(), null).Invoke();
+            
             _speed = 0;
         }
         private void LaunchSpecialAttack(InputAction.CallbackContext obj)
         {
-            //TODO Instanciar con factoria
-            Instantiate(projectile);
             ResumeAnimatior();
             _speed = 2;
         }

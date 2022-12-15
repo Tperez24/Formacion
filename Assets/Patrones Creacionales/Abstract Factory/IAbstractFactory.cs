@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abstract_Factory
+namespace Patrones_Creacionales.Abstract_Factory
 {
     //La interfaz declara un grupo de metodos que crean los diferentes tipos de productos(npc y jugadores)
     public interface IAbstractFactory

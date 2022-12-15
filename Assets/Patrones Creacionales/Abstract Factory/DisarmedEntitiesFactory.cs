@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abstract_Factory
+namespace Patrones_Creacionales.Abstract_Factory
 {        
     // Esta factoria produce familias de enemigos desarmados
     public class DisarmedEntitiesFactory : IAbstractFactory
