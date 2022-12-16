@@ -8,4 +8,9 @@ namespace Demo.Paths
         public static string GroundPointerPath() => "";
         public static string GroundSpellPath() => "";
     }
+    public static class AnimatorOverrideControllersPaths
+    {
+        public static string GroundSpell() => "GroundSpellOverride";
+        public static string IceSpell() => "IceSpellOverride";
+    }
 }

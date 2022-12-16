@@ -278,7 +278,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""8ac80143-9ac4-4695-93ca-f6c2cdc5e6b9"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Hold(duration=2)"",
+                    ""interactions"": ""SlowTap(duration=2,pressPoint=1)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""SpecialAttack"",

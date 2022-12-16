@@ -1,55 +1,23 @@
-using System.IO;
 using Demo.Paths;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Demo.Projectile_Abstract_Factory
 {
-    public class IcedStalagmiteSpell : IAbstractSpellFactory
+    public class RegularSpell : IAbstractSpellFactory
     {
-        private GameObject _spellParent;
-
-        public IcedStalagmiteSpell()
+        public (IAbstractPointer, Transform) CreatePointer()
         {
-            _spellParent = new GameObject("Ice Spell");
-        }
-       
-        public IAbstractPointer CreatePointer()
-        {
-            var pointer = Object.Instantiate(Resources.Load<GameObject>(PrefabsPath.IcePointerPath()), _spellParent.transform, true);
+            var pointer = Object.Instantiate(Resources.Load<GameObject>(PrefabsPath.IcePointerPath()));
 
-            return pointer.AddComponent<IcePointers>();
+            return (pointer.AddComponent<Pointer>(),pointer.transform);
         }
 
-        public IAbstractSpell CreateSpell()
+        public (IAbstractSpell, Transform) CreateSpell()
         {
-            var spell = Object.Instantiate(Resources.Load<GameObject>(PrefabsPath.IceSpellPath()), _spellParent.transform, true);
+            var spell = Object.Instantiate(Resources.Load<GameObject>(PrefabsPath.IceSpellPath()));
 
-            return spell.AddComponent<IceSpells>();
+            return (spell.AddComponent<Spell>(),spell.transform);
         }
     }
     
-    public class GroundedStalagmiteSpell : IAbstractSpellFactory
-    {
-        private GameObject _spellParent;
-
-        public GroundedStalagmiteSpell()
-        {
-            _spellParent = new GameObject("Ground Spell");
-        }
-
-        public IAbstractPointer CreatePointer()
-        {
-            var pointer = Object.Instantiate(Resources.Load<GameObject>(PrefabsPath.GroundPointerPath()), _spellParent.transform, true);
-
-            return pointer.AddComponent<IcePointers>();
-        }
-
-        public IAbstractSpell CreateSpell()
-        {
-            var spell = Object.Instantiate(Resources.Load<GameObject>(PrefabsPath.GroundSpellPath()), _spellParent.transform, true);
-
-            return spell.AddComponent<IceSpells>();
-        }
-    }
 }

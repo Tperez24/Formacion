@@ -13,7 +13,16 @@ namespace Patrones_Estructurales.Composite
 
         public override void Remove(WeaponBranch component) => _children.Remove(component);
 
-        public override int Damage(WeaponType type) => _children.Where(weapon => weapon.Type() == type).Sum(weapon => weapon.Damage(type));
+        public override int Damage(WeaponType type)
+        {
+            int sum = 0;
+            foreach (var weapon in _children)
+            {
+                if (weapon.Type() == type) sum += weapon.Damage(type);
+            }
+
+            return sum;
+        }
     }
     class WaterWeapons : WeaponBranch
     {

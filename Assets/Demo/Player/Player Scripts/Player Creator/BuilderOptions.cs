@@ -13,6 +13,8 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         {
             _playerBuilderInterface.GetPlayer();
             _playerBuilderInterface.AddPlayerBehaviour();
+            _playerBuilderInterface.AddPlayerAttackController();
+            _playerBuilderInterface.AddPlayerAbilityTree();
             _playerBuilderInterface.AddPlayerConfiguration();
             _playerBuilderInterface.Initialize();
         }

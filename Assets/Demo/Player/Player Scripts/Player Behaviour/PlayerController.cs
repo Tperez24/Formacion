@@ -1,27 +1,29 @@
 using System;
 using Demo.Input_Adapter;
-using Demo.Player.Player_Scripts.Player_Behaviour;
+using Demo.Player.Spells.Scripts;
 using Demo.Scripts.StaticClasses;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Player.Player_Scripts
+namespace Demo.Player.Player_Scripts.Player_Behaviour
 {
     public class PlayerController : MonoBehaviour
     {
         private IInput Input { get; set; }
         private Animator _playerAnimator;
         private InputAction _moveAction,_attackAction,_specialAction;
-        private Vector2 _direction,_lastDirection;
+        public Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
-        private AttackAdapter _attackController;
+        private AttackAdapter _attackAdapter;
        
         private float _speed = 2f;
         private readonly UnityEvent _onDirectionChanged = new UnityEvent();
+        public readonly UnityEvent<Vector2> OnMoveInputChanged = new UnityEvent<Vector2>();
         
         public void SetInput(IInput input) => Input = input;
+        public void SetAdapter(AttackAdapter adapter) => _attackAdapter = adapter;
 
         private Vector2 Direction
         {
@@ -49,20 +51,19 @@ namespace Player.Player_Scripts
             _attackAction.performed -= Attack;
             _specialAction.performed -= LaunchSpecialAttack;
             _specialAction.started -= AimSpecialAttack;
+            _specialAction.canceled -= SpecialAttackCanceled;
         }
 
         private void Getters()
         {
             _playerAnimator = GetComponentInParent<Animator>();
             _rigidbody = GetComponentInParent<Rigidbody2D>();
-
-            _attackController = gameObject.AddComponent<AttackAdapter>();
         }
 
         private void Setters()
         {
-            _attackController.SetAnimator(_playerAnimator, AttackAdapter.AttackType.Normal);
-            _attackController.SetAnimator(_playerAnimator, AttackAdapter.AttackType.Spell);
+            _attackAdapter.SetAnimator(_playerAnimator, AttackAdapter.AttackType.Normal);
+            _attackAdapter.SetAnimator(_playerAnimator, AttackAdapter.AttackType.Spell);
         }
 
         private void SetActions()
@@ -80,13 +81,12 @@ namespace Player.Player_Scripts
             _specialAction.started += AimSpecialAttack;
             _specialAction.canceled += SpecialAttackCanceled;
         }
-        
         private void SubscribeToEvents() => _onDirectionChanged.AddListener(MovePlayer);
-
         private void ChangeDirection(InputAction.CallbackContext context)
         {
             var dir = context.ReadValue<Vector2>();
-
+            OnMoveInputChanged?.Invoke(dir);
+           
             if (dir == Vector2.zero)
             {
                 StopPlayer();
@@ -120,6 +120,7 @@ namespace Player.Player_Scripts
             ManageAnimation(AnimationNames.IsMoving(), false);
             SetVelocity(Vector2.zero);
         }
+        
         private void ManageAnimation(string animationName, object type)
         {
             if (_lastValueGiven == type) return;
@@ -130,15 +131,27 @@ namespace Player.Player_Scripts
         
         private void Attack(InputAction.CallbackContext context)
         {
-            _attackController.LaunchAttack(AttackAdapter.AttackType.Normal);
+            _attackAdapter.LaunchAttack(AttackAdapter.AttackType.Normal);
             AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
         }
 
-        private void AimSpecialAttack(InputAction.CallbackContext obj) => _attackController.StartCharging(AttackAdapter.AttackType.Spell);
+        private void AimSpecialAttack(InputAction.CallbackContext obj)
+        {
+            SetSpeed(0);
+            _attackAdapter.StartCharging(AttackAdapter.AttackType.Spell);
+        }
 
-        private void LaunchSpecialAttack(InputAction.CallbackContext obj) => _attackController.LaunchAttack(AttackAdapter.AttackType.Spell);
+        private void LaunchSpecialAttack(InputAction.CallbackContext obj)
+        {
+            SetSpeed(2);
+            _attackAdapter.LaunchAttack(AttackAdapter.AttackType.Spell);
+        }
 
-        private void SpecialAttackCanceled(InputAction.CallbackContext obj) => _attackController.AttackCanceled(AttackAdapter.AttackType.Spell);
+        private void SpecialAttackCanceled(InputAction.CallbackContext obj)
+        {
+            SetSpeed(2);
+            _attackAdapter.AttackCanceled(AttackAdapter.AttackType.Spell);
+        }
 
         private Action AnimationAction (string animationName,object type)
         {
@@ -153,6 +166,8 @@ namespace Player.Player_Scripts
         }
 
         private void SetVelocity(Vector2 velocity) => _rigidbody.velocity = velocity * _speed;
+        
+        private void SetSpeed(float speed) => _speed = speed;
 
         private void SetDirectionWithoutNotify(Vector2 direction) => _direction = direction;
 

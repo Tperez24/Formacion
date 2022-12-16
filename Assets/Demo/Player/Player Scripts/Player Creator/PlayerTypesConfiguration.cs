@@ -1,5 +1,7 @@
 using Demo.Player.Player_Scripts.Player_Behaviour;
-using Player.Player_Scripts;
+using Demo.Player.Player_Scripts.Player_Installers;
+using Demo.Player.Spells.Scripts;
+using Demo.ProjectileComposite;
 using UnityEngine;
 
 namespace Demo.Player.Player_Scripts.Player_Creator
@@ -8,6 +10,8 @@ namespace Demo.Player.Player_Scripts.Player_Creator
     {
         private readonly PlayerBuilder _player;
         private PlayerController _behaviour;
+        private AttackAdapter _attackController;
+        private PlayerWeaponsComposite _playerWeaponsComposite;
         private PlayerConfigurationInstaller _installer;
         
         public MalePlayer(GameObject playerPrefab)
@@ -26,6 +30,26 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _player.Add(_behaviour);
         }
 
+        public void AddPlayerAttackController()
+        {
+            var attackControllerGo = new GameObject("Attack Controller");
+            attackControllerGo.transform.SetParent(_player.transform);
+
+            _attackController = attackControllerGo.AddComponent<AttackAdapter>();
+            _attackController.SetPlayerController(_behaviour);
+
+            _player.Add(_attackController);
+        }
+
+        public void AddPlayerAbilityTree()
+        {
+            var abilityTreeGo = new GameObject("Player Ability Tree");
+            abilityTreeGo.transform.SetParent(_player.transform);
+
+            _playerWeaponsComposite = abilityTreeGo.AddComponent<PlayerWeaponsComposite>();
+            _attackController.SetAbilityTree(_playerWeaponsComposite,AttackAdapter.AttackType.Spell);
+        }
+
         public void AddPlayerConfiguration()
         {
             var playerConfig = new GameObject("Player Configuration");
@@ -33,6 +57,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             
             _installer = playerConfig.AddComponent<PlayerConfigurationInstaller>();
             _installer.SetPlayerController(_behaviour);
+            _installer.SetPlayerAttackAdapter(_attackController);
 
             _player.Add(_installer);
         }
@@ -60,6 +85,11 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             throw new System.NotImplementedException();
         }
 
+        public void AddPlayerAttackController()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void AddPlayerBehaviour()
         {
             throw new System.NotImplementedException();
@@ -71,6 +101,11 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         }
 
         public void Initialize()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddPlayerAbilityTree()
         {
             throw new System.NotImplementedException();
         }
