@@ -2,7 +2,7 @@ using System;
 using Demo.Projectile_Abstract_Factory;
 using UnityEngine;
 
-namespace Demo.Player.Player_Scripts.Player_Behaviour
+namespace Demo.Player.Spells.Scripts
 {
     public static class SpellCreator
     {
@@ -18,6 +18,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             return spellType switch
             {
                 SpellTypes.IceSpell => new RegularSpell(),
+                SpellTypes.GroundSpell => new RegularSpell(),
+                SpellTypes.None => null,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -25,7 +27,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         public static (IAbstractPointer pointer, IAbstractSpell spell) LaunchSpell(SpellTypes spellType)
         {
             var go = new GameObject("Spell").transform;
-            
+
             var (pointer,pointerTransform) = GetSpellType(spellType).CreatePointer();
             var (spell,spellTransform) = GetSpellType(spellType).CreateSpell();
             

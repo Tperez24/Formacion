@@ -2,6 +2,7 @@
 using System.Collections;
 using Demo.AnimatorChecker;
 using Demo.Player.Spells;
+using Demo.Player.Spells.Scripts;
 using Demo.Projectile_Abstract_Factory;
 using Demo.ProjectileComposite;
 using Demo.Scripts.StaticClasses;
@@ -16,52 +17,66 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private Animator _playerAnimator;
         
         private Coroutine _waitAnimationEnd,_movePointer;
-        
-        IAbstractPointer _pointer;
-        IAbstractSpell _spell;
+
+        private IAbstractPointer _pointer;
+        private IAbstractSpell _spell;
 
         public void SetPlayerController(PlayerController playerController) => _playerController = playerController;
         public void SetAnimator(Animator animator) => _playerAnimator = animator;
+        private void SubscribeToEvents() => _playerController.OnMoveInputChanged.AddListener(MovePointer);
+        private void UnsubscribeToEvents() => _playerController.OnMoveInputChanged.RemoveListener(MovePointer);
         
         public void Charge()
         {
             (_pointer,_spell) = SpellCreator.LaunchSpell(_playerWeaponsComposite.GetSpellType());
 
-            _pointer.Translate(_playerController.gameObject.transform.position);
-            _playerController.OnMoveInputChanged.AddListener(MovePointer);
-            _spell.Enable(false);
-            
+            InitializeSpell();
+            InitializePointer();
+            SubscribeToEvents();
             StartCoroutine(WaitForAnimationEnds());
+        }
+
+        private void InitializePointer() => _pointer.Translate(_playerController.gameObject.transform.position);
+
+        private void InitializeSpell()
+        {
+            _spell.SetAoc(_playerWeaponsComposite.GetAoc(AttackAdapter.AttackType.Spell));
+            _spell.Enable(false);
         }
 
         public void Launch()
         {
             ResumeAnimator();
             
-            _playerController.OnMoveInputChanged.RemoveListener(MovePointer);
+            UnsubscribeToEvents();
             StopCoroutine(_movePointer);
 
-            _spell.Translate(_pointer);
-            _spell.Enable(true);
-            _pointer.Destroy();
+            SetSpellToPointerPos();
+            DestroyPointer();
             
             StartCoroutine(AnimationChecks.CheckForAnimationFinished(_spell.GetAnimator(), _spell.DestroyParent));
         }
 
+        private void SetSpellToPointerPos()
+        {
+            _spell.Translate(_pointer);
+            _spell.Enable(true);
+        }
+        private void DestroyPointer() => _pointer.Destroy();
+
         public void Cancel()
         {
             ResumeAnimator();
+            UnsubscribeToEvents();
             
-            _playerController.OnMoveInputChanged.RemoveListener(MovePointer);
             StopCoroutine(_waitAnimationEnd);
             StopCoroutine(_movePointer);
 
-            _pointer.Destroy();
-            _spell.DestroyParent();
+            DestroyPointer();
+            DestroySpell();
         }
-
+        private void DestroySpell() => _spell.DestroyParent();
         public void SetWeaponsComposite(PlayerWeaponsComposite playerWeaponsComposite) => _playerWeaponsComposite = playerWeaponsComposite;
-
         private void MovePointer(Vector2 direction)
         {
             if(_movePointer != null) StopCoroutine(_movePointer);
@@ -76,6 +91,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             
             _waitAnimationEnd = StartCoroutine(AnimationChecks.CheckForAnimationChanged(_playerAnimator, PauseAnimator));
         }
+        private void PauseAnimator() => _playerAnimator.speed = 0;
+        private void ResumeAnimator() => _playerAnimator.speed = 1;
         
         //TODO Observer¿?
         private IEnumerator InputMovementPressed(Vector2 direction,Action action)
@@ -87,10 +104,6 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
                 
             } while (direction != Vector2.zero);
         }
-        
-        private void PauseAnimator() => _playerAnimator.speed = 0;
-
-        private void ResumeAnimator() => _playerAnimator.speed = 1;
     }
     public class AttackController : MonoBehaviour,IAttack
     {
@@ -101,6 +114,4 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         public void Cancel() => throw new NotImplementedException();
         public void SetWeaponsComposite(PlayerWeaponsComposite playerWeaponsComposite) => throw new NotImplementedException();
     }
-
-    
 }

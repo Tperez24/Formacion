@@ -10,7 +10,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
     {
         private readonly PlayerBuilder _player;
         private PlayerController _behaviour;
-        private AttackAdapter _attackController;
+        private AttackAdapter _attackAdapter;
         private PlayerWeaponsComposite _playerWeaponsComposite;
         private PlayerConfigurationInstaller _installer;
         
@@ -35,10 +35,10 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             var attackControllerGo = new GameObject("Attack Controller");
             attackControllerGo.transform.SetParent(_player.transform);
 
-            _attackController = attackControllerGo.AddComponent<AttackAdapter>();
-            _attackController.SetPlayerController(_behaviour);
+            _attackAdapter = attackControllerGo.AddComponent<AttackAdapter>();
+            _attackAdapter.SetPlayerController(_behaviour);
 
-            _player.Add(_attackController);
+            _player.Add(_attackAdapter);
         }
 
         public void AddPlayerAbilityTree()
@@ -47,7 +47,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             abilityTreeGo.transform.SetParent(_player.transform);
 
             _playerWeaponsComposite = abilityTreeGo.AddComponent<PlayerWeaponsComposite>();
-            _attackController.SetAbilityTree(_playerWeaponsComposite,AttackAdapter.AttackType.Spell);
+            _attackAdapter.SetAbilityTree(_playerWeaponsComposite,AttackAdapter.AttackType.Spell);
         }
 
         public void AddPlayerConfiguration()
@@ -57,7 +57,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             
             _installer = playerConfig.AddComponent<PlayerConfigurationInstaller>();
             _installer.SetPlayerController(_behaviour);
-            _installer.SetPlayerAttackAdapter(_attackController);
+            _installer.SetPlayerAttackAdapter(_attackAdapter);
 
             _player.Add(_installer);
         }

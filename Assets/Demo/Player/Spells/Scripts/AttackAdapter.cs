@@ -9,7 +9,6 @@ namespace Demo.Player.Spells.Scripts
         private AttackController _attackController;
         private SpellAttackController _spellAttackController;
         private PlayerController _playerController;
-        private PlayerWeaponsComposite _playerWeaponsComposite;
         private AttackController AttackController
         {
             get

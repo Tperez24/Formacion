@@ -13,7 +13,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private IInput Input { get; set; }
         private Animator _playerAnimator;
         private InputAction _moveAction,_attackAction,_specialAction;
-        public Vector2 _direction,_lastDirection;
+        private Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
         private AttackAdapter _attackAdapter;

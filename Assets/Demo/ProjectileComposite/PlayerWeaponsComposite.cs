@@ -12,13 +12,11 @@ namespace Demo.ProjectileComposite
         private void Start()
         {
             _spellBranch = new SpellBranch(new List<WeaponsTree>());
-            _weaponsTree = new WeaponsBranch(new List<WeaponsTree>(){_spellBranch});
+            _weaponsTree = new WeaponsBranch(new List<WeaponsTree>{_spellBranch});
         }
-
         public void AddLeafToSpellBranch(WeaponsTree leaf) => _spellBranch.Add(leaf);
         public void RemoveLeafToSpellBranch(WeaponsTree leaf) => _spellBranch.Remove(leaf);
-
-        public AnimatorOverrideController GetAoc(SpellCreator.SpellTypes types) => _weaponsTree.Animator(types);
+        public AnimatorOverrideController GetAoc(AttackAdapter.AttackType types) => _weaponsTree.Animator(types);
         public SpellCreator.SpellTypes GetSpellType() => _weaponsTree.GetSpellType(AttackAdapter.AttackType.Spell);
     }
 }

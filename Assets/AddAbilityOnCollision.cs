@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Demo.Player.Player_Scripts.Player_Behaviour;
+using Demo.Player.Spells.Scripts;
 using Demo.ProjectileComposite;
 using UnityEngine;
 
