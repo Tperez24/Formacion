@@ -39,5 +39,3 @@ BAssets/Demo/Player/Player Scripts/Player Creator/IPlayerBuilder.cs,5\1\51ad87e
 LAssets/Demo/Player/Player Scripts/Player Creator/PlayerTypesConfiguration.cs,9\3\93e31086a5daaf0a29f5fe472b8ee958755ba463
 Q
 !Assets/Threads/ThreadStructure.cs,a\8\a8b6e698b6c2b115367799ce01d00b274a21a536
-^
-.Assets/Demo/AnimatorChecker/AnimationChecks.cs,c\b\cbd95536985e80a626dadbce766111768aaae9c8

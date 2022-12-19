@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IceSpellOverride 1
+  m_Name: IceSpellOverride
   m_Controller: {fileID: 9100000, guid: 5c0afee0c09ea4246878f5732bba5bf2, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 734fbc89616609243b982ed6e2b13f98, type: 2}
