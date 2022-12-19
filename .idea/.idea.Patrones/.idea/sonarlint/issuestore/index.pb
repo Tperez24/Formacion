@@ -21,8 +21,6 @@ k
 ;Assets/Patrones Estructurales/Composite/TwoHandedWeapons.cs,c\c\cc07a27a92178ef255ba4cd1e1e860420e39f4bd
 q
 AAssets/Patrones Estructurales/Composite/PlayerInventoryWeapons.cs,1\0\100154e46a42ec0e11234cb82e7732773fc3609f
-S
-#Assets/Demo/Input Adapter/IInput.cs,d\e\de60616429c7d067d3de54fba80c7371e31aecc6
 c
 3Assets/Demo/Scripts/StaticClasses/AnimationNames.cs,6\1\61d32018b00b6287b972dabc995fef1d4c87a3d3
 d
@@ -43,9 +41,3 @@ Q
 !Assets/Threads/ThreadStructure.cs,a\8\a8b6e698b6c2b115367799ce01d00b274a21a536
 ^
 .Assets/Demo/AnimatorChecker/AnimationChecks.cs,c\b\cbd95536985e80a626dadbce766111768aaae9c8
-v
-FAssets/Demo/Player/Player Scripts/Player Creator/PlayerInstantiator.cs,f\a\fa208ffd433b8bac53a7e682da29dec83813e7a7
-v
-FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
-v
-FAssets/Demo/Player/Player Scripts/Player Behaviour/AttackController.cs,8\7\87190ccf65e355e166260b79b4006179f6ad5d9e
