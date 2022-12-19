@@ -1,7 +1,7 @@
 using Demo.ProjectileComposite;
 using UnityEngine;
 
-namespace Demo.Player.Spells
+namespace Demo.Player.Spells.Scripts
 {
     public interface IAttack
     {

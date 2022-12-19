@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Demo.AnimatorChecker;
+using Demo.Player.PlayerMediator;
 using Demo.Player.Spells;
 using Demo.Player.Spells.Scripts;
 using Demo.Projectile_Abstract_Factory;
@@ -10,7 +11,7 @@ using UnityEngine;
 
 namespace Demo.Player.Player_Scripts.Player_Behaviour
 { 
-    public class SpellAttackController : MonoBehaviour,IAttack
+    public class SpellAttackController : PlayerComponents,IAttack
     {
         private PlayerController _playerController;
         private PlayerWeaponsComposite _playerWeaponsComposite;
@@ -21,10 +22,11 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private IAbstractPointer _pointer;
         private IAbstractSpell _spell;
 
+        protected SpellAttackController(IPlayerComponentsMediator mediator) : base(mediator) { }
         public void SetPlayerController(PlayerController playerController) => _playerController = playerController;
         public void SetAnimator(Animator animator) => _playerAnimator = animator;
-        private void SubscribeToEvents() => _playerController.OnMoveInputChanged.AddListener(MovePointer);
-        private void UnsubscribeToEvents() => _playerController.OnMoveInputChanged.RemoveListener(MovePointer);
+        private void SubscribeToEvents() => _playerController.onMoveInputChanged.AddListener(MovePointer);
+        private void UnsubscribeToEvents() => _playerController.onMoveInputChanged.RemoveListener(MovePointer);
         
         public void Charge()
         {

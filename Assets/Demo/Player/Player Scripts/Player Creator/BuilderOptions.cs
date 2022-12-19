@@ -16,6 +16,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _playerBuilderInterface.AddPlayerAttackController();
             _playerBuilderInterface.AddPlayerAbilityTree();
             _playerBuilderInterface.AddPlayerConfiguration();
+            _playerBuilderInterface.AddPlayerMediator();
             _playerBuilderInterface.Initialize();
         }
     }
