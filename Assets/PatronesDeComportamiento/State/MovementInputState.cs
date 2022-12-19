@@ -2,8 +2,8 @@
 {
     public abstract class MovementInputState
     {
-        protected MovementInput _movementInput;
-        public void SetContext(MovementInput movementInput) => _movementInput = movementInput;
+        protected MovementInput MovementInput;
+        public void SetContext(MovementInput movementInput) => MovementInput = movementInput;
         public abstract void Move();
         public abstract void Transition();
     }

@@ -21,6 +21,8 @@ namespace PatronesDeComportamiento.State
         {
             _movementInputState = new MoveEnemyState();
             _movementInput = new MovementInput(GetState());
+            
+            _movementInputState.SetContext(_movementInput);
         }
 
         private void OnEnable()
@@ -31,7 +33,7 @@ namespace PatronesDeComportamiento.State
             _moveAction.performed += Move;
         }
 
-        private void Move(InputAction.CallbackContext obj) => _movementInputState.Move();
+        private void Move(InputAction.CallbackContext obj) => _movementInput.StateAction();
 
         private MovementInputState GetState()
         {

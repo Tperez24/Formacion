@@ -15,5 +15,8 @@ namespace PatronesDeComportamiento.State
             _inputState = state;
             _inputState.SetContext(this);
         }
+
+        public void StateAction() => _inputState.Move();
+        public void StateTransition() => _inputState.Transition();
     }
 }
