@@ -1,35 +1,26 @@
-﻿namespace Demo.GameInputState
+﻿using System;
+using UnityEngine.InputSystem;
+
+namespace Demo.GameInputState
 {
     public class PlayerInputState : InputState
     {
-        public override void Move()
+        public static EventHandler<InputAction.CallbackContext> MovePlayer,Attack,ChargeSpecial;
+        
+        public override void Move(InputAction.CallbackContext context) => MovePlayer.Invoke(this,context);
+
+        public override void PressAttack(InputAction.CallbackContext context) => Attack.Invoke(this,context);
+
+        public override void ChargeSpecialAttack(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            ChargeSpecial.Invoke(this, context);
+            TransitionTo(InputContext.GetPointerState());
         }
 
-        public override void PressAttack()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override void LaunchSpecialAttack(InputAction.CallbackContext context) { }
 
-        public override void ChargeSpecialAttack()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override void CancelSpecialAttack(InputAction.CallbackContext context) { }
 
-        public override void LaunchSpecialAttack()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void CancelSpecialAttack()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void TransitionTo(InputState state)
-        {
-            throw new System.NotImplementedException();
-        }
+        public override void TransitionTo(InputState state) => InputContext.TransitionTo(state);
     }
 }

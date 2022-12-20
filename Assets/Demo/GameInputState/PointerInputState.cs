@@ -1,32 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine.InputSystem;
 
 namespace Demo.GameInputState
 {
     public class PointerInputState : InputState
     {
-        public override void Move()
+        public static EventHandler<InputAction.CallbackContext> MovePointer,LaunchSpecial,CancelSpecial; 
+        public override void Move(InputAction.CallbackContext context) => MovePointer.Invoke(this,context);
+
+        public override void PressAttack(InputAction.CallbackContext context) { }
+
+        public override void ChargeSpecialAttack(InputAction.CallbackContext context) { }
+
+        public override void LaunchSpecialAttack(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            LaunchSpecial.Invoke(this,context);
+            TransitionTo(InputContext.GetPlayerState());
         }
 
-        public override void PressAttack()
+        public override void CancelSpecialAttack(InputAction.CallbackContext context)
         {
-            Debug.LogWarning("Can't press attack button while moving the pointer");
-        }
-
-        public override void ChargeSpecialAttack()
-        {
-            Debug.LogWarning("Can't press special attack button while moving the pointer");
-        }
-
-        public override void LaunchSpecialAttack()
-        {
-            Debug.LogWarning("Can't launch the attack while moving the pointer");
-        }
-
-        public override void CancelSpecialAttack()
-        {
-            Debug.LogWarning("Can't cancel the attack while moving the pointer");
+            CancelSpecial.Invoke(this,context);
+            TransitionTo(InputContext.GetPlayerState());
         }
 
         public override void TransitionTo(InputState state) => InputContext.TransitionTo(state);

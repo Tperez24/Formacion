@@ -12,7 +12,6 @@ namespace Demo.Player.Player_Scripts.Player_Creator
     {
         private readonly PlayerBuilder _player;
         private PlayerController _behaviour;
-        private AttackAdapter _attackAdapter;
         private AttackController _attackController;
         private SpellAttackController _spellAttackController;
         private PlayerWeaponsComposite _playerWeaponsComposite;
@@ -42,12 +41,10 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         {
             var attackControllerGo = new GameObject("Attack Controller");
             attackControllerGo.transform.SetParent(_player.transform);
-
-            _attackAdapter = attackControllerGo.AddComponent<AttackAdapter>();
+            
             _spellAttackController = attackControllerGo.AddComponent<SpellAttackController>();
             _attackController = attackControllerGo.AddComponent<AttackController>();
-
-            _player.Add(_attackAdapter);
+            
             _player.Add(_spellAttackController);
             _player.Add(_attackController);
         }
@@ -78,26 +75,22 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             playerConfig.transform.SetParent(_player.transform);
             
             _installer = playerConfig.AddComponent<PlayerConfigurationInstaller>();
-            _installer.SetPlayerController(_behaviour);
 
             _player.Add(_installer);
         }
 
         public void Initialize()
         {
-            SetComponentOnMediator(new List<PlayerComponent>{_behaviour,_attackAdapter,_spellAttackController,_attackController});
-            
+            SetComponentOnMediator(new List<PlayerComponent>{_behaviour,_spellAttackController,_attackController});
             SetMediatorReferences();
-            
-            _installer.Initialize();
             _behaviour.Initialize();
         }
 
         private void SetComponentOnMediator(List<PlayerComponent> components) =>
             components.ForEach(component => component.SetMediator(_playerMediator));
         private void SetMediatorReferences() => 
-            _playerMediator.SetReferences(_behaviour,_attackAdapter,_playerAnimator,_attackController,_spellAttackController,_playerWeaponsComposite);
-        public PlayerBuilder GetPlayer() => _player;
+            _playerMediator.SetReferences(_behaviour,_playerAnimator,_attackController,_spellAttackController,_playerWeaponsComposite);
+        public PlayerBuilder GetPlayerBuilder() => _player;
     }
 
     public class FemalePlayer : IPlayerBuilder
@@ -117,7 +110,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
         public void AddPlayerBehaviour() => throw new System.NotImplementedException();
 
-        public PlayerBuilder GetPlayer() => throw new System.NotImplementedException();
+        public PlayerBuilder GetPlayerBuilder() => throw new System.NotImplementedException();
 
         public void Initialize() => throw new System.NotImplementedException();
 

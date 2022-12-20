@@ -10,12 +10,21 @@ namespace Demo.GameInputState
         private IInput Input { get; set; }
         
         private InputContext _inputContext;
-        private InputState _inputState;
+        private InputState _playerInputState,_pointerInputState;
         
         private InputAction _moveAction,_attackAction,_specialAction;
 
         public void SetInput(IInput input) => Input = input;
         public void Initialize()
+        {
+            AssignInputActions();
+            
+            SubscribeToInputs();
+
+            CreateAndInitializeInputStates();
+        }
+
+        private void AssignInputActions()
         {
             var master = new Master();
             master.Enable();
@@ -23,13 +32,19 @@ namespace Demo.GameInputState
             _moveAction = Input.GetInput().Find(input => input.name == ActionNames.Movement());
             _attackAction = Input.GetInput().Find(input => input.name == ActionNames.Attack());
             _specialAction = Input.GetInput().Find(input => input.name == ActionNames.Special());
+        }
+
+        private void CreateAndInitializeInputStates()
+        {
+            _playerInputState = new PlayerInputState();
+            _pointerInputState = new PointerInputState();
             
-            SubscribeToInputs();
+            _inputContext = new InputContext(_playerInputState);
+
+            _inputContext.SetPlayerState(_playerInputState);
+            _inputContext.SetPointerState(_pointerInputState);
             
-            _inputState = new PlayerInputState();
-            _inputContext = new InputContext(_inputState);
-            
-            _inputState.SetContext(_inputContext);
+            _playerInputState.SetContext(_inputContext);
         }
 
         private void SubscribeToInputs()
@@ -50,14 +65,14 @@ namespace Demo.GameInputState
             _specialAction.canceled -= CancelSpecialAttack;
         }
         
-        private void AimSpecialAttack(InputAction.CallbackContext obj) => _inputState.ChargeSpecialAttack();
+        private void AimSpecialAttack(InputAction.CallbackContext obj) => _inputContext.AimSpecial(obj);
 
-        private void CancelSpecialAttack(InputAction.CallbackContext obj) => _inputState.CancelSpecialAttack();
+        private void CancelSpecialAttack(InputAction.CallbackContext obj) => _inputContext.CancelSpecial(obj);
 
-        private void SpecialAttack(InputAction.CallbackContext obj) => _inputState.LaunchSpecialAttack();
+        private void SpecialAttack(InputAction.CallbackContext obj) => _inputContext.LaunchSpecial(obj);
 
-        private void Attack(InputAction.CallbackContext obj) => _inputState.PressAttack();
+        private void Attack(InputAction.CallbackContext obj) => _inputContext.Attack(obj);
 
-        private void Move(InputAction.CallbackContext obj) => _inputState.Move();
+        private void Move(InputAction.CallbackContext obj) => _inputContext.MoveAction(obj);
     }
 }

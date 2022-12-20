@@ -1,14 +1,16 @@
-﻿namespace Demo.GameInputState
+﻿using UnityEngine.InputSystem;
+
+namespace Demo.GameInputState
 {
     public abstract class InputState
     {
         protected InputContext InputContext;
         public void SetContext(InputContext inputContext) => InputContext = inputContext;
-        public abstract void Move();
-        public abstract void PressAttack();
-        public abstract void ChargeSpecialAttack();
-        public abstract void LaunchSpecialAttack();
-        public abstract void CancelSpecialAttack();
+        public abstract void Move(InputAction.CallbackContext context);
+        public abstract void PressAttack(InputAction.CallbackContext context);
+        public abstract void ChargeSpecialAttack(InputAction.CallbackContext context);
+        public abstract void LaunchSpecialAttack(InputAction.CallbackContext context);
+        public abstract void CancelSpecialAttack(InputAction.CallbackContext context);
         public abstract void TransitionTo(InputState state);
     }
 }

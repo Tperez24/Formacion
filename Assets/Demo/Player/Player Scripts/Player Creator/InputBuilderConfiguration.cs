@@ -6,7 +6,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 {
     public class InputBuilderConfiguration : IInputBuilder
     {
-        private InputBuilder _inputBuilder;
+        private readonly InputBuilder _inputBuilder;
         private InputController _inputController;
         public InputBuilderConfiguration(GameObject inputPrefab)
         {
@@ -21,5 +21,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _inputController = inputControllerGo.AddComponent<InputController>();
             _inputBuilder.Add(_inputController);
         }
+
+        public InputBuilder GetInputBuilder() => _inputBuilder;
     }
 }

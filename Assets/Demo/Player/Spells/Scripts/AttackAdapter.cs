@@ -21,8 +21,5 @@ namespace Demo.Player.Spells.Scripts
                 _ => null
             };
         }
-        public void StartCharging(AttackType type) => GetAttack(type).Charge();
-        public void LaunchAttack(AttackType type) => GetAttack(type).Launch();
-        public void AttackCanceled(AttackType type) => GetAttack(type).Cancel();
     }
 }

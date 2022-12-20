@@ -6,7 +6,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         public void AddPlayerMediator();
         public void AddPlayerAttackSystem();
         public void AddPlayerBehaviour();
-        public PlayerBuilder GetPlayer();
+        public PlayerBuilder GetPlayerBuilder();
         public void Initialize();
         void AddPlayerAbilityTree();
     }
@@ -14,5 +14,6 @@ namespace Demo.Player.Player_Scripts.Player_Creator
     public interface IInputBuilder
     {
         public void AddInputController();
+        public InputBuilder GetInputBuilder();
     }
 }
