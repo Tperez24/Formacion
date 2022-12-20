@@ -2,10 +2,10 @@
 
 namespace Demo.Player.PlayerMediator
 {
-    public class PlayerComponents : MonoBehaviour
+    public class PlayerComponent : MonoBehaviour
     {
         protected IPlayerComponentsMediator Mediator;
-        protected PlayerComponents(IPlayerComponentsMediator mediator) => Mediator = mediator;
+        protected PlayerComponent(IPlayerComponentsMediator mediator) => Mediator = mediator;
         public void SetMediator(IPlayerComponentsMediator mediator) => Mediator = mediator;
     }
 }

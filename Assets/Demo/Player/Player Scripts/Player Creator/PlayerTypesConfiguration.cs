@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Demo.Player.Player_Scripts.Player_Behaviour;
 using Demo.Player.Player_Scripts.Player_Installers;
 using Demo.Player.PlayerMediator;
@@ -12,6 +13,8 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         private readonly PlayerBuilder _player;
         private PlayerController _behaviour;
         private AttackAdapter _attackAdapter;
+        private AttackController _attackController;
+        private SpellAttackController _spellAttackController;
         private PlayerWeaponsComposite _playerWeaponsComposite;
         private PlayerConfigurationInstaller _installer;
         private PlayerMediator.PlayerMediator _playerMediator;
@@ -35,15 +38,18 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _player.Add(_behaviour);
         }
 
-        public void AddPlayerAttackController()
+        public void AddPlayerAttackSystem()
         {
             var attackControllerGo = new GameObject("Attack Controller");
             attackControllerGo.transform.SetParent(_player.transform);
 
             _attackAdapter = attackControllerGo.AddComponent<AttackAdapter>();
-            _attackAdapter.SetPlayerController(_behaviour);
+            _spellAttackController = attackControllerGo.AddComponent<SpellAttackController>();
+            _attackController = attackControllerGo.AddComponent<AttackController>();
 
             _player.Add(_attackAdapter);
+            _player.Add(_spellAttackController);
+            _player.Add(_attackController);
         }
 
         public void AddPlayerAbilityTree()
@@ -52,8 +58,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             abilityTreeGo.transform.SetParent(_player.transform);
 
             _playerWeaponsComposite = abilityTreeGo.AddComponent<PlayerWeaponsComposite>();
-            _attackAdapter.SetAbilityTree(_playerWeaponsComposite,AttackAdapter.AttackType.Spell);
-            
+
             _player.Add(_playerWeaponsComposite);
         }
 
@@ -63,8 +68,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             playerMediatorGo.transform.SetParent(_player.transform);
 
             _playerMediator = playerMediatorGo.AddComponent<PlayerMediator.PlayerMediator>();
-            _playerMediator.SetReferences(_behaviour,_installer,_attackAdapter,_playerAnimator);
-            
+
             _player.Add(_playerMediator);
         }
 
@@ -81,13 +85,18 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
         public void Initialize()
         {
-            SetComponentOnMediator(_behaviour);
+            SetComponentOnMediator(new List<PlayerComponent>{_behaviour,_attackAdapter,_spellAttackController,_attackController});
+            
+            SetMediatorReferences();
             
             _installer.Initialize();
             _behaviour.Initialize();
         }
 
-        private void SetComponentOnMediator(PlayerComponents component) => component.SetMediator(_playerMediator);
+        private void SetComponentOnMediator(List<PlayerComponent> components) =>
+            components.ForEach(component => component.SetMediator(_playerMediator));
+        private void SetMediatorReferences() => 
+            _playerMediator.SetReferences(_behaviour,_attackAdapter,_playerAnimator,_attackController,_spellAttackController,_playerWeaponsComposite);
         public PlayerBuilder GetPlayer() => _player;
     }
 
@@ -104,7 +113,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
         public void AddPlayerMediator() => throw new System.NotImplementedException();
 
-        public void AddPlayerAttackController() => throw new System.NotImplementedException();
+        public void AddPlayerAttackSystem() => throw new System.NotImplementedException();
 
         public void AddPlayerBehaviour() => throw new System.NotImplementedException();
 

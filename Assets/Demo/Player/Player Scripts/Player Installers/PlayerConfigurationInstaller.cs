@@ -10,7 +10,6 @@ namespace Demo.Player.Player_Scripts.Player_Installers
     public class PlayerConfigurationInstaller : MonoBehaviour
     {
         private PlayerController _playerBehaviour;
-       
         public void SetPlayerController(PlayerController behaviour) => _playerBehaviour = behaviour;
         public void Initialize() => _playerBehaviour.SetInput(GetInput());
         private IInput GetInput()

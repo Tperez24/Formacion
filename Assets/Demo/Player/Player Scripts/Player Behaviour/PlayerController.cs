@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 namespace Demo.Player.Player_Scripts.Player_Behaviour
 {
-    public class PlayerController : PlayerComponents
+    public class PlayerController : PlayerComponent
     {
         private IInput Input { get; set; }
         private Animator _playerAnimator;
@@ -19,8 +19,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private Rigidbody2D _rigidbody;
 
         private float _speed = 2f;
-        private UnityEvent _onDirectionChanged = new UnityEvent();
-        public UnityEvent<Vector2> onMoveInputChanged = new UnityEvent<Vector2>();
+        private UnityEvent _onDirectionChanged = new();
+        public UnityEvent<Vector2> onMoveInputChanged = new();
         
         public void SetInput(IInput input) => Input = input;
 
@@ -39,7 +39,6 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         public void Initialize()
         {
             Getters();
-            SetAnimatorToAdapter();
             SetActions();
             InitializeEvents();
             SubscribeToInputs();
@@ -61,8 +60,6 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             _playerAnimator = GetComponentInParent<Animator>();
             _rigidbody = GetComponentInParent<Rigidbody2D>();
         }
-
-        private void SetAnimatorToAdapter() => Mediator.Notify(this,"SetAnimator");
 
         private void SetActions()
         {
@@ -141,7 +138,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         
         private void Attack(InputAction.CallbackContext context)
         {
-            Mediator.Notify(this,"LaunchAttack");
+            Mediator.Notify(this,MediatorActionNames.LaunchAttack());
             
             AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
         }
@@ -149,19 +146,19 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private void AimSpecialAttack(InputAction.CallbackContext obj)
         {
             SetSpeed(0);
-            Mediator.Notify(this,"AimSpecialAttack");
+            Mediator.Notify(this,MediatorActionNames.AimSpecialAttack());
         }
 
         private void LaunchSpecialAttack(InputAction.CallbackContext obj)
         {
             SetSpeed(2);
-            Mediator.Notify(this,"LaunchSpecialAttack");
+            Mediator.Notify(this,MediatorActionNames.LaunchSpecialAttack());
         }
 
         private void SpecialAttackCanceled(InputAction.CallbackContext obj)
         {
             SetSpeed(2);
-            Mediator.Notify(this,"SpecialAttackCanceled");
+            Mediator.Notify(this,MediatorActionNames.SpecialAttackCanceled());
         }
 
         private Action AnimationAction (string animationName,object type)

@@ -21,8 +21,6 @@ k
 ;Assets/Patrones Estructurales/Composite/TwoHandedWeapons.cs,c\c\cc07a27a92178ef255ba4cd1e1e860420e39f4bd
 q
 AAssets/Patrones Estructurales/Composite/PlayerInventoryWeapons.cs,1\0\100154e46a42ec0e11234cb82e7732773fc3609f
-c
-3Assets/Demo/Scripts/StaticClasses/AnimationNames.cs,6\1\61d32018b00b6287b972dabc995fef1d4c87a3d3
 d
 4Assets/Patrones Estructurales/Flyweight/Flyweight.cs,3\a\3a1f4c0cd22acbf8dad53ba7450e8075304b7189
 b
@@ -51,18 +49,12 @@ h
 8Assets/PatronesDeComportamiento/State/InputController.cs,0\1\01eac4bf2f34842fec908a83fb71ff9f7485865a
 m
 =Assets/PatronesDeComportamiento/State/MoveOnInterfaceState.cs,b\8\b84a4ed3544098b26bc04bc1418d7d5ac86b5a30
-^
-.Assets/Demo/AnimatorChecker/AnimationChecks.cs,c\b\cbd95536985e80a626dadbce766111768aaae9c8
 b
 2Assets/Demo/ProjectileComposite/GroundSpellLeaf.cs,2\f\2fa6d5c27dd7a50268201de415fbd7791b5e613a
 _
 /Assets/Demo/ProjectileComposite/IceSpellLeaf.cs,a\8\a858b1de963b66476dc0813adbadc3409b9c9552
-P
- Assets/Demo/Paths/PrefabsPath.cs,8\f\8fecb2781b798a748eadb8698b1a4173d97e6271
 `
 0Assets/Demo/ProjectileComposite/WeaponsBranch.cs,5\6\56340a74672809cdf6498a945295556c108b53f3
-i
-9Assets/Demo/ProjectileComposite/PlayerWeaponsComposite.cs,9\8\98e4013e7c8701519323205fc991778c4b9e6a08
 e
 5Assets/PatronesDeComportamiento/Visitor/IComponent.cs,6\6\66a9701d2e146e94ef5a17294d973e5c99255233
 m
@@ -87,25 +79,3 @@ h
 8Assets/PatronesDeComportamiento/Mediator/EnemyBuilder.cs,3\2\3218d49814a1b9243d9c87fe7ba32eb0c3d3c39c
 v
 FAssets/Demo/Player/Player Scripts/Player Creator/PlayerInstantiator.cs,f\a\fa208ffd433b8bac53a7e682da29dec83813e7a7
-e
-5Assets/Demo/Player/PlayerMediator/PlayerComponents.cs,b\9\b963bab79ebcfd3eb4c35bfec29d009d8d543e9b
-n
->Assets/Demo/Player/PlayerMediator/IPlayerComponentsMediator.cs,8\4\8467f56c255f988e5397d2d179fd95304ede58f6
-r
-BAssets/Demo/Player/Player Scripts/Player Creator/IPlayerBuilder.cs,5\1\51ad87ec6c6e5c436c028ac6a6336b9cd90ef402
-\
-,Assets/Demo/Player/Spells/Scripts/IAttack.cs,a\3\a321ba77eeafb36f3ec07be7bbc867a72ec8f2c3
-r
-BAssets/Demo/Player/Player Scripts/Player Creator/BuilderOptions.cs,0\f\0fe0b0c5eb74e93ad3c8c5c49a97f266167a8fd9
-|
-LAssets/Demo/Player/Player Scripts/Player Creator/PlayerTypesConfiguration.cs,9\3\93e31086a5daaf0a29f5fe472b8ee958755ba463
-ƒ
-SAssets/Demo/Player/Player Scripts/Player Installers/PlayerConfigurationInstaller.cs,f\4\f48a1c5d39313fd2e6dc143a28f086d89be3f9a4
-v
-FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
-c
-3Assets/Demo/Player/PlayerMediator/PlayerMediator.cs,1\f\1f408dc162a98fe4bdd67ee2db6e08ec76ffb7a4
-v
-FAssets/Demo/Player/Player Scripts/Player Behaviour/AttackController.cs,8\7\87190ccf65e355e166260b79b4006179f6ad5d9e
-b
-2Assets/Demo/Player/Spells/Scripts/AttackAdapter.cs,f\b\fb574071abec608b63dcce0aae1c9307feb2a5dc

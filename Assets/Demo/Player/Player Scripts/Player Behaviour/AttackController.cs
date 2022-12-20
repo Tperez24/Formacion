@@ -2,54 +2,43 @@
 using System.Collections;
 using Demo.AnimatorChecker;
 using Demo.Player.PlayerMediator;
-using Demo.Player.Spells;
 using Demo.Player.Spells.Scripts;
 using Demo.Projectile_Abstract_Factory;
-using Demo.ProjectileComposite;
-using Demo.Scripts.StaticClasses;
 using UnityEngine;
 
 namespace Demo.Player.Player_Scripts.Player_Behaviour
 { 
-    public class SpellAttackController : PlayerComponents,IAttack
+    public class SpellAttackController : PlayerComponent,IAttack
     {
-        private PlayerController _playerController;
-        private PlayerWeaponsComposite _playerWeaponsComposite;
-        private Animator _playerAnimator;
-        
         private Coroutine _waitAnimationEnd,_movePointer;
 
         private IAbstractPointer _pointer;
         private IAbstractSpell _spell;
 
         protected SpellAttackController(IPlayerComponentsMediator mediator) : base(mediator) { }
-        public void SetPlayerController(PlayerController playerController) => _playerController = playerController;
-        public void SetAnimator(Animator animator) => _playerAnimator = animator;
-        private void SubscribeToEvents() => _playerController.onMoveInputChanged.AddListener(MovePointer);
-        private void UnsubscribeToEvents() => _playerController.onMoveInputChanged.RemoveListener(MovePointer);
+        private void SubscribeToEvents() => Mediator.SubscribeTo(MediatorActionNames.PlayerMoveSubscription(), MovePointer,true);
+        private void UnsubscribeToEvents() => Mediator.SubscribeTo(MediatorActionNames.PlayerMoveSubscription(), MovePointer,false);
         
         public void Charge()
         {
-            (_pointer,_spell) = SpellCreator.LaunchSpell(_playerWeaponsComposite.GetSpellType());
+            (_pointer,_spell) = SpellCreator.LaunchSpell((SpellCreator.SpellTypes)Mediator.GetReference(MediatorActionNames.CompositeType()));
 
+            SubscribeToEvents();
             InitializeSpell();
             InitializePointer();
-            SubscribeToEvents();
             StartCoroutine(WaitForAnimationEnds());
         }
 
-        private void InitializePointer() => _pointer.Translate(_playerController.gameObject.transform.position);
+        private void InitializePointer() => _pointer.Translate((Vector3)Mediator.GetReference(MediatorActionNames.PlayerPosition()));
 
         private void InitializeSpell()
         {
-            _spell.SetAoc(_playerWeaponsComposite.GetAoc(AttackAdapter.AttackType.Spell));
+            _spell.SetAoc(Mediator.GetReference(MediatorActionNames.CompositeAnimator()) as AnimatorOverrideController);
             _spell.Enable(false);
         }
 
         public void Launch()
         {
-            ResumeAnimator();
-            
             UnsubscribeToEvents();
             StopCoroutine(_movePointer);
 
@@ -68,7 +57,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
 
         public void Cancel()
         {
-            ResumeAnimator();
+            Mediator.Notify(this,MediatorActionNames.ResumePlayerAnimator());
             UnsubscribeToEvents();
             
             StopCoroutine(_waitAnimationEnd);
@@ -78,7 +67,6 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             DestroySpell();
         }
         private void DestroySpell() => _spell.DestroyParent();
-        public void SetWeaponsComposite(PlayerWeaponsComposite playerWeaponsComposite) => _playerWeaponsComposite = playerWeaponsComposite;
         private void MovePointer(Vector2 direction)
         {
             if(_movePointer != null) StopCoroutine(_movePointer);
@@ -87,15 +75,14 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
 
         private IEnumerator WaitForAnimationEnds()
         {
-            _playerAnimator.SetTrigger(AnimationNames.IsSpecialAttack());
+            Mediator.Notify(this,MediatorActionNames.TriggerSpecialAttack());
 
             yield return null;
             
-            _waitAnimationEnd = StartCoroutine(AnimationChecks.CheckForAnimationChanged(_playerAnimator, PauseAnimator));
+            _waitAnimationEnd = StartCoroutine(AnimationChecks.CheckForAnimationChanged((Animator)Mediator.GetReference
+                (MediatorActionNames.GetPlayerAnimator()), () => Mediator.Notify(this,MediatorActionNames.PausePlayerAnimator())));
         }
-        private void PauseAnimator() => _playerAnimator.speed = 0;
-        private void ResumeAnimator() => _playerAnimator.speed = 1;
-        
+
         //TODO Observer¿?
         private IEnumerator InputMovementPressed(Vector2 direction,Action action)
         {
@@ -107,13 +94,11 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             } while (direction != Vector2.zero);
         }
     }
-    public class AttackController : MonoBehaviour,IAttack
+    public class AttackController : PlayerComponent,IAttack
     {
-        private Animator _playerAnimator;
-        public void SetAnimator(Animator animator) => _playerAnimator = animator;
+        protected AttackController(IPlayerComponentsMediator mediator) : base(mediator) { }
         public void Charge() => throw new NotImplementedException();
-        public void Launch() => _playerAnimator.SetTrigger(AnimationNames.IsSwordAttack());
+        public void Launch() => Mediator.Notify(this,MediatorActionNames.TriggerNormalAttack());
         public void Cancel() => throw new NotImplementedException();
-        public void SetWeaponsComposite(PlayerWeaponsComposite playerWeaponsComposite) => throw new NotImplementedException();
     }
 }
