@@ -2,22 +2,24 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 {
     public class BuilderOptions
     {
-        private IPlayerBuilder _playerBuilderInterface;
+        public IInputBuilder InputBuilder { get; set; }
 
-        public IPlayerBuilder Builder
-        {
-            set => _playerBuilderInterface = value;
-        }
+        public IPlayerBuilder Builder { get; set; }
 
         public void BuildNormalPlayer()
         {
-            _playerBuilderInterface.GetPlayer();
-            _playerBuilderInterface.AddPlayerMediator();
-            _playerBuilderInterface.AddPlayerBehaviour();
-            _playerBuilderInterface.AddPlayerAttackSystem();
-            _playerBuilderInterface.AddPlayerAbilityTree();
-            _playerBuilderInterface.AddPlayerConfiguration();
-            _playerBuilderInterface.Initialize();
+            Builder.GetPlayer();
+            Builder.AddPlayerMediator();
+            Builder.AddPlayerBehaviour();
+            Builder.AddPlayerAttackSystem();
+            Builder.AddPlayerAbilityTree();
+            Builder.AddPlayerConfiguration();
+            Builder.Initialize();
+        }
+
+        public void BuildInputSystem()
+        {
+            InputBuilder.AddInputController();
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8364476775153980806}
   - component: {fileID: 8364476775153980805}
   m_Layer: 0
-  m_Name: PlayerBuilder
+  m_Name: GameInitializator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8364476775153980804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 490f172618af4a6ab46a20d2eaf6312b, type: 3}
+  m_Script: {fileID: 11500000, guid: f5065b85fd532b7489fc0057ba89359b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectPlayer:

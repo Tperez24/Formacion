@@ -35,8 +35,6 @@ GAssets/PatronesDeComportamiento/ChainOfResponsabillity/DamageHandler.cs,c\1\c1
 LAssets/PatronesDeComportamiento/ChainOfResponsabillity/IcedOrcDmgReceiver.cs,2\6\26c3eca9f7ef6de2626bceb152b3f2fd7483b57b
 u
 EAssets/PatronesDeComportamiento/ChainOfResponsabillity/ChainDamage.cs,0\2\0236a1be723ad76175b1d22807ebee151b272e17
-S
-#Assets/Demo/Input Adapter/IInput.cs,d\e\de60616429c7d067d3de54fba80c7371e31aecc6
 e
 5Assets/PatronesDeComportamiento/Visitor/IComponent.cs,6\6\66a9701d2e146e94ef5a17294d973e5c99255233
 m
@@ -57,5 +55,3 @@ i
 9Assets/PatronesDeComportamiento/Mediator/EnemyMediator.cs,3\8\3836861a945d6069212532fbe929e96fba4d9f62
 h
 8Assets/PatronesDeComportamiento/Mediator/EnemyBuilder.cs,3\2\3218d49814a1b9243d9c87fe7ba32eb0c3d3c39c
-v
-FAssets/Demo/Player/Player Scripts/Player Creator/PlayerInstantiator.cs,f\a\fa208ffd433b8bac53a7e682da29dec83813e7a7

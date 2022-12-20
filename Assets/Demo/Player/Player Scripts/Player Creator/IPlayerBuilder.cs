@@ -10,4 +10,9 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         public void Initialize();
         void AddPlayerAbilityTree();
     }
+
+    public interface IInputBuilder
+    {
+        public void AddInputController();
+    }
 }

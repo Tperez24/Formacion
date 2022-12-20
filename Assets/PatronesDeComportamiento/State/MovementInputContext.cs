@@ -4,11 +4,11 @@ using UnityEngine.InputSystem.LowLevel;
 namespace PatronesDeComportamiento.State
 {
     //Define la interfaz a los clientes, mantiene una referencia de la subclase que representa el estado del contexto
-    public class MovementInput
+    public class MovementInputContext
     {
         private MovementInputState _inputState;
 
-        public MovementInput(MovementInputState state) => TransitionTo(state);
+        public MovementInputContext(MovementInputState state) => TransitionTo(state);
 
         public void TransitionTo(MovementInputState state)
         {

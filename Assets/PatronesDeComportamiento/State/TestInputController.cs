@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 namespace PatronesDeComportamiento.State
 {
-    public class InputController : MonoBehaviour
+    public class TestInputController : MonoBehaviour
     {
-        private MovementInput _movementInput;
+        private MovementInputContext _movementInputContext;
         private MovementInputState _movementInputState;
         private InputAction _moveAction;
         
@@ -20,9 +20,9 @@ namespace PatronesDeComportamiento.State
         private void Start()
         {
             _movementInputState = new MoveEnemyState();
-            _movementInput = new MovementInput(GetState());
+            _movementInputContext = new MovementInputContext(GetState());
             
-            _movementInputState.SetContext(_movementInput);
+            _movementInputState.SetContext(_movementInputContext);
         }
 
         private void OnEnable()
@@ -33,7 +33,7 @@ namespace PatronesDeComportamiento.State
             _moveAction.performed += Move;
         }
 
-        private void Move(InputAction.CallbackContext obj) => _movementInput.StateAction();
+        private void Move(InputAction.CallbackContext obj) => _movementInputContext.StateAction();
 
         private MovementInputState GetState()
         {

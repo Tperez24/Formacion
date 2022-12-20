@@ -143,20 +143,20 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
 
         private void AimSpecialAttack(InputAction.CallbackContext obj)
         {
-            SetSpeed(0);
             Mediator.Notify(this,MediatorActionNames.AimSpecialAttack());
+            SetSpeed(0);
         }
 
         private void LaunchSpecialAttack(InputAction.CallbackContext obj)
         {
-            SetSpeed(2);
             Mediator.Notify(this,MediatorActionNames.LaunchSpecialAttack());
+            SetSpeed(2);
         }
 
         private void SpecialAttackCanceled(InputAction.CallbackContext obj)
         {
-            SetSpeed(2);
             Mediator.Notify(this,MediatorActionNames.SpecialAttackCanceled());
+            SetSpeed(2);
         }
 
         private Action AnimationAction (string animationName,object type)
