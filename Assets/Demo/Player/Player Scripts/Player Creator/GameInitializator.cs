@@ -19,16 +19,8 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _builderOptions = new BuilderOptions();
             
             CreatePlayer();
-            CreateInput();
         }
-
-        private void CreateInput()
-        {
-            _inputBuilder = new InputBuilderConfiguration(Resources.Load<GameObject>(PrefabsPath.Input()));
-            _builderOptions.InputBuilder = _inputBuilder;
-            _builderOptions.BuildInputSystem();
-        }
-
+        
         private void CreatePlayer()
         {
             _playerBuilder = GetBuilder();
