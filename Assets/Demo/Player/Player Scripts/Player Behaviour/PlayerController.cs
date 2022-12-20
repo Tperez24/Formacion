@@ -1,7 +1,6 @@
 using System;
 using Demo.Input_Adapter;
 using Demo.Player.PlayerMediator;
-
 using Demo.Scripts.StaticClasses;
 using UnityEngine;
 using UnityEngine.Events;
@@ -45,7 +44,6 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             SubscribeToEvents();
             SetSpeed(2);
         }
-        
         private void OnDisable()
         {
             _moveAction.performed -= ChangeDirection;

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Demo.Player.Player_Scripts.Player_Behaviour;
 using Demo.Player.Spells.Scripts;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Demo.ProjectileComposite
             _weaponsTree = new WeaponsBranch(new List<WeaponsTree>{_spellBranch});
         }
         public void AddLeafToSpellBranch(WeaponsTree leaf) => _spellBranch.Add(leaf);
-        public void RemoveLeafToSpellBranch(WeaponsTree leaf) => _spellBranch.Remove(leaf);
+        public void RemoveAllLeafsToSpellBranch(AttackAdapter.AttackType attackType) => _spellBranch.Remove(attackType);
         public AnimatorOverrideController GetAoc(AttackAdapter.AttackType types) => _weaponsTree.Animator(types);
         public SpellCreator.SpellTypes GetSpellType() => _weaponsTree.GetSpellType(AttackAdapter.AttackType.Spell);
     }

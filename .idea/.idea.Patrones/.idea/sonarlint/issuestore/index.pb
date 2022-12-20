@@ -27,8 +27,6 @@ b
 2Assets/Patrones Estructurales/Proxy/ApplyDamage.cs,7\7\7762b3314bcd0d6d7ce20d8ecb9a5ee2cded3d8a
 M
 Assets/Threads/StartThread.cs,7\5\752eb1c61b625006a72db104027d73d2072817fa
-q
-AAssets/Demo/Player/Player Scripts/Player Creator/PlayerBuilder.cs,f\b\fb15572b2dc104125b19e1615c478a17bcb71da3
 Q
 !Assets/Threads/ThreadStructure.cs,a\8\a8b6e698b6c2b115367799ce01d00b274a21a536
 w
@@ -39,22 +37,6 @@ u
 EAssets/PatronesDeComportamiento/ChainOfResponsabillity/ChainDamage.cs,0\2\0236a1be723ad76175b1d22807ebee151b272e17
 S
 #Assets/Demo/Input Adapter/IInput.cs,d\e\de60616429c7d067d3de54fba80c7371e31aecc6
-g
-7Assets/PatronesDeComportamiento/State/MoveEnemyState.cs,a\e\aec701dcd37e8e96ada423542e30123b80200839
-k
-;Assets/PatronesDeComportamiento/State/MovementInputState.cs,9\d\9d3dcc1a073ef8a630e5dc4489159b7b6493617a
-f
-6Assets/PatronesDeComportamiento/State/MovementInput.cs,a\1\a1965c7eaf36df50f213d2568e8282ff2a8d8735
-h
-8Assets/PatronesDeComportamiento/State/InputController.cs,0\1\01eac4bf2f34842fec908a83fb71ff9f7485865a
-m
-=Assets/PatronesDeComportamiento/State/MoveOnInterfaceState.cs,b\8\b84a4ed3544098b26bc04bc1418d7d5ac86b5a30
-b
-2Assets/Demo/ProjectileComposite/GroundSpellLeaf.cs,2\f\2fa6d5c27dd7a50268201de415fbd7791b5e613a
-_
-/Assets/Demo/ProjectileComposite/IceSpellLeaf.cs,a\8\a858b1de963b66476dc0813adbadc3409b9c9552
-`
-0Assets/Demo/ProjectileComposite/WeaponsBranch.cs,5\6\56340a74672809cdf6498a945295556c108b53f3
 e
 5Assets/PatronesDeComportamiento/Visitor/IComponent.cs,6\6\66a9701d2e146e94ef5a17294d973e5c99255233
 m
@@ -65,8 +47,6 @@ k
 ;Assets/PatronesDeComportamiento/Visitor/ConcreteVisitors.cs,0\5\05cbc779756cffd22aecb299cb47395c0c8ac14e
 b
 2Assets/PatronesDeComportamiento/Visitor/Visitor.cs,e\3\e3a4451d8222523aec078ac0cece3476b5cb4562
-O
-Assets/AddAbilityOnCollision.cs,d\6\d6b58de8519e7e89e914a5f082408270f599e276
 e
 5Assets/PatronesDeComportamiento/Mediator/IMediator.cs,4\a\4af93bd667f0646aba3b1d13be3ea86e266bd436
 k

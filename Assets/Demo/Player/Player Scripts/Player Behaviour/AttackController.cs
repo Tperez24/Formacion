@@ -39,6 +39,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
 
         public void Launch()
         {
+            Mediator.Notify(this,MediatorActionNames.ResumePlayerAnimator());
+            
             UnsubscribeToEvents();
             StopCoroutine(_movePointer);
 

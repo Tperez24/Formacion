@@ -59,14 +59,10 @@ namespace Demo.Player.PlayerMediator
             Action action = methodName switch
             {
                 "LaunchAttack" => () => _attackAdapter.LaunchAttack(AttackAdapter.AttackType.Normal),
-                "LaunchSpecialAttack" => () =>
-                {
-                    _attackAdapter.LaunchAttack(AttackAdapter.AttackType.Spell);
-                    _playerAnimator.speed = 2;
-                },
+                "LaunchSpecialAttack" => () => _attackAdapter.LaunchAttack(AttackAdapter.AttackType.Spell),
                 "TriggerSpecialAttack" => () => _playerAnimator.SetTrigger(AnimationNames.IsSpecialAttack()),
                 "PausePlayerAnimator" => () => _playerAnimator.speed = 0,
-                "ResumePlayerAnimator" => () => _playerAnimator.speed = 2,
+                "ResumePlayerAnimator" => () => _playerAnimator.speed = 1,
                 _ => throw new ArgumentOutOfRangeException(nameof(methodName), methodName, null)
             };
             

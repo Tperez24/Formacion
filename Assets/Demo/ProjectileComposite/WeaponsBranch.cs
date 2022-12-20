@@ -20,7 +20,11 @@ namespace Demo.ProjectileComposite
 
         public override void Add(WeaponsTree component) => _children.Add(component);
 
-        public override void Remove(WeaponsTree component) => _children.Remove(component);
+        public override void Remove(AttackAdapter.AttackType attackType)
+        {
+            var attackBranch = _children.Where(weapon => weapon.AttackType() == attackType).ToList();
+            attackBranch.ForEach(attack => _children.Remove(attack));
+        }
     }
 
     class SpellBranch : WeaponsTree
@@ -41,6 +45,10 @@ namespace Demo.ProjectileComposite
 
         public override void Add(WeaponsTree component) => _children.Add(component);
 
-        public override void Remove(WeaponsTree component) => _children.Remove(component);
+        public override void Remove(AttackAdapter.AttackType attackType)
+        {
+            var spellBranch = _children.Where(weapon => weapon.AttackType() == attackType).ToList();
+            spellBranch.ForEach(spell => _children.Remove(spell));
+        }
     }
 }

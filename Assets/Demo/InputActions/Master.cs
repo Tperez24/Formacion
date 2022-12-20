@@ -146,7 +146,7 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f8b85916-8c45-446a-ae52-9545b3fcec2e"",
                     ""path"": ""<XInputController>/buttonNorth"",
-                    ""interactions"": ""Hold(duration=2,pressPoint=1.401298E-45)"",
+                    ""interactions"": ""SlowTap(duration=2,pressPoint=1)"",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""SpecialAttack"",

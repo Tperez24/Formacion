@@ -16,8 +16,8 @@ namespace Demo.Player.PlayerMediator
         
         //Trigger Player Animations
         public static string TriggerSpecialAttack() => "TriggerSpecialAttack";
-        public static string PausePlayerAnimator() => "TriggerSpecialAttack";
-        public static string ResumePlayerAnimator() => "TriggerSpecialAttack";
+        public static string PausePlayerAnimator() => "PausePlayerAnimator";
+        public static string ResumePlayerAnimator() => "ResumePlayerAnimator";
         public static string TriggerNormalAttack() => "TriggerNormalAttack";
         
         //GetReferences

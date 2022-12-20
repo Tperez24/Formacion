@@ -9,13 +9,12 @@ namespace Demo.ProjectileComposite
     public abstract class WeaponsTree
     {
         protected WeaponsTree(List<WeaponsTree> child) { }
-
+        
         protected SpellCreator.SpellTypes Weapon;
-
         public abstract SpellCreator.SpellTypes GetSpellType(AttackAdapter.AttackType type);
         public abstract AnimatorOverrideController Animator(AttackAdapter.AttackType type);
         public virtual AttackAdapter.AttackType AttackType() => throw new NotImplementedException();
         public virtual void Add(WeaponsTree weaponBranch) => throw new NotImplementedException();
-        public virtual void Remove(WeaponsTree weaponBranch) => throw new NotImplementedException();
+        public virtual void Remove(AttackAdapter.AttackType attackType) => throw new NotImplementedException();
     }
 }
