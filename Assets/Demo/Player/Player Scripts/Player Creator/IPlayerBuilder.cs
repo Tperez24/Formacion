@@ -2,7 +2,6 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 {
     public interface IPlayerBuilder
     {
-        public void AddPlayerConfiguration();
         public void AddPlayerMediator();
         public void AddPlayerAttackSystem();
         public void AddPlayerBehaviour();
@@ -14,6 +13,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
     public interface IInputBuilder
     {
         public void AddInputController();
+        public void AddInputConfigurationInstaller();
         public InputBuilder GetInputBuilder();
     }
 }

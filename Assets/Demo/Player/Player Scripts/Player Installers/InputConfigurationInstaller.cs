@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Demo.Player.Player_Scripts.Player_Installers
 {
-    public class PlayerConfigurationInstaller : MonoBehaviour
+    public class InputConfigurationInstaller : MonoBehaviour
     {
         public IInput GetInput()
         {

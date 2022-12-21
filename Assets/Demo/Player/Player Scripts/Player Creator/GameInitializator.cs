@@ -23,8 +23,6 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             
             CreatePlayer();
             CreateInput();
-
-            SetReferencesIntoInput();
         }
         private void CreateInput()
         {
@@ -40,17 +38,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _builderOptions.BuildNormalPlayer();
         }
         
-        private void SetReferencesIntoInput()
-        {
-            var inputInterface = (PlayerConfigurationInstaller)_playerBuilder.GetPlayerBuilder().parts
-                .Find(component => component.GetType() == typeof(PlayerConfigurationInstaller));
-            
-            var inputController = (InputController)_inputBuilder.GetInputBuilder().parts
-                .Find(component => component.GetType() == typeof(InputController));
-            
-            inputController.SetInput(inputInterface.GetInput());
-            inputController.Initialize();
-        }
+        
         private IPlayerBuilder GetBuilder()
         {
             return selectPlayer.playerType switch

@@ -15,7 +15,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         private AttackController _attackController;
         private SpellAttackController _spellAttackController;
         private PlayerWeaponsComposite _playerWeaponsComposite;
-        private PlayerConfigurationInstaller _installer;
+        private InputConfigurationInstaller _installer;
         private PlayerMediator.PlayerMediator _playerMediator;
         private Animator _playerAnimator;
         
@@ -68,17 +68,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
             _player.Add(_playerMediator);
         }
-
-        public void AddPlayerConfiguration()
-        {
-            var playerConfig = new GameObject("Player Configuration");
-            playerConfig.transform.SetParent(_player.transform);
-            
-            _installer = playerConfig.AddComponent<PlayerConfigurationInstaller>();
-
-            _player.Add(_installer);
-        }
-
+        
         public void Initialize()
         {
             SetComponentOnMediator(new List<PlayerComponent>{_behaviour,_spellAttackController,_attackController});
