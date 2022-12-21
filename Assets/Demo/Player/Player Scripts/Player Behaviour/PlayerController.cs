@@ -1,5 +1,5 @@
 using System;
-using Demo.Input_Adapter;
+using Demo.GameInputState;
 using Demo.Player.PlayerMediator;
 using Demo.Scripts.StaticClasses;
 using UnityEngine;
@@ -10,19 +10,13 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
 {
     public class PlayerController : PlayerComponent
     {
-        private IInput Input { get; set; }
         private Animator _playerAnimator;
-        private InputAction _moveAction,_attackAction,_specialAction;
         private Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
 
         private float _speed = 2f;
         private UnityEvent _onDirectionChanged = new();
-        public UnityEvent<Vector2> onMoveInputChanged = new();
-        
-        public void SetInput(IInput input) => Input = input;
-
         protected PlayerController(IPlayerComponentsMediator mediator) : base(mediator) { }
         private Vector2 Direction
         {
@@ -38,19 +32,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         public void Initialize()
         {
             Getters();
-            SetActions();
-            InitializeEvents();
-            SubscribeToInputs();
             SubscribeToEvents();
             SetSpeed(2);
-        }
-        private void OnDisable()
-        {
-            _moveAction.performed -= ChangeDirection;
-            _attackAction.performed -= Attack;
-            _specialAction.performed -= LaunchSpecialAttack;
-            _specialAction.started -= AimSpecialAttack;
-            _specialAction.canceled -= SpecialAttackCanceled;
         }
 
         private void Getters()
@@ -59,39 +42,35 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             _rigidbody = GetComponentInParent<Rigidbody2D>();
         }
 
-        private void SetActions()
-        {
-            _moveAction = Input.GetInput().Find(input => input.name == ActionNames.Movement());
-            _attackAction = Input.GetInput().Find(input => input.name == ActionNames.Attack());
-            _specialAction = Input.GetInput().Find(input => input.name == ActionNames.Special());
-        }
-
-        private void InitializeEvents()
-        {
-            onMoveInputChanged = new UnityEvent<Vector2>();
-            _onDirectionChanged = new UnityEvent();
-        }
-
-        private void SubscribeToInputs()
-        {
-            _moveAction.performed += ChangeDirection;
-            _attackAction.performed += Attack;
-            _specialAction.performed += LaunchSpecialAttack;
-            _specialAction.started += AimSpecialAttack;
-            _specialAction.canceled += SpecialAttackCanceled;
-        }
-
         private void SubscribeToEvents()
         {
             _onDirectionChanged = new UnityEvent();
             _onDirectionChanged.AddListener(MovePlayer);
+
+            PlayerInputState.MovePlayer += ChangeDirection;
+            PlayerInputState.ChargeSpecial += StopRigidbody;
+            PlayerInputState.Attack += Attack;
+            
+            PointerInputState.CancelSpecial += StopPlayerMovement;
+            PointerInputState.LaunchSpecial += StopPlayerMovement;
         }
 
-        private void ChangeDirection(InputAction.CallbackContext context)
+        private void OnDisable()
+        {
+            _onDirectionChanged.RemoveListener(MovePlayer);
+
+            PlayerInputState.MovePlayer -= ChangeDirection;
+            PlayerInputState.ChargeSpecial -= StopRigidbody;
+            PlayerInputState.Attack -= Attack;
+
+            PointerInputState.CancelSpecial -= StopPlayerMovement;
+            PointerInputState.LaunchSpecial -= StopPlayerMovement;
+        }
+
+        private void ChangeDirection(object sender, InputAction.CallbackContext context)
         {
             var dir = context.ReadValue<Vector2>();
-            onMoveInputChanged?.Invoke(dir);
-           
+
             if (dir == Vector2.zero)
             {
                 StopPlayer();
@@ -134,30 +113,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             AnimationAction(animationName, type).Invoke();
         }
         
-        private void Attack(InputAction.CallbackContext context)
-        {
-            Mediator.Notify(this,MediatorActionNames.LaunchAttack());
-            
-            AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
-        }
-
-        private void AimSpecialAttack(InputAction.CallbackContext obj)
-        {
-            Mediator.Notify(this,MediatorActionNames.AimSpecialAttack());
-            SetSpeed(0);
-        }
-
-        private void LaunchSpecialAttack(InputAction.CallbackContext obj)
-        {
-            Mediator.Notify(this,MediatorActionNames.LaunchSpecialAttack());
-            SetSpeed(2);
-        }
-
-        private void SpecialAttackCanceled(InputAction.CallbackContext obj)
-        {
-            Mediator.Notify(this,MediatorActionNames.SpecialAttackCanceled());
-            SetSpeed(2);
-        }
+        private void Attack(object sender, InputAction.CallbackContext callbackContext) => AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
 
         private Action AnimationAction (string animationName,object type)
         {
@@ -177,6 +133,10 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private void SetDirectionWithoutNotify(Vector2 direction) => _direction = direction;
 
         private void SetDirectionNotifying(Vector2 direction) => Direction = direction;
+        
+        private void StopRigidbody(object sender, InputAction.CallbackContext e) => SetVelocity(Vector2.zero);
+
+        private void StopPlayerMovement(object sender, InputAction.CallbackContext e) => StopPlayer();
     }
 }
 

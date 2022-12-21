@@ -55,3 +55,81 @@ i
 9Assets/PatronesDeComportamiento/Mediator/EnemyMediator.cs,3\8\3836861a945d6069212532fbe929e96fba4d9f62
 h
 8Assets/PatronesDeComportamiento/Mediator/EnemyBuilder.cs,3\2\3218d49814a1b9243d9c87fe7ba32eb0c3d3c39c
+`
+0Assets/Demo/Projectile Abstract Factory/Spell.cs,1\5\155f13437c1531809428a52e2f5aba57e1792271
+d
+4Assets/Demo/Player/PlayerMediator/PlayerComponent.cs,5\c\5c551ad8e3c9e74ba9830be1dd998897b010f7a5
+c
+3Assets/Demo/Scripts/StaticClasses/AnimationNames.cs,6\1\61d32018b00b6287b972dabc995fef1d4c87a3d3
+^
+.Assets/Demo/ProjectileComposite/WeaponsTree.cs,6\f\6f3052ed15e937f753291320e54be8247b5b116b
+`
+0Assets/Demo/ProjectileComposite/WeaponsBranch.cs,5\6\56340a74672809cdf6498a945295556c108b53f3
+i
+9Assets/Demo/ProjectileComposite/PlayerWeaponsComposite.cs,9\8\98e4013e7c8701519323205fc991778c4b9e6a08
+_
+/Assets/Demo/ProjectileComposite/IceSpellLeaf.cs,a\8\a858b1de963b66476dc0813adbadc3409b9c9552
+O
+Assets/AddAbilityOnCollision.cs,d\6\d6b58de8519e7e89e914a5f082408270f599e276
+b
+2Assets/Demo/ProjectileComposite/GroundSpellLeaf.cs,2\f\2fa6d5c27dd7a50268201de415fbd7791b5e613a
+m
+=Assets/PatronesDeComportamiento/State/MoveOnInterfaceState.cs,b\8\b84a4ed3544098b26bc04bc1418d7d5ac86b5a30
+m
+=Assets/PatronesDeComportamiento/State/MovementInputContext.cs,4\b\4b1ce9cf2c7216a34a171b0ea21d4936f2cd74b7
+g
+7Assets/PatronesDeComportamiento/State/MoveEnemyState.cs,a\e\aec701dcd37e8e96ada423542e30123b80200839
+k
+;Assets/PatronesDeComportamiento/State/MovementInputState.cs,9\d\9d3dcc1a073ef8a630e5dc4489159b7b6493617a
+l
+<Assets/PatronesDeComportamiento/State/TestInputController.cs,5\3\53fbfb9e93946303a18fb7c426b7ed0b1e7ac202
+S
+#Assets/Demo/Input Adapter/IInput.cs,d\e\de60616429c7d067d3de54fba80c7371e31aecc6
+o
+?Assets/Demo/Projectile Abstract Factory/ConcreteSpellFactory.cs,c\d\cd54db476f48e0482fb2c193f1045208975a5c63
+P
+ Assets/Demo/Paths/PrefabsPath.cs,8\f\8fecb2781b798a748eadb8698b1a4173d97e6271
+q
+AAssets/Demo/Player/Player Scripts/Player Creator/PlayerBuilder.cs,f\b\fb15572b2dc104125b19e1615c478a17bcb71da3
+r
+BAssets/Demo/Player/Player Scripts/Player Creator/IPlayerBuilder.cs,5\1\51ad87ec6c6e5c436c028ac6a6336b9cd90ef402
+r
+BAssets/Demo/Player/Player Scripts/Player Creator/BuilderOptions.cs,0\f\0fe0b0c5eb74e93ad3c8c5c49a97f266167a8fd9
+p
+@Assets/Demo/Player/Player Scripts/Player Creator/InputBuilder.cs,9\3\934ebe43d1a924c42b88a24b5bd2247471e5ae94
+u
+EAssets/Demo/Player/Player Scripts/Player Creator/GameInitializator.cs,c\1\c145f13761ab1219780af92a4e05c4a1584e7ef8
+ƒ
+SAssets/Demo/Player/Player Scripts/Player Installers/PlayerConfigurationInstaller.cs,f\4\f48a1c5d39313fd2e6dc143a28f086d89be3f9a4
+}
+MAssets/Demo/Player/Player Scripts/Player Creator/InputBuilderConfiguration.cs,d\3\d3e5eefab2eecfba463409f34df611fdeca15a11
+X
+(Assets/Demo/GameInputState/InputState.cs,b\4\b4daa8c8a7a976e1cefb38c9c14b42395968f863
+h
+8Assets/Demo/Player/PlayerMediator/MediatorActionNames.cs,0\6\0610f1539aeb20cb6c5617d9f32fed0c63a0754d
+\
+,Assets/Demo/Player/Spells/Scripts/IAttack.cs,a\3\a321ba77eeafb36f3ec07be7bbc867a72ec8f2c3
+c
+3Assets/Demo/Projectile Abstract Factory/Pointers.cs,6\7\676722ecbe692c5ef70048374e882336e4e84896
+^
+.Assets/Demo/GameInputState/PlayerInputState.cs,f\d\fd56a4f3e20f64eb8cd2f82516dc9b3816b8c37d
+b
+2Assets/Demo/Player/Spells/Scripts/AttackAdapter.cs,f\b\fb574071abec608b63dcce0aae1c9307feb2a5dc
+^
+.Assets/Demo/AnimatorChecker/AnimationChecks.cs,c\b\cbd95536985e80a626dadbce766111768aaae9c8
+|
+LAssets/Demo/Player/Player Scripts/Player Creator/PlayerTypesConfiguration.cs,9\3\93e31086a5daaf0a29f5fe472b8ee958755ba463
+v
+FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
+c
+3Assets/Demo/Player/PlayerMediator/PlayerMediator.cs,1\f\1f408dc162a98fe4bdd67ee2db6e08ec76ffb7a4
+n
+>Assets/Demo/Player/PlayerMediator/IPlayerComponentsMediator.cs,8\4\8467f56c255f988e5397d2d179fd95304ede58f6
+]
+-Assets/Demo/GameInputState/InputController.cs,8\4\8462822b796d26e12a6bf69714d2411b56875f82
+_
+/Assets/Demo/GameInputState/PointerInputState.cs,5\e\5e899a5d9f8f5c51c972b934ff0507d948015639
+Z
+*Assets/Demo/GameInputState/InputContext.cs,c\b\cb8f127050e859b49d3f3d92247d6f2d3a1cf41f
+v
+FAssets/Demo/Player/Player Scripts/Player Behaviour/AttackController.cs,8\7\87190ccf65e355e166260b79b4006179f6ad5d9e

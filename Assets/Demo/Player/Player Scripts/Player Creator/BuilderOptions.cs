@@ -8,7 +8,7 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
         public void BuildNormalPlayer()
         {
-            Builder.GetPlayer();
+            Builder.GetPlayerBuilder();
             Builder.AddPlayerMediator();
             Builder.AddPlayerBehaviour();
             Builder.AddPlayerAttackSystem();
