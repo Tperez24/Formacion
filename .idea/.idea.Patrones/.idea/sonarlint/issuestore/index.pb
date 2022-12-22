@@ -115,8 +115,6 @@ f
 6Assets/PatronesDeComportamiento/Strategy/Strategies.cs,7\5\753012c06baf96aff81c456c42f9a05261a7c311
 e
 5Assets/PatronesDeComportamiento/Strategy/IStrategy.cs,8\3\830fb313a18e76b0d5520b317565d4f277e4890c
-u
-EAssets/Demo/Player/Player Scripts/Player Creator/GameInitializator.cs,c\1\c145f13761ab1219780af92a4e05c4a1584e7ef8
 v
 FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
 r
@@ -147,11 +145,7 @@ v
 FAssets/Demo/Player/Player Scripts/Player Behaviour/AttackController.cs,8\7\87190ccf65e355e166260b79b4006179f6ad5d9e
 i
 9Assets/Demo/ProjectileComposite/PlayerWeaponsComposite.cs,9\8\98e4013e7c8701519323205fc991778c4b9e6a08
-d
-4Assets/Demo/Player/PlayerMediator/PlayerComponent.cs,5\c\5c551ad8e3c9e74ba9830be1dd998897b010f7a5
 h
 8Assets/Demo/Player/PlayerMediator/MediatorActionNames.cs,0\6\0610f1539aeb20cb6c5617d9f32fed0c63a0754d
 n
 >Assets/Demo/Player/PlayerMediator/IPlayerComponentsMediator.cs,8\4\8467f56c255f988e5397d2d179fd95304ede58f6
-c
-3Assets/Demo/Player/PlayerMediator/PlayerMediator.cs,1\f\1f408dc162a98fe4bdd67ee2db6e08ec76ffb7a4
