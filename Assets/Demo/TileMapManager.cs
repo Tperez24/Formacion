@@ -12,7 +12,7 @@ namespace Demo
    {
       [SerializeField] private TileMaps tilemap;
       [SerializeField] private GameObject levelToSave;
-
+#if UNITY_EDITOR
       public void SaveMap()
       {
          var newLevel = ScriptableObject.CreateInstance<ScriptableLevel>();
@@ -34,7 +34,7 @@ namespace Demo
 
          ScriptableObjectUtility.SaveLevelFile(newLevel);
       }
-      
+#endif
       IEnumerable<SavedTile> GetTilesFromMap(Tilemap map)
       {
          foreach (var pos in map.cellBounds.allPositionsWithin)
@@ -96,19 +96,6 @@ namespace Demo
          };
       }
    }
-
-#if UNITY_EDITOR
-
-   public static class ScriptableObjectUtility
-   {
-      public static void SaveLevelFile(ScriptableLevel level)
-      {
-         AssetDatabase.CreateAsset(level, $"Assets/Demo/Resources/{level.name}.asset");
-      
-         AssetDatabase.SaveAssets();
-         AssetDatabase.Refresh();
-      }
-   }
    
    
    [Serializable]
@@ -134,6 +121,21 @@ namespace Demo
       public List<TileMapsTypes> tileMapsTypesList;
       public int levelIndex;
    }
+
+#if UNITY_EDITOR
+
+   public static class ScriptableObjectUtility
+   {
+      public static void SaveLevelFile(ScriptableLevel level)
+      {
+         AssetDatabase.CreateAsset(level, $"Assets/Demo/Resources/{level.name}.asset");
+      
+         AssetDatabase.SaveAssets();
+         AssetDatabase.Refresh();
+      }
+   }
+   
+   
 
 #endif
 }
