@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fc13daa5394d7db9e2a26c99bc56ba, type: 3}
   m_Name: Level0
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: cdfaa87607fd201439e2a16d2a3b0739, type: 3}
   levelIndex: 0
   levels:
   - tiles:
@@ -90,3 +91,6 @@ MonoBehaviour:
     type: 5
   - tiles: []
     type: 6
+  access:
+  - accessName: Door Right Access
+    accesIndex: 0

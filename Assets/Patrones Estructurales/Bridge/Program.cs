@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Patrones_Estructurales.Bridge
@@ -16,7 +17,8 @@ namespace Patrones_Estructurales.Bridge
             return implementationType switch
             {
                 ImplementationType.ImplementationA => new ConcreteImplementationA(),
-                ImplementationType.ImplementationB => new ConcreteImplementationB()
+                ImplementationType.ImplementationB => new ConcreteImplementationB(),
+                _ => throw new ArgumentOutOfRangeException()
             };
         }
 

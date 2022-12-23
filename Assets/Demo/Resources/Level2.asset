@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fc13daa5394d7db9e2a26c99bc56ba, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 9150b0a16de4bf045b69727e1f6d59a4, type: 3}
   levelIndex: 2
   levels:
   - tiles:
@@ -186,3 +187,8 @@ MonoBehaviour:
     - position: {x: 3, y: 1, z: 0}
       tileBase: {fileID: 11400000, guid: acc75b53ed7b0f849869006b37091b38, type: 2}
     type: 5
+  access:
+  - accessName: Bottom Stairs Castle Access
+    accesIndex: 0
+  - accessName: Roof Door Bottom Access
+    accesIndex: 1
