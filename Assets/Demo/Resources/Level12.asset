@@ -85,6 +85,58 @@ MonoBehaviour:
     type: 6
   - tiles: []
     type: 5
-  access:
-  - accessName: Door Top Access
-    accesIndex: 0
+  - tiles:
+    - position: {x: -2, y: -3, z: 0}
+      tileBase: {fileID: 11400000, guid: 2839c1f4cd9cfdd4d9c7107b186d7a28, type: 2}
+    - position: {x: -1, y: -3, z: 0}
+      tileBase: {fileID: 11400000, guid: 2839c1f4cd9cfdd4d9c7107b186d7a28, type: 2}
+    - position: {x: 0, y: -3, z: 0}
+      tileBase: {fileID: 11400000, guid: 2839c1f4cd9cfdd4d9c7107b186d7a28, type: 2}
+    - position: {x: 1, y: -3, z: 0}
+      tileBase: {fileID: 11400000, guid: 2839c1f4cd9cfdd4d9c7107b186d7a28, type: 2}
+    - position: {x: -3, y: -2, z: 0}
+      tileBase: {fileID: 11400000, guid: 3dd6c61fa3a0d774e850a839aa092a14, type: 2}
+    - position: {x: -1, y: -2, z: 0}
+      tileBase: {fileID: 11400000, guid: 53b8fdfcb092e414aa7fd228778a436c, type: 2}
+    - position: {x: 0, y: -2, z: 0}
+      tileBase: {fileID: 11400000, guid: 587b0da19fc899745ab9767662109ced, type: 2}
+    - position: {x: 2, y: -2, z: 0}
+      tileBase: {fileID: 11400000, guid: 65ca93bb845162e4885ea00d810d944c, type: 2}
+    - position: {x: -3, y: -1, z: 0}
+      tileBase: {fileID: 11400000, guid: 3dd6c61fa3a0d774e850a839aa092a14, type: 2}
+    - position: {x: -2, y: -1, z: 0}
+      tileBase: {fileID: 11400000, guid: 53b8fdfcb092e414aa7fd228778a436c, type: 2}
+    - position: {x: -1, y: -1, z: 0}
+      tileBase: {fileID: 11400000, guid: 251f4e59078622e40889c72bff639570, type: 2}
+    - position: {x: 0, y: -1, z: 0}
+      tileBase: {fileID: 11400000, guid: 1156bd8edd966a448b40b64033249ce6, type: 2}
+    - position: {x: 1, y: -1, z: 0}
+      tileBase: {fileID: 11400000, guid: 587b0da19fc899745ab9767662109ced, type: 2}
+    - position: {x: 2, y: -1, z: 0}
+      tileBase: {fileID: 11400000, guid: 65ca93bb845162e4885ea00d810d944c, type: 2}
+    - position: {x: -3, y: 0, z: 0}
+      tileBase: {fileID: 11400000, guid: 3dd6c61fa3a0d774e850a839aa092a14, type: 2}
+    - position: {x: -2, y: 0, z: 0}
+      tileBase: {fileID: 11400000, guid: 251f4e59078622e40889c72bff639570, type: 2}
+    - position: {x: -1, y: 0, z: 0}
+      tileBase: {fileID: 11400000, guid: 1156bd8edd966a448b40b64033249ce6, type: 2}
+    - position: {x: 0, y: 0, z: 0}
+      tileBase: {fileID: 11400000, guid: 251f4e59078622e40889c72bff639570, type: 2}
+    - position: {x: 1, y: 0, z: 0}
+      tileBase: {fileID: 11400000, guid: 1156bd8edd966a448b40b64033249ce6, type: 2}
+    - position: {x: 2, y: 0, z: 0}
+      tileBase: {fileID: 11400000, guid: 65ca93bb845162e4885ea00d810d944c, type: 2}
+    - position: {x: -3, y: 1, z: 0}
+      tileBase: {fileID: 11400000, guid: 3dd6c61fa3a0d774e850a839aa092a14, type: 2}
+    - position: {x: 2, y: 1, z: 0}
+      tileBase: {fileID: 11400000, guid: 65ca93bb845162e4885ea00d810d944c, type: 2}
+    - position: {x: -2, y: 2, z: 0}
+      tileBase: {fileID: 11400000, guid: fc8b40f71e28a7f4c93016b6fa6969b2, type: 2}
+    - position: {x: -1, y: 2, z: 0}
+      tileBase: {fileID: 11400000, guid: fc8b40f71e28a7f4c93016b6fa6969b2, type: 2}
+    - position: {x: 0, y: 2, z: 0}
+      tileBase: {fileID: 11400000, guid: fc8b40f71e28a7f4c93016b6fa6969b2, type: 2}
+    - position: {x: 1, y: 2, z: 0}
+      tileBase: {fileID: 11400000, guid: fc8b40f71e28a7f4c93016b6fa6969b2, type: 2}
+    type: 7
+  access: []

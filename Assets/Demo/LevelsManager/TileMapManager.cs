@@ -92,6 +92,7 @@ namespace Demo
             "UnderGround 1x1" => TileMapsTypes.MapTypes.UnderGround1X1,
             "TopDecoration" => TileMapsTypes.MapTypes.TopDecoration,
             "Decoration 1x1" => TileMapsTypes.MapTypes.Decoration1X1,
+            "ColliderMap" => TileMapsTypes.MapTypes.ColliderMap,
             _ => TileMapsTypes.MapTypes.Walls
          };
       }
@@ -112,6 +113,7 @@ namespace Demo
          Ground,
          UnderGround,
          UnderGround1X1,
+         ColliderMap,
       }
    }
    
