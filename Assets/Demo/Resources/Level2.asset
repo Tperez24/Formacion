@@ -247,4 +247,8 @@ MonoBehaviour:
     - position: {x: 3, y: 4, z: 0}
       tileBase: {fileID: 11400000, guid: fc8b40f71e28a7f4c93016b6fa6969b2, type: 2}
     type: 7
-  access: []
+  access:
+  - accessName: RoofBotDoor
+    accesIndex: 0
+  - accessName: StairsToCastle
+    accesIndex: 1

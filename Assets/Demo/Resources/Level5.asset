@@ -549,4 +549,12 @@ MonoBehaviour:
     - position: {x: 6, y: 3, z: 0}
       tileBase: {fileID: 11400000, guid: fc8b40f71e28a7f4c93016b6fa6969b2, type: 2}
     type: 7
-  access: []
+  access:
+  - accessName: RightDoor
+    accesIndex: 0
+  - accessName: BottomDoor
+    accesIndex: 1
+  - accessName: TopDoor
+    accesIndex: 2
+  - accessName: StairsToRoof
+    accesIndex: 2

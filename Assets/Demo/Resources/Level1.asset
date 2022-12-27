@@ -477,4 +477,6 @@ MonoBehaviour:
     - position: {x: 4, y: 6, z: 0}
       tileBase: {fileID: 11400000, guid: 3dd6c61fa3a0d774e850a839aa092a14, type: 2}
     type: 7
-  access: []
+  access:
+  - accessName: BossEnterTop
+    accesIndex: 0
