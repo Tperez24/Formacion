@@ -1,17 +1,47 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Demo
+namespace Demo.LevelsManager
 {
    public class TileMapManager : MonoBehaviour
    {
       [SerializeField] private TileMaps tilemap;
       [SerializeField] private GameObject levelToSave;
+
+      public List<ScriptableLevel> FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit)
+      {
+         var levelsThatMatch = new List<ScriptableLevel>();
+         foreach (var level in levels)
+         {
+            foreach (var map in level.maps.Where(map => map.type == TileMapsTypes.MapTypes.Entrances))
+            {
+               var entranceTiles = map.tiles.Where(tile => TileMatch(tile,exit)).ToList();
+               if(entranceTiles.Count > 0) levelsThatMatch.Add(level);
+            }
+         }
+
+         return levelsThatMatch;
+      }
+
+      public SavedTile GetTileAtPosition(Vector3Int pos, List<ScriptableLevel> actualLevel)
+      {
+         foreach (var tile in actualLevel[tilemap.levelIndex].maps.Where(map => map.type == TileMapsTypes.MapTypes.Entrances))
+         {
+            var savedTiles = tile.tiles.Where(t => t.tileBase.GetType() == typeof(ChangeRoomTile)).ToList();
+            return savedTiles.Find(actualTile => actualTile.position == pos);
+         }
+       
+         return null;
+      }
+      private static bool TileMatch(SavedTile tile,EntranceType.EntrancesTypes exit)
+      {
+         return tile.tileBase.GetType() == typeof(ChangeRoomTile) && tile.entrance == exit;
+      }
+
 #if UNITY_EDITOR
       public void SaveMap()
       {
@@ -19,16 +49,16 @@ namespace Demo
          newLevel.levelIndex = tilemap.levelIndex;
          newLevel.name = $"Level{tilemap.levelIndex }";
 
-         newLevel.levels = new List<SavedMapsWithTiles>();
+         newLevel.maps = new List<SavedMapsWithTiles>();
 
          foreach (var tileMap in tilemap.tileMapsTypesList)
          {
             var mapWithTiles = new SavedMapsWithTiles {type = tileMap.mapTypes, tiles = new List<SavedTile>()};
             var savedTiles = GetTilesFromMap(tileMap.map).ToList();
             
-            foreach (var tile in savedTiles) mapWithTiles.tiles.Add(tile);
+            foreach (var tile in savedTiles){ mapWithTiles.tiles.Add(tile);}
             
-            newLevel.levels.Add(mapWithTiles);
+            newLevel.maps.Add(mapWithTiles);
             
          }
 
@@ -60,7 +90,7 @@ namespace Demo
          if(level == null) return;
          
         
-         foreach (var savedMap in level.levels)
+         foreach (var savedMap in level.maps)
          {
             foreach (var tile in savedMap.tiles)
             {
@@ -93,6 +123,7 @@ namespace Demo
             "TopDecoration" => TileMapsTypes.MapTypes.TopDecoration,
             "Decoration 1x1" => TileMapsTypes.MapTypes.Decoration1X1,
             "ColliderMap" => TileMapsTypes.MapTypes.ColliderMap,
+            "Entrances" => TileMapsTypes.MapTypes.Entrances,
             _ => TileMapsTypes.MapTypes.Walls
          };
       }
@@ -114,6 +145,7 @@ namespace Demo
          UnderGround,
          UnderGround1X1,
          ColliderMap,
+         Entrances,
       }
    }
    
