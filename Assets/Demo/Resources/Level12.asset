@@ -162,10 +162,10 @@ MonoBehaviour:
   - tiles:
     - position: {x: -4, y: -1, z: 0}
       tileBase: {fileID: 11400000, guid: e59e5112b86242547a6a6c6fea85fdf8, type: 2}
-      entrance: 5
-      exit: 4
+      entrance: 1
+      exit: 3
     - position: {x: -4, y: 0, z: 0}
       tileBase: {fileID: 11400000, guid: e59e5112b86242547a6a6c6fea85fdf8, type: 2}
-      entrance: 0
-      exit: 1
+      entrance: 9
+      exit: 8
     type: 8

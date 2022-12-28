@@ -12,6 +12,8 @@ namespace Demo.LevelsManager
 
         public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
         {
+            if (go == null) return base.StartUp(position, tilemap, go);
+            
             var entrance = go.AddComponent<CreateNewRoom>();
             entrance.SetLevels(levelsDb.levels);
             entrance.SetTilePosition(position);

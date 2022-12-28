@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Demo.Player.Player_Scripts.Player_Behaviour;
 using Demo.Player.Player_Scripts.Player_Creator;
 using UnityEngine;
-using Random = System.Random;
+using UnityEngine.Tilemaps;
 
 namespace Demo.LevelsManager.ChangeRoom
 {
@@ -9,31 +10,26 @@ namespace Demo.LevelsManager.ChangeRoom
     {
         private List<ScriptableLevel> _levelsDb;
         private Vector3Int _position;
-        public SavedTile tile;
+        public SavedTile entrance,connectedEntrance;
         public TileMapManager tileMapManager;
-        public List<ScriptableLevel> levels;
-        public int actualLevel;
+        public ScriptableLevel levelToLoad,actualLevel;
 
         private void Start()
         {
             tileMapManager = FindObjectOfType<TileMapManager>();
-            tile = tileMapManager.GetTileAtPosition(_position,_levelsDb);
+            actualLevel = tileMapManager.GetActualLevel(_levelsDb,_position);
+            entrance = tileMapManager.GetTileAtPosition(_position,actualLevel);
         }
 
         public void SetLevels(List<ScriptableLevel> levelsDb) => _levelsDb = levelsDb; 
-        public void SetTilePosition(Vector3Int position) => _position = position; 
+        public void SetTilePosition(Vector3Int position) => _position = position;
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.TryGetComponent<PlayerBuilder>(out var playerBuilder))
-            {
-                Debug.Log("El jugador ha entrado en la sala");
-                levels = new List<ScriptableLevel>();
-
-                levels = tileMapManager.FindLevelsWithEntrances(_levelsDb,tile.exit);
-                
-                Debug.Log(levels[UnityEngine.Random.Range(0, levels.Count)].levelIndex);
-                actualLevel = levels[UnityEngine.Random.Range(0, levels.Count)].levelIndex;
-            }
+            if (!col.TryGetComponent<PlayerBuilder>(out _)) return;
+            tileMapManager.AddLevelOffset(10);
+            (levelToLoad,connectedEntrance) = tileMapManager.FindLevelsWithEntrances(_levelsDb,entrance.exit);
+            tileMapManager.LoadMap(levelToLoad.levelIndex);
+            //FindObjectOfType<PlayerController>().transform.parent.position = tileMapManager.GetTileWorldPosition(connectedEntrance.position);
         }
     }
 }

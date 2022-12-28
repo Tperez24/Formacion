@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Demo;
-using Demo.DrawIfProperty;
 using Demo.LevelsManager;
 using UnityEngine;
 using UnityEngine.Tilemaps;

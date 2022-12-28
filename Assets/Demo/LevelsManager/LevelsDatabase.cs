@@ -12,26 +12,25 @@ namespace Demo.LevelsManager
 }
 
 [Serializable]
-public class AccessMethod
-{
-    public string accessName;
-    public EntranceType.EntrancesTypes entrance;
-}
-
-[Serializable]
 public struct EntranceType
 {
     public EntrancesTypes entrance;
     public EntrancesTypes exit;
     public enum EntrancesTypes
     {
+        GoldenDoorTop,
         DoorTop,
+        GoldenDoorBottom,
         DoorBottom,
+        GoldenDoorRight,
         DoorRight,
+        GoldenDoorLeft,
         DoorLeft,
         StairsUp,
         StairsDown,
         StoneDoorTop,
+        StoneDoorRoofTop,
         StoneDoorBottom,
+        StoneDoorRoofBottom,
     }
 }

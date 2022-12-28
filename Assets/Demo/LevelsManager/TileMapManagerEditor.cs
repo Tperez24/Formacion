@@ -1,9 +1,8 @@
 ﻿#if UNITY_EDITOR
-using Demo.LevelsManager;
 using UnityEditor;
 using UnityEngine;
 
-namespace Demo
+namespace Demo.LevelsManager
 {
     [CustomEditor(typeof(TileMapManager)),CanEditMultipleObjects]
     public class TileMapManagerEditor : Editor
@@ -17,7 +16,7 @@ namespace Demo
             if (GUILayout.Button("SaveMap")) script.SaveMap();
             if (GUILayout.Button("ClearMap")) script.ClearMap();
             if (GUILayout.Button("GetLevelMaps")) script.GetMapLayers();
-            if (GUILayout.Button("LoadMap")) script.LoadMap();
+            if (GUILayout.Button("LoadMap")) script.LoadMap(script.GetLevelIndex());
         }
     }
 }
