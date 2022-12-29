@@ -16,6 +16,8 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         
         private IPlayerBuilder _playerBuilder;
         private IInputBuilder _inputBuilder;
+
+        public static EventHandler<Transform> OnPlayerSpawn;
         
         private void Start()
         {
@@ -36,6 +38,8 @@ namespace Demo.Player.Player_Scripts.Player_Creator
             _playerBuilder = GetBuilder();
             _builderOptions.Builder = _playerBuilder;
             _builderOptions.BuildNormalPlayer();
+            
+            OnPlayerSpawn?.Invoke(this,_playerBuilder.GetPlayerBuilder().transform);
         }
         
         

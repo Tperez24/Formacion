@@ -15,8 +15,7 @@ namespace Demo.LevelsManager
             if (go == null) return base.StartUp(position, tilemap, go);
             
             var entrance = go.AddComponent<CreateNewRoom>();
-            entrance.SetLevels(levelsDb.levels);
-            entrance.SetTilePosition(position);
+            entrance.Initialize(levelsDb.levels,position);
 
             return base.StartUp(position, tilemap, go);
         }

@@ -15,6 +15,8 @@ namespace Demo.LevelsManager
 
       private int _loadOffset;
 
+      private void Start() => LoadMap(tilemap.levelIndex);
+
       public (ScriptableLevel level, SavedTile connection) FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit)
       {
          List<ScriptableLevel> list = new List<ScriptableLevel>();
@@ -30,12 +32,7 @@ namespace Demo.LevelsManager
             .Find(tile => tile.entrance == exit);
          return (levelToLoad,connectedEntrance);
       }
-
-      public Vector3 GetTileWorldPosition(Vector3Int tilePos)
-      {
-         return tilemap.tileMapsTypesList.Find(map => map.mapTypes == TileMapsTypes.MapTypes.Entrances).map
-            .GetCellCenterWorld(new Vector3Int(tilePos.x + _loadOffset,tilePos.y + _loadOffset));
-      }
+      
       public SavedTile GetTileAtPosition(Vector3Int pos, ScriptableLevel actualLevel)
       {
          var position = new Vector3Int(pos.x - _loadOffset, pos.y - _loadOffset);
