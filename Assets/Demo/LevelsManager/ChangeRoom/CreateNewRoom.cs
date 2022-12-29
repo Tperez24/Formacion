@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Demo.Player.Player_Scripts.Player_Behaviour;
 using Demo.Player.Player_Scripts.Player_Creator;
@@ -15,6 +16,8 @@ namespace Demo.LevelsManager.ChangeRoom
         private Transform _player;
         private ScriptableLevel _levelToLoad,_actualLevel;
 
+        private void Start() => _player = FindObjectOfType<PlayerController>().transform.parent;
+
         public void Initialize(List<ScriptableLevel> levelsDb, Vector3Int position)
         {
             _levelsDb = levelsDb;
@@ -22,13 +25,10 @@ namespace Demo.LevelsManager.ChangeRoom
             _tileMapManager = FindObjectOfType<TileMapManager>();
             _actualLevel = _tileMapManager.GetActualLevel(_levelsDb,_position);
             _entrance = _tileMapManager.GetTileAtPosition(_position,_actualLevel);
-            _player = FindObjectOfType<PlayerController>().transform.parent;
-            
+
             EntrancesManager.Instance.AddEntrance(this);
         }
-        
         public void SetConnectedEntrance(SavedTile entranceToChain) => _connectedEntrance = entranceToChain;
-
         public SavedTile GetEntrance() => _entrance;
         public SavedTile GetConnectedEntrance() => _connectedEntrance;
         public ScriptableLevel GetActualLevel() => _actualLevel;
