@@ -15,7 +15,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
 
-        private float _speed = 2f;
+        private float _speed = 3f;
         private UnityEvent _onDirectionChanged = new();
         protected PlayerController(IPlayerComponentsMediator mediator) : base(mediator) { }
         private Vector2 Direction
@@ -33,7 +33,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         {
             Getters();
             SubscribeToEvents();
-            SetSpeed(2);
+            SetSpeed(3);
         }
 
         private void Getters()

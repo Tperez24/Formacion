@@ -7,7 +7,7 @@ namespace Demo.LevelsManager
 {
     public class EntrancesManager : MonoBehaviour
     {
-        public static EntrancesManager Instance { get; private set; }
+        public static EntrancesManager Instance { get; set; }
         private List<CreateNewRoom> _entrances;
         private void Awake()
         {

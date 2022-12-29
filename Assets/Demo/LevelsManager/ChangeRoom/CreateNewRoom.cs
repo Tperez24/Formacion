@@ -9,7 +9,7 @@ namespace Demo.LevelsManager.ChangeRoom
     {
         private List<ScriptableLevel> _levelsDb;
         private Vector3Int _position;
-        private SavedTile _entrance,_connectedEntrance;
+        public SavedTile _entrance,_connectedEntrance;
         private TileMapManager _tileMapManager;
         private Transform _player;
         private ScriptableLevel _levelToLoad,_actualLevel;
