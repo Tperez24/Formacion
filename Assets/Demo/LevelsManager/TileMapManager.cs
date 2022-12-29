@@ -12,25 +12,26 @@ namespace Demo.LevelsManager
    {
       [SerializeField] private TileMaps tilemap;
       [SerializeField] private GameObject levelToSave;
+      private List<SavedMapsWithTiles> levelsLoaded;
 
       private int _loadOffset;
 
       private void Start() => LoadMap(tilemap.levelIndex);
 
-      public (ScriptableLevel level, SavedTile connection) FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit)
+      public ScriptableLevel FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit)
       {
          List<ScriptableLevel> list = new List<ScriptableLevel>();
          foreach (ScriptableLevel level in levels)
-         foreach (var map1 in level.maps.Where(map => map.type == TileMapsTypes.MapTypes.Entrances))
          {
-            List<SavedTile> entranceTiles = map1.tiles.Where(tile => TileMatch(tile, exit)).ToList();
-            if (entranceTiles.Count > 0) list.Add(level);
+            foreach (var map1 in level.maps.Where(map => map.type == TileMapsTypes.MapTypes.Entrances))
+            {
+               List<SavedTile> entranceTiles = map1.tiles.Where(tile => TileMatch(tile, exit)).ToList();
+               if (entranceTiles.Count > 0) list.Add(level);
+            }
          }
-
+         
          var levelToLoad = list[Random.Range(0, list.Count)];
-         var connectedEntrance = levelToLoad.maps.Find(map => map.type == TileMapsTypes.MapTypes.Entrances).tiles
-            .Find(tile => tile.entrance == exit);
-         return (levelToLoad,connectedEntrance);
+         return levelToLoad;
       }
       
       public SavedTile GetTileAtPosition(Vector3Int pos, ScriptableLevel actualLevel)

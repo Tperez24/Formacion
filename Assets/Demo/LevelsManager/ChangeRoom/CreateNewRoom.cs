@@ -9,7 +9,8 @@ namespace Demo.LevelsManager.ChangeRoom
     {
         private List<ScriptableLevel> _levelsDb;
         private Vector3Int _position;
-        public SavedTile _entrance,_connectedEntrance;
+        private SavedTile _entrance;
+        private SavedTile _connectedEntrance;
         private TileMapManager _tileMapManager;
         private Transform _player;
         private ScriptableLevel _levelToLoad,_actualLevel;
@@ -29,6 +30,9 @@ namespace Demo.LevelsManager.ChangeRoom
         public void SetConnectedEntrance(SavedTile entranceToChain) => _connectedEntrance = entranceToChain;
 
         public SavedTile GetEntrance() => _entrance;
+        public SavedTile GetConnectedEntrance() => _connectedEntrance;
+        public ScriptableLevel GetActualLevel() => _actualLevel;
+
 
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -53,13 +57,14 @@ namespace Demo.LevelsManager.ChangeRoom
 
         private void AddLevelOffset() => _tileMapManager.AddLevelOffset(20);
 
+
         private void SetNewLevel()
         {
-            (_levelToLoad,_connectedEntrance) = _tileMapManager.FindLevelsWithEntrances(_levelsDb,_entrance.exit);
+            (_levelToLoad) = _tileMapManager.FindLevelsWithEntrances(_levelsDb,_entrance.exit);
             _tileMapManager.LoadMap(_levelToLoad.levelIndex);
         }
 
-        private void ChainEntrances() => EntrancesManager.Instance.ChainEntrances(_entrance, _connectedEntrance);
+        private void ChainEntrances() =>_connectedEntrance = EntrancesManager.Instance.ChainEntrances(_entrance,_entrance.entrance,_actualLevel);
 
         private void TeleportPlayer() => _player.position = EntrancesManager.Instance.GetEntrancePosition(_connectedEntrance);
     }
