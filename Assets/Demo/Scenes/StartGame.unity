@@ -18108,7 +18108,7 @@ PrefabInstance:
       objectReference: {fileID: 558432069}
     - target: {fileID: 7064521956495771640, guid: 7041db8546d9cca4b8f32eef1fb7326b, type: 3}
       propertyPath: tilemap.levelIndex
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7064521956495771640, guid: 7041db8546d9cca4b8f32eef1fb7326b, type: 3}
       propertyPath: tilemap.tileMapsTypesList.Array.data[0].map

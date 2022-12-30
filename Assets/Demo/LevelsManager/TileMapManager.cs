@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Demo.LevelsManager.ChangeRoom;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -12,13 +13,14 @@ namespace Demo.LevelsManager
    {
       [SerializeField] private TileMaps tilemap;
       [SerializeField] private GameObject levelToSave;
-      private List<SavedMapsWithTiles> levelsLoaded;
+      [SerializeField] private GameObject entrancePrefab;
+      private List<SavedMapsWithTiles> _levelsLoaded;
 
       private int _loadOffset;
 
       private void Start() => LoadMap(tilemap.levelIndex);
 
-      public ScriptableLevel FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit)
+      public ScriptableLevel FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit,ScriptableLevel actualLvl)
       {
          List<ScriptableLevel> list = new List<ScriptableLevel>();
          foreach (ScriptableLevel level in levels)
@@ -29,7 +31,8 @@ namespace Demo.LevelsManager
                if (entranceTiles.Count > 0) list.Add(level);
             }
          }
-         
+
+         if (list.Contains(actualLvl)) list.Remove(actualLvl);
          var levelToLoad = list[Random.Range(0, list.Count)];
          return levelToLoad;
       }
@@ -82,11 +85,30 @@ namespace Demo.LevelsManager
          
          foreach (var savedMap in level.maps)
          {
-            foreach (var tile in savedMap.tiles)
+            if (savedMap.type == TileMapsTypes.MapTypes.Entrances)
             {
-               var tileMapsTypes = tilemap.tileMapsTypesList.Find(map => map.mapTypes == savedMap.type);
-               var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
-               tileMapsTypes.map.SetTile(position, tile.tileBase);
+               foreach (var tile in savedMap.tiles)
+               {
+                  if(tile.tileBase.GetType() != typeof(ChangeRoomTile)) continue;
+                  var entrancesMap =  tilemap.tileMapsTypesList.Find(map => map.mapTypes == TileMapsTypes.MapTypes.Entrances).map;
+                  var worldPos = Vector3Int.FloorToInt(entrancesMap.GetCellCenterWorld(tile.position));
+                  var worldPosUpdated = new Vector3Int(worldPos.x + _loadOffset, worldPos.y + _loadOffset);
+                  var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
+                  var parent = entrancesMap.transform;
+                  var entrance = Instantiate(entrancePrefab,parent).GetComponent<CreateNewRoom>();
+                  
+                  entrance.Initialize(levelsDb.levels,position,levelIndex);
+                  entrance.transform.position = worldPosUpdated;
+               }
+            }
+            else
+            {
+               foreach (var tile in savedMap.tiles)
+               {
+                  var tileMapsTypes = tilemap.tileMapsTypesList.Find(map => map.mapTypes == savedMap.type);
+                  var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
+                  tileMapsTypes.map.SetTile(position, tile.tileBase);
+               }
             }
          }
       }

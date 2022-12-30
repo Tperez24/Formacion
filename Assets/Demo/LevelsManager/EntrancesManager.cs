@@ -23,18 +23,16 @@ namespace Demo.LevelsManager
 
         public void AddEntrance(CreateNewRoom entrance) => _entrances.Add(entrance);
 
-        public SavedTile ChainEntrances(SavedTile entranceToChain, EntranceType.EntrancesTypes enter, ScriptableLevel actualLevel, int levelToLoad)
+        public Vector3 ChainEntrances(Vector3 entranceToChain, EntranceType.EntrancesTypes enter, ScriptableLevel actualLevel, int levelToLoad)
         {
             var connectedEntrance = _entrances.Find(entrance =>
-                entrance.GetConnectedEntrance() == null && entrance.GetEntrance().exit == enter && entrance.GetActualLevel() != actualLevel
+                entrance.GetConnectedEntrance() == Vector3.zero && entrance.GetEntrance().exit == enter && entrance.GetActualLevel() != actualLevel
                 && levelToLoad == entrance.GetActualLevel().levelIndex);
-            
+
+            var position = connectedEntrance.transform.position;
             connectedEntrance.SetConnectedEntrance(entranceToChain);
 
-            return connectedEntrance.GetEntrance();
+            return position;
         }
-
-        public Vector3 GetEntrancePosition(SavedTile connectedEntrance) => 
-            _entrances.Find(entrance => entrance.GetEntrance() == connectedEntrance).transform.position;
     }
 }
