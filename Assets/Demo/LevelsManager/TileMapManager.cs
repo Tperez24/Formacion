@@ -63,7 +63,7 @@ namespace Demo.LevelsManager
             yield return new SavedTile
             {
                tileBase = levelTile,
-               position = pos
+               position = pos,
             };
          }
       }

@@ -19,7 +19,7 @@ public class SavedTile
 {
     public Vector3Int position;
     public TileBase tileBase;
-    
+  
     public EntranceType.EntrancesTypes entrance;
     public EntranceType.EntrancesTypes exit;
 }
