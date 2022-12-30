@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Demo.Player.Player_Scripts.Player_Behaviour;
 using Demo.Player.Player_Scripts.Player_Creator;
@@ -33,7 +32,6 @@ namespace Demo.LevelsManager.ChangeRoom
         public SavedTile GetConnectedEntrance() => _connectedEntrance;
         public ScriptableLevel GetActualLevel() => _actualLevel;
 
-
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!col.TryGetComponent<PlayerBuilder>(out _) || !CanTeleport()) return;
@@ -42,10 +40,7 @@ namespace Demo.LevelsManager.ChangeRoom
             else TeleportPlayer();
         }
 
-        private bool CanTeleport()
-        {
-            return Vector3.Distance(_player.position, transform.position) > 0.5f;
-        }
+        private bool CanTeleport() => Vector3.Distance(_player.position, transform.position) > 0.5f;
 
         private void GenerateNewLevel()
         {
@@ -64,7 +59,7 @@ namespace Demo.LevelsManager.ChangeRoom
             _tileMapManager.LoadMap(_levelToLoad.levelIndex);
         }
 
-        private void ChainEntrances() =>_connectedEntrance = EntrancesManager.Instance.ChainEntrances(_entrance,_entrance.entrance,_actualLevel);
+        private void ChainEntrances() =>_connectedEntrance = EntrancesManager.Instance.ChainEntrances(_entrance,_entrance.entrance,_actualLevel,_levelToLoad.levelIndex);
 
         private void TeleportPlayer() => _player.position = EntrancesManager.Instance.GetEntrancePosition(_connectedEntrance);
     }
