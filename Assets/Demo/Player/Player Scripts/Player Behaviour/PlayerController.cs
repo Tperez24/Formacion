@@ -1,14 +1,16 @@
 using System;
+using Demo.Enemies.Behaviour;
 using Demo.GameInputState;
 using Demo.Player.PlayerMediator;
 using Demo.Scripts.StaticClasses;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Demo.Player.Player_Scripts.Player_Behaviour
 {
-    public class PlayerController : PlayerComponent
+    public class PlayerController : PlayerComponent,IDamageReceiver
     {
         private Animator _playerAnimator;
         private Vector2 _direction,_lastDirection;
@@ -126,6 +128,13 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
                 _     =>       throw new ArgumentOutOfRangeException( "animationName: " + animationName + " or type: " + type + " not valid or not implemented")
             };
         }
+        public void ReceiveDamage(int damage)
+        {
+            var pas = Resources.Load<ParticleSystem>("ParticleSystem/PAS_Explosion");
+            Instantiate(pas,transform.position,quaternion.identity);
+            Destroy(transform.parent.gameObject);
+        }
+
         private void SetVelocity(Vector2 velocity) => _rigidbody.velocity = velocity * _speed;
 
         private void SetSpeed(float speed) => _speed = speed;

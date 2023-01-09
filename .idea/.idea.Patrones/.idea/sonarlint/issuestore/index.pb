@@ -115,8 +115,6 @@ f
 6Assets/PatronesDeComportamiento/Strategy/Strategies.cs,7\5\753012c06baf96aff81c456c42f9a05261a7c311
 e
 5Assets/PatronesDeComportamiento/Strategy/IStrategy.cs,8\3\830fb313a18e76b0d5520b317565d4f277e4890c
-v
-FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
 r
 BAssets/Demo/Player/Player Scripts/Player Creator/BuilderOptions.cs,0\f\0fe0b0c5eb74e93ad3c8c5c49a97f266167a8fd9
 \
