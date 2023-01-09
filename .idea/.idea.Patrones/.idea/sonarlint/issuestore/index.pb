@@ -99,14 +99,6 @@ c
 3Assets/PatronesDeComportamiento/Strategy/Context.cs,7\3\735b039a3e0e88ca87d5f185231f692324f6cf1f
 m
 =Assets/PatronesDeComportamiento/Strategy/AnimalThrower3000.cs,b\4\b4ec08020417a6bf56cca4649ce79a49a27d4646
-^
-.Assets/Demo/GameInputState/PlayerInputState.cs,f\d\fd56a4f3e20f64eb8cd2f82516dc9b3816b8c37d
-Z
-*Assets/Demo/GameInputState/InputContext.cs,c\b\cb8f127050e859b49d3f3d92247d6f2d3a1cf41f
-]
--Assets/Demo/GameInputState/InputController.cs,8\4\8462822b796d26e12a6bf69714d2411b56875f82
-X
-(Assets/Demo/GameInputState/InputState.cs,b\4\b4daa8c8a7a976e1cefb38c9c14b42395968f863
 S
 #Assets/Demo/Input Adapter/IInput.cs,d\e\de60616429c7d067d3de54fba80c7371e31aecc6
 ‚
@@ -139,8 +131,6 @@ a
 1Assets/Demo/Player/Spells/Scripts/SpellCreator.cs,7\2\72c71fa052d71abdca89dd86f3b972d26c99b0f4
 o
 ?Assets/Demo/Projectile Abstract Factory/ConcreteSpellFactory.cs,c\d\cd54db476f48e0482fb2c193f1045208975a5c63
-v
-FAssets/Demo/Player/Player Scripts/Player Behaviour/AttackController.cs,8\7\87190ccf65e355e166260b79b4006179f6ad5d9e
 i
 9Assets/Demo/ProjectileComposite/PlayerWeaponsComposite.cs,9\8\98e4013e7c8701519323205fc991778c4b9e6a08
 h

@@ -102,7 +102,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
                 (MediatorActionNames.GetPlayerAnimator()), () => Mediator.Notify(this,MediatorActionNames.PausePlayerAnimator())));
         }
 
-        //TODO Observer¿?
+        //TODO CustomAttribute
         private IEnumerator InputMovementPressed(Vector2 direction,Action action)
         {
             do

@@ -41,7 +41,7 @@ namespace Demo.Enemies.Behaviour
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (!col.gameObject.CompareTag("Player")) return;
-            var player = col.gameObject.GetComponentInChildren<PlayerController>();
+            var player = col.gameObject.GetComponentInChildren<IDamageReceiver>();
             player.ReceiveDamage(damage);
         }
 

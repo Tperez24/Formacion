@@ -115,7 +115,14 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             AnimationAction(animationName, type).Invoke();
         }
         
-        private void Attack(object sender, InputAction.CallbackContext callbackContext) => AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
+        private void Attack(object sender, InputAction.CallbackContext callbackContext)
+        {
+            AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
+            var target = Physics2D.OverlapCircle(transform.position, 1f);
+            if(target == null) return;
+            var dirToTarget = Vector3.Normalize(transform.position - target.transform.position);
+            if(Vector3.Dot(dirToTarget, transform.forward) >= 0.3) target.gameObject.GetComponent<IDamageReceiver>().ReceiveDamage(1);
+        }
 
         private Action AnimationAction (string animationName,object type)
         {
