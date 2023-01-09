@@ -28,7 +28,7 @@ namespace Demo.Enemies.Behaviour
         private void Update()
         {
             var collision = Physics2D.OverlapCircle(transform.position, radius,LayerMask.GetMask(nameof(Player)));
-            if(collision != null) _agent.SetDestination(collision.transform.position);
+            if(collision != null && Vector3.Distance(transform.position,_initialPos) > 1) _agent.SetDestination(collision.transform.position);
             else StopSearch();
         }
 
