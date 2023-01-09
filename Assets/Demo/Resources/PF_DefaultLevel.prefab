@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 613498337929530088}
   - component: {fileID: 2530905926322286881}
   - component: {fileID: 5684307315531855389}
+  - component: {fileID: 8567183117638338250}
   m_Layer: 0
   m_Name: Decoration 1x1
   m_TagString: Untagged
@@ -120,6 +121,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &8567183117638338250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281691518630895757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &1939104145201568815
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +149,7 @@ GameObject:
   - component: {fileID: 8776075717591712300}
   - component: {fileID: 6425126174490142828}
   - component: {fileID: 3948286852931053217}
+  - component: {fileID: 5346339975749643148}
   m_Layer: 0
   m_Name: ColliderMap
   m_TagString: Untagged
@@ -257,6 +275,22 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &5346339975749643148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939104145201568815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &2174167411859402827
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +302,7 @@ GameObject:
   - component: {fileID: 3351534695729235801}
   - component: {fileID: 1155440312263186165}
   - component: {fileID: 3310345708221469513}
+  - component: {fileID: 8910595089442592654}
   m_Layer: 0
   m_Name: UnderGround
   m_TagString: Untagged
@@ -377,6 +412,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &8910595089442592654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2174167411859402827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3130266574861128449
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +439,7 @@ GameObject:
   - component: {fileID: 1402646781958399601}
   - component: {fileID: 2567976802487598693}
   - component: {fileID: 7310527439354776840}
+  - component: {fileID: 8941527221052023130}
   m_Layer: 0
   m_Name: UnderGround 1x1
   m_TagString: Untagged
@@ -497,6 +549,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &8941527221052023130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130266574861128449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &4408137582986841150
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +629,7 @@ GameObject:
   - component: {fileID: 2988971307323224189}
   - component: {fileID: 1610248684454957025}
   - component: {fileID: 6544557721288684973}
+  - component: {fileID: 5909813628555221371}
   m_Layer: 0
   m_Name: Decoration
   m_TagString: Untagged
@@ -670,6 +739,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &5909813628555221371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6882107412069223698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8683959794637305666
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +766,7 @@ GameObject:
   - component: {fileID: 7717374814095766721}
   - component: {fileID: 3181223889636561892}
   - component: {fileID: 8323913710512379559}
+  - component: {fileID: 165005434542079217}
   m_Layer: 0
   m_Name: Entrances
   m_TagString: Untagged
@@ -790,6 +876,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &165005434542079217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683959794637305666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8830508491119680281
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +903,7 @@ GameObject:
   - component: {fileID: 5763070840676316341}
   - component: {fileID: 6475588141612989354}
   - component: {fileID: 1666597940540171890}
+  - component: {fileID: 5580354987156132799}
   m_Layer: 0
   m_Name: TopDecoration
   m_TagString: Untagged
@@ -910,6 +1013,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &5580354987156132799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830508491119680281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &9078717323762587735
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,6 +1040,7 @@ GameObject:
   - component: {fileID: 5086516458389304422}
   - component: {fileID: 8908642889811852225}
   - component: {fileID: 8039592787243978075}
+  - component: {fileID: 5837024666792309566}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -1030,6 +1150,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &5837024666792309566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078717323762587735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &9122939568387336599
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1177,7 @@ GameObject:
   - component: {fileID: 7921626796499874942}
   - component: {fileID: 8584588725251166996}
   - component: {fileID: 8088203167959023440}
+  - component: {fileID: 6168593206762332062}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -1150,3 +1287,19 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &6168593206762332062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122939568387336599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

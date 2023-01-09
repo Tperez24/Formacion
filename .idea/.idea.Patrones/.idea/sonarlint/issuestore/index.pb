@@ -149,3 +149,7 @@ h
 8Assets/Demo/Player/PlayerMediator/MediatorActionNames.cs,0\6\0610f1539aeb20cb6c5617d9f32fed0c63a0754d
 n
 >Assets/Demo/Player/PlayerMediator/IPlayerComponentsMediator.cs,8\4\8467f56c255f988e5397d2d179fd95304ede58f6
+d
+4Assets/Demo/Player/PlayerMediator/PlayerComponent.cs,5\c\5c551ad8e3c9e74ba9830be1dd998897b010f7a5
+c
+3Assets/Demo/Player/PlayerMediator/PlayerMediator.cs,1\f\1f408dc162a98fe4bdd67ee2db6e08ec76ffb7a4
