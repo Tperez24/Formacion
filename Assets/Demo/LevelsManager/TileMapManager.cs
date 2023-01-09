@@ -4,6 +4,7 @@ using System.Linq;
 using Demo.LevelsManager.ChangeRoom;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,7 @@ namespace Demo.LevelsManager
       [SerializeField] private TileMaps tilemap;
       [SerializeField] private GameObject levelToSave;
       [SerializeField] private GameObject entrancePrefab;
+      [SerializeField] private NavMeshSurface2d navMeshSurface2d;
       private List<SavedMapsWithTiles> _levelsLoaded;
 
       private int _loadOffset;
@@ -111,6 +113,8 @@ namespace Demo.LevelsManager
                }
             }
          }
+         
+         navMeshSurface2d.BuildNavMesh();
       }
 
       public ScriptableLevel GetActualLevel(List<ScriptableLevel> levelsDb,Vector3Int pos)
