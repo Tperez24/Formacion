@@ -1,5 +1,3 @@
-using System;
-using Demo.Player.Player_Scripts.Player_Behaviour;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,7 +9,7 @@ namespace Demo.Enemies.Behaviour
         private NavMeshAgent _agent;
         private Collider2D _ownCollider;
         private Vector3 _initialPos;
-
+        
         public int damage = 1;
         public float radius;
         public Color gizmosColor;
@@ -65,10 +63,5 @@ namespace Demo.Enemies.Behaviour
             Instantiate(pas,transform.position,quaternion.identity);
             Destroy(gameObject);
         }
-    }
-
-    public interface IDamageReceiver
-    {
-        void ReceiveDamage(int damageReceived);
     }
 }
