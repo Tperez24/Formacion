@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Demo.Enemies.Behaviour;
 using Demo.LevelsManager.ChangeRoom;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
+using Utilities;
 using Random = UnityEngine.Random;
 
 namespace Demo.LevelsManager
@@ -87,34 +89,63 @@ namespace Demo.LevelsManager
          
          foreach (var savedMap in level.maps)
          {
-            if (savedMap.type == TileMapsTypes.MapTypes.Entrances)
+            switch (savedMap.type)
             {
-               foreach (var tile in savedMap.tiles)
+               case TileMapsTypes.MapTypes.Entrances:
+                  InitializeEntrances(savedMap, levelsDb, levelIndex);
+                  break;
+               
+               case TileMapsTypes.MapTypes.Enemy:
+                  InitializeEnemies(savedMap);
+                  break;
+               
+               default:
                {
-                  if(tile.tileBase.GetType() != typeof(ChangeRoomTile)) continue;
-                  var entrancesMap =  tilemap.tileMapsTypesList.Find(map => map.mapTypes == TileMapsTypes.MapTypes.Entrances).map;
-                  var worldPos = Vector3Int.FloorToInt(entrancesMap.GetCellCenterWorld(tile.position));
-                  var worldPosUpdated = new Vector3Int(worldPos.x + _loadOffset, worldPos.y + _loadOffset);
-                  var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
-                  var parent = entrancesMap.transform;
-                  var entrance = Instantiate(entrancePrefab,parent).GetComponent<CreateNewRoom>();
-                  
-                  entrance.Initialize(levelsDb.levels,position,levelIndex);
-                  entrance.transform.position = worldPosUpdated;
-               }
-            }
-            else
-            {
-               foreach (var tile in savedMap.tiles)
-               {
-                  var tileMapsTypes = tilemap.tileMapsTypesList.Find(map => map.mapTypes == savedMap.type);
-                  var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
-                  tileMapsTypes.map.SetTile(position, tile.tileBase);
+                  foreach (var tile in savedMap.tiles)
+                  {
+                     var tileMapsTypes = tilemap.tileMapsTypesList.Find(map => map.mapTypes == savedMap.type);
+                     var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
+                     tileMapsTypes.map.SetTile(position, tile.tileBase);
+                  }
+
+                  break;
                }
             }
          }
          
          navMeshSurface2d.BuildNavMesh();
+      }
+
+      private void InitializeEnemies(SavedMapsWithTiles savedMap)
+      {
+         foreach (var tile in savedMap.tiles)
+         {
+            if(tile.tileBase.GetType() != typeof(EnemyTile)) continue;
+            var enemiesMap =  tilemap.tileMapsTypesList.Find(map => map.mapTypes == TileMapsTypes.MapTypes.Enemy).map;
+            var worldPos = Vector3Int.FloorToInt(enemiesMap.GetCellCenterWorld(tile.position));
+            var worldPosUpdated = new Vector3Int(worldPos.x + _loadOffset, worldPos.y + _loadOffset);
+            var parent = enemiesMap.transform;
+            var enemy = Instantiate(tile.tileBase.GetAllProperties<GameObject>().First(),parent).GetComponent<BatBehaviour>();
+                  
+            enemy.Initialize(worldPosUpdated);
+         }
+      }
+
+      private void InitializeEntrances(SavedMapsWithTiles savedMap,LevelsDatabase levelsDb, int levelIndex)
+      {
+         foreach (var tile in savedMap.tiles)
+         {
+            if(tile.tileBase.GetType() != typeof(ChangeRoomTile)) continue;
+            var entrancesMap =  tilemap.tileMapsTypesList.Find(map => map.mapTypes == TileMapsTypes.MapTypes.Entrances).map;
+            var worldPos = Vector3Int.FloorToInt(entrancesMap.GetCellCenterWorld(tile.position));
+            var worldPosUpdated = new Vector3Int(worldPos.x + _loadOffset, worldPos.y + _loadOffset);
+            var position = new Vector3Int(tile.position.x + _loadOffset, tile.position.y + _loadOffset);
+            var parent = entrancesMap.transform;
+            var entrance = Instantiate(tile.tileBase.GetAllProperties<GameObject>().First(),parent).GetComponent<CreateNewRoom>();
+                  
+            entrance.Initialize(levelsDb.levels,position,levelIndex);
+            entrance.transform.position = worldPosUpdated;
+         }
       }
 
       public ScriptableLevel GetActualLevel(List<ScriptableLevel> levelsDb,Vector3Int pos)
@@ -181,6 +212,7 @@ namespace Demo.LevelsManager
             "Decoration 1x1" => TileMapsTypes.MapTypes.Decoration1X1,
             "ColliderMap" => TileMapsTypes.MapTypes.ColliderMap,
             "Entrances" => TileMapsTypes.MapTypes.Entrances,
+            "Enemy" => TileMapsTypes.MapTypes.Enemy,
             _ => TileMapsTypes.MapTypes.Walls
          };
       }
@@ -203,6 +235,7 @@ namespace Demo.LevelsManager
          UnderGround1X1,
          ColliderMap,
          Entrances,
+         Enemy
       }
    }
    

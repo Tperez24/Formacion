@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Demo.Player.Player_Scripts.Player_Behaviour;
 using Demo.Player.Player_Scripts.Player_Creator;
 using UnityEngine;
@@ -10,8 +9,8 @@ namespace Demo.LevelsManager.ChangeRoom
     {
         private List<ScriptableLevel> _levelsDb;
         private Vector3Int _position;
-        public SavedTile _entrance;
-        public Vector3 _connectedEntrance;
+        private SavedTile _entrance;
+        private Vector3 _connectedEntrance;
         private TileMapManager _tileMapManager;
         private Transform _player;
         public ScriptableLevel _levelToLoad,_actualLevel;

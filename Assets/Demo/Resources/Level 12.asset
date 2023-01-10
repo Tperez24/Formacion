@@ -1068,7 +1068,7 @@ MonoBehaviour:
       exit: 0
     type: 7
   - tiles:
-    - position: {x: -6, y: -8, z: 0}
+    - position: {x: -7, y: -8, z: 0}
       tileBase: {fileID: 11400000, guid: e59e5112b86242547a6a6c6fea85fdf8, type: 2}
       entrance: 7
       exit: 5
@@ -1081,3 +1081,9 @@ MonoBehaviour:
       entrance: 7
       exit: 5
     type: 8
+  - tiles:
+    - position: {x: 3, y: 6, z: 0}
+      tileBase: {fileID: 11400000, guid: 0cf6d8936b87f1144a053ede24b24d28, type: 2}
+      entrance: 0
+      exit: 0
+    type: 9

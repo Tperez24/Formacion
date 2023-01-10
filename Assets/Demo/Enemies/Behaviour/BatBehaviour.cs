@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Demo.LevelsManager;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,15 +16,21 @@ namespace Demo.Enemies.Behaviour
         public float radius;
         public Color gizmosColor;
 
-        private void Awake()
+        public void Initialize(Vector3 position)
         {
-            TryGetComponent(out _ownCollider);
-            TryGetComponent(out _agent);
+            _ownCollider = GetComponent<Collider2D>();
+            _agent = GetComponent<NavMeshAgent>();
             
-            _initialPos = transform.position;
+            _initialPos = position;
+            transform.position = _initialPos;
+
+            _ownCollider.enabled = true;
+            _agent.enabled = true;
+            
             _agent.updateRotation = false; 
             _agent.updateUpAxis = false;
         }
+        
         private void Update()
         {
             var collision = Physics2D.OverlapCircle(transform.position, radius,LayerMask.GetMask(nameof(Player)));
@@ -32,8 +40,8 @@ namespace Demo.Enemies.Behaviour
                 case false:
                     _agent.SetDestination(collision.transform.position);
                     break;
-                case true when Vector3.Distance(transform.position,_initialPos) > 1:
-                    StopSearch();
+                case true:
+                    if(Vector3.Distance(transform.position,_initialPos) > 1) StopSearch();
                     break;
             }
         }

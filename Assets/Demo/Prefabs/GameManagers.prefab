@@ -84,6 +84,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5216793816059781367, guid: de067ed3b4f37534bb9c68f2c9b74d32, type: 3}
+      propertyPath: entrancePrefab
+      value: 
+      objectReference: {fileID: 4567020100746575372, guid: d399f46a715b87443a07bfc13116020e, type: 3}
+    - target: {fileID: 5216793816059781367, guid: de067ed3b4f37534bb9c68f2c9b74d32, type: 3}
+      propertyPath: tilemap.levelIndex
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216793816059781367, guid: de067ed3b4f37534bb9c68f2c9b74d32, type: 3}
+      propertyPath: tilemap.tileMapsTypesList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216793816059781367, guid: de067ed3b4f37534bb9c68f2c9b74d32, type: 3}
+      propertyPath: tilemap.tileMapsTypesList.Array.data[9].mapTypes
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5216793816059781368, guid: de067ed3b4f37534bb9c68f2c9b74d32, type: 3}
       propertyPath: m_Name
       value: TileManager
