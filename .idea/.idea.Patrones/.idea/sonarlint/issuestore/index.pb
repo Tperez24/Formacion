@@ -99,8 +99,6 @@ c
 3Assets/PatronesDeComportamiento/Strategy/Context.cs,7\3\735b039a3e0e88ca87d5f185231f692324f6cf1f
 m
 =Assets/PatronesDeComportamiento/Strategy/AnimalThrower3000.cs,b\4\b4ec08020417a6bf56cca4649ce79a49a27d4646
-S
-#Assets/Demo/Input Adapter/IInput.cs,d\e\de60616429c7d067d3de54fba80c7371e31aecc6
 ‚
 RAssets/Demo/Player/Player Scripts/Player Installers/InputConfigurationInstaller.cs,2\c\2cc36c5e1e4467199347092157170540272e63ae
 f
