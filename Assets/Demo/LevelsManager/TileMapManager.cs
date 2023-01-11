@@ -9,7 +9,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 using Utilities;
 using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
@@ -23,7 +22,7 @@ namespace Demo.LevelsManager
       [SerializeField] private NavMeshSurface2d navMeshSurface2d;
       [SerializeField] private SaveManager.SaveManager saveManager;
       [SerializeField] private Button saveMapButton,loadMapButton;
-      [SerializeField] private TileBase[] _tileBase;
+      [SerializeField] private TileBase[] tileBase;
 
       private int _loadOffset;
       private LevelsDatabase _levelsDatabase;
@@ -227,6 +226,7 @@ namespace Demo.LevelsManager
             
             //Indice de Enum de mapa
             var mapIndex = reader.ReadInt();
+            var map = tilemap.tileMapsTypesList.Find(map => (int)map.mapTypes == mapIndex).map;
             
             for (var j = 0; j < tileCount; j++)
             {
@@ -234,13 +234,13 @@ namespace Demo.LevelsManager
                var tilePos = Vector3Int.FloorToInt(reader.ReadVector3());
                var tileName = reader.ReadString();
 
-               foreach (var tile in _tileBase)
+               foreach (var tile in tileBase)
                {
+                  //if(GetMapTypeByName(map.name) == TileMapsTypes.MapTypes.Entrances) Debug.Log("AAAAAA");
                   var tileSprite = tile.GetAllProperties<Sprite>().ToList();
                   if (!tileSprite.Any()) break;
                   var tileSpriteName = tileSprite.First().name;
                   if (tileSpriteName != tileName) continue;
-                  var map = tilemap.tileMapsTypesList.Find(map => (int)map.mapTypes == mapIndex).map;
                   map.SetTile(tilePos,tile);
                }
             }

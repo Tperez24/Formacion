@@ -34,7 +34,3 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 4567020100746575372, guid: d399f46a715b87443a07bfc13116020e, type: 3}
   m_Flags: 5
   m_ColliderType: 0
-  levelsDb: {fileID: 11400000, guid: 779bbd4a648fae049ac14930938134a7, type: 2}
-  entrance:
-    entrance: 3
-    exit: 2
