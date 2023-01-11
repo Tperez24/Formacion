@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ObjectManagement.Scripts;
+using UnityEngine;
 
 public class Shape : PersistableObject {
 
@@ -54,6 +55,6 @@ public class Shape : PersistableObject {
 
 	public override void Load (GameDataReader reader) {
 		base.Load(reader);
-		SetColor(reader.Version > 0 ? reader.ReadColor() : Color.white);
+		SetColor(reader.ReadColor());
 	}
 }

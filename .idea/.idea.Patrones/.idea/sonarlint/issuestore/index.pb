@@ -147,8 +147,6 @@ S
 -Assets/Demo/GameInputState/InputController.cs,8\4\8462822b796d26e12a6bf69714d2411b56875f82
 _
 /Assets/ObjectManagement/Scripts/ShapeFactory.cs,1\8\18cc2f9e7b1a70f262b1c961fe0cd032868ffae8
-W
-'Assets/ObjectManagement/Scripts/Game.cs,3\9\39b4179ac0a57476a91581c373ff18ce941ae717
 `
 0Assets/Demo/Enemies/Behaviour/IDamageReceiver.cs,2\9\299988e66ef8a3f25246f20944a248cf27ad1c5d
 e
@@ -156,12 +154,8 @@ e
 [
 +Assets/Demo/LevelsManager/ChangeRoomTile.cs,8\a\8a36ed0ac19dd6a532d0921913133c2dc2a73e33
 \
-,Assets/Demo/LevelsManager/ScriptableLevel.cs,7\b\7be7f520140c6af0cd8692c16606489d96867461
-\
 ,Assets/Demo/DrawIfProperty/ReflectionUtil.cs,0\c\0ca1bc8087121a7592f86313c19b6035fa612225
 V
 &Assets/Demo/LevelsManager/EnemyTile.cs,1\1\113db66ca456d24805a96a7625fb190b1369891d
-[
-+Assets/Demo/LevelsManager/TileMapManager.cs,e\9\e956e2a999b3543020acfdeeecc96dc1eb45cb3c
 ]
 -Assets/Demo/Enemies/Behaviour/BatBehaviour.cs,e\6\e6986ec9f4539e7305de177faffce6b62d2e2e73

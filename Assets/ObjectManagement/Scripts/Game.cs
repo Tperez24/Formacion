@@ -85,7 +85,8 @@ namespace ObjectManagement.Scripts
 		public override void Save (GameDataWriter writer) 
 		{
 			writer.Write(_shapes.Count);
-			for (int i = 0; i < _shapes.Count; i++) {
+			for (int i = 0; i < _shapes.Count; i++) 
+			{
 				writer.Write(_shapes[i].ShapeId);
 				writer.Write(_shapes[i].MaterialId);
 				_shapes[i].Save(writer);
@@ -94,15 +95,10 @@ namespace ObjectManagement.Scripts
 
 		public override void Load (GameDataReader reader) 
 		{
-			int version = reader.Version;
-			if (version > SaveVersion) {
-				Debug.LogError("Unsupported future save version " + version);
-				return;
-			}
-			int count = version <= 0 ? -version : reader.ReadInt();
+			int count = reader.ReadInt();
 			for (int i = 0; i < count; i++) {
-				int shapeId = version > 0 ? reader.ReadInt() : 0;
-				int materialId = version > 0 ? reader.ReadInt() : 0;
+				int shapeId = reader.ReadInt();
+				int materialId = reader.ReadInt();
 				Shape instance = shapeFactory.Get(shapeId, materialId);
 				instance.Load(reader);
 				_shapes.Add(instance);

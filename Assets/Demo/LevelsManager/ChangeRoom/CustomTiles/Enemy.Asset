@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5407df16db411d8aa41a3c87cb4779, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300142, guid: 872dba149c5addb49ac3649c5b9247d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -31,6 +31,6 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 0}
+  m_InstancedGameObject: {fileID: 4221297428347650365, guid: b9576ad102f432e43bad894c4a12c06e, type: 3}
   m_Flags: 1
   m_ColliderType: 1

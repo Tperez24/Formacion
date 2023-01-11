@@ -1083,7 +1083,7 @@ MonoBehaviour:
     type: 8
   - tiles:
     - position: {x: 3, y: 6, z: 0}
-      tileBase: {fileID: 11400000, guid: 0cf6d8936b87f1144a053ede24b24d28, type: 2}
+      tileBase: {fileID: 11400000, guid: 75cd0e3af8f683448b92ff1fbc9972a4, type: 2}
       entrance: 0
       exit: 0
     type: 9

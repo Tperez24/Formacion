@@ -3,26 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Demo.Enemies.Behaviour;
 using Demo.LevelsManager.ChangeRoom;
+using Demo.SaveManager;
+using ObjectManagement.Scripts;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 using Utilities;
+using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
 
 namespace Demo.LevelsManager
 {
-   public class TileMapManager : MonoBehaviour
+   public class TileMapManager : MonoBehaviour,ISaver
    {
       [SerializeField] private TileMaps tilemap;
       [SerializeField] private GameObject levelToSave;
-      [SerializeField] private GameObject entrancePrefab;
       [SerializeField] private NavMeshSurface2d navMeshSurface2d;
-      private List<SavedMapsWithTiles> _levelsLoaded;
+      [SerializeField] private SaveManager.SaveManager saveManager;
+      [SerializeField] private Button saveMapButton,loadMapButton;
 
       private int _loadOffset;
+      private LevelsDatabase _levelsDatabase;
 
       private void Start() => LoadMap(tilemap.levelIndex);
+
+      private void OnEnable()
+      {
+         saveMapButton.onClick.AddListener(() => saveManager.Save(this));
+         loadMapButton.onClick.AddListener(() => saveManager.Load(this));
+      }
+
+      private void OnDisable()
+      {
+         saveMapButton.onClick.RemoveListener(() => saveManager.Save(this));
+         loadMapButton.onClick.RemoveListener(() => saveManager.Load(this));
+      }
 
       public ScriptableLevel FindLevelsWithEntrances(List<ScriptableLevel> levels, EntranceType.EntrancesTypes exit,ScriptableLevel actualLvl)
       {
@@ -67,10 +84,12 @@ namespace Demo.LevelsManager
          {
             if (!map.HasTile(pos)) continue;
             var levelTile = map.GetTile<Tile>(pos);
+            var spriteTile = levelTile.sprite; 
             yield return new SavedTile
             {
                tileBase = levelTile,
                position = pos,
+               //sprite = spriteTile
             };
          }
       }
@@ -82,8 +101,8 @@ namespace Demo.LevelsManager
 
       public void LoadMap(int levelIndex)
       {
-         var levelsDb = Resources.Load<LevelsDatabase>($"LevelsDB");
-         var level = levelsDb.levels[levelIndex];
+         _levelsDatabase = Resources.Load<LevelsDatabase>($"LevelsDB");
+         var level = _levelsDatabase.levels[levelIndex];
          
          if(level == null) return;
          
@@ -92,7 +111,7 @@ namespace Demo.LevelsManager
             switch (savedMap.type)
             {
                case TileMapsTypes.MapTypes.Entrances:
-                  InitializeEntrances(savedMap, levelsDb, levelIndex);
+                  InitializeEntrances(savedMap, _levelsDatabase, levelIndex);
                   break;
                
                case TileMapsTypes.MapTypes.Enemy:
@@ -170,7 +189,87 @@ namespace Demo.LevelsManager
 
          tilemap.tileMapsTypesList = tileMap;
       }
+      
+      public void Save(GameDataWriter writer)
+      {
+         //Guardo cuantos mapas hay
+         writer.Write(tilemap.tileMapsTypesList.Count);
+         
+         //Guardo cuantos tiles hay en cada mapa
+         foreach (var tileMapTypes in tilemap.tileMapsTypesList)
+         {
+            //Guardo el numero de tiles
+            writer.Write( GetTilesFromMap(tileMapTypes.map).ToList().Count);
+            
+            var savedTiles = GetTilesFromMap(tileMapTypes.map).ToList();
+            foreach (var tile in savedTiles)
+            {
+               //Guardo info del tile
+               tile.Save(writer);
+            }
+         }
+      }
 
+      public void Load(GameDataReader reader)
+      {
+         ClearMap();
+         //Contador de mapas
+         var mapCount = reader.ReadInt();
+
+         for (var i = 0; i < mapCount; i++)
+         {
+            //Contador de tiles
+            var tileCount = reader.ReadInt();
+            for (var j = 0; j < tileCount; j++)
+            {
+               //Tile info
+               var tilePos = Vector3Int.FloorToInt(reader.ReadVector3());
+               
+               //Coloco el tile
+               foreach (var level in _levelsDatabase.levels)
+               {
+                  foreach (var map in level.maps)
+                  {
+                     var tileToSearch = map.tiles.Find(tile => tile.position == tilePos);
+                     if (tileToSearch == null) continue;
+
+                     tilemap.tileMapsTypesList[i].map.SetTile(tilePos,tileToSearch.tileBase);
+                     Debug.Log("Found");
+                     break;
+                  }
+               }
+            }
+         }
+         
+         
+         /*
+         //sprite
+         var pixelCount = reader.ReadInt();
+         var pixel = new Color[pixelCount];
+         for (int i = 0; i < pixelCount; i++)
+         {
+            pixel[pixelCount] = reader.ReadColor();
+         }
+         
+         var sprite = */
+      }
+      private TileMapsTypes.MapTypes GetMapTypeByName(string mapName)
+      {
+         return mapName switch
+         {
+            "Walls" => TileMapsTypes.MapTypes.Walls,
+            "Decoration" => TileMapsTypes.MapTypes.Decoration,
+            "Ground" => TileMapsTypes.MapTypes.Ground,
+            "UnderGround" => TileMapsTypes.MapTypes.UnderGround,
+            "UnderGround 1x1" => TileMapsTypes.MapTypes.UnderGround1X1,
+            "TopDecoration" => TileMapsTypes.MapTypes.TopDecoration,
+            "Decoration 1x1" => TileMapsTypes.MapTypes.Decoration1X1,
+            "ColliderMap" => TileMapsTypes.MapTypes.ColliderMap,
+            "Entrances" => TileMapsTypes.MapTypes.Entrances,
+            "Enemy" => TileMapsTypes.MapTypes.Enemy,
+            _ => TileMapsTypes.MapTypes.Walls
+         };
+      }
 #if UNITY_EDITOR
 
       public void SaveMap()
@@ -198,24 +297,6 @@ namespace Demo.LevelsManager
       public int GetLevelIndex() => tilemap.levelIndex;
       
 #endif
-
-      private TileMapsTypes.MapTypes GetMapTypeByName(string mapName)
-      {
-         return mapName switch
-         {
-            "Walls" => TileMapsTypes.MapTypes.Walls,
-            "Decoration" => TileMapsTypes.MapTypes.Decoration,
-            "Ground" => TileMapsTypes.MapTypes.Ground,
-            "UnderGround" => TileMapsTypes.MapTypes.UnderGround,
-            "UnderGround 1x1" => TileMapsTypes.MapTypes.UnderGround1X1,
-            "TopDecoration" => TileMapsTypes.MapTypes.TopDecoration,
-            "Decoration 1x1" => TileMapsTypes.MapTypes.Decoration1X1,
-            "ColliderMap" => TileMapsTypes.MapTypes.ColliderMap,
-            "Entrances" => TileMapsTypes.MapTypes.Entrances,
-            "Enemy" => TileMapsTypes.MapTypes.Enemy,
-            _ => TileMapsTypes.MapTypes.Walls
-         };
-      }
    }
    
    
