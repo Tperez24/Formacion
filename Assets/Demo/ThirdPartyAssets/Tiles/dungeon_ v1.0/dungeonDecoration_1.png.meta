@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -6267,9 +6267,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dungeonDecoration_1_124: -648560781
+      dungeonDecoration_1_106: 1746841536
+      dungeonDecoration_1_195: -1463095413
       dungeonDecoration_1_228: 1989147171
-      dungeonDecoration_1_14: 691978080
       dungeonDecoration_1_30: 462839064
       dungeonDecoration_1_47: -1600545954
       dungeonDecoration_1_80: -1191547725
@@ -6558,8 +6558,8 @@ TextureImporter:
       dungeonDecoration_1_84: -1674750477
       dungeonDecoration_1_233: -778676278
       dungeonDecoration_1_273: 1738615378
-      dungeonDecoration_1_195: -1463095413
-      dungeonDecoration_1_106: 1746841536
+      dungeonDecoration_1_124: -648560781
+      dungeonDecoration_1_14: 691978080
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

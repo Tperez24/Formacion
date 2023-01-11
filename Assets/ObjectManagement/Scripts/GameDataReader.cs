@@ -13,6 +13,7 @@ namespace ObjectManagement.Scripts
 			_reader = reader;
 		}
 
+		public string ReadString() => _reader.ReadString();
 		public float ReadFloat () => _reader.ReadSingle();
 
 		public int ReadInt () => _reader.ReadInt32();

@@ -21,7 +21,7 @@ public class SavedTile : ISaver
 {
     public Vector3Int position;
     public TileBase tileBase;
-    //public Sprite sprite;
+    public Sprite sprite;
   
     public EntranceType.EntrancesTypes entrance;
     public EntranceType.EntrancesTypes exit;
@@ -30,18 +30,10 @@ public class SavedTile : ISaver
     {
         //Guardo posición y sprite
         writer.Write(position);
-        /*var pixels = sprite.texture.GetPixels();
-        writer.Write(pixels.Length);
-        foreach (var pixel in pixels)
-        {
-            writer.Write(new Vector4(pixel.r,pixel.g,pixel.b,pixel.a));
-        }*/
+        writer.Write(sprite.name);
     }
 
-    public void Load(GameDataReader reader)
-    {
-        throw new NotImplementedException();
-    }
+    public void Load(GameDataReader reader) => throw new NotImplementedException();
 }
 
 [Serializable]

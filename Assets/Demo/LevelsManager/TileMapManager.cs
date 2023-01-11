@@ -23,6 +23,7 @@ namespace Demo.LevelsManager
       [SerializeField] private NavMeshSurface2d navMeshSurface2d;
       [SerializeField] private SaveManager.SaveManager saveManager;
       [SerializeField] private Button saveMapButton,loadMapButton;
+      [SerializeField] private TileBase[] _tileBase;
 
       private int _loadOffset;
       private LevelsDatabase _levelsDatabase;
@@ -89,7 +90,7 @@ namespace Demo.LevelsManager
             {
                tileBase = levelTile,
                position = pos,
-               //sprite = spriteTile
+               sprite = spriteTile
             };
          }
       }
@@ -222,36 +223,19 @@ namespace Demo.LevelsManager
             var tileCount = reader.ReadInt();
             for (var j = 0; j < tileCount; j++)
             {
-               //Tile info
+               //Tile pos y sprite
                var tilePos = Vector3Int.FloorToInt(reader.ReadVector3());
-               
-               //Coloco el tile
-               foreach (var level in _levelsDatabase.levels)
-               {
-                  foreach (var map in level.maps)
-                  {
-                     var tileToSearch = map.tiles.Find(tile => tile.position == tilePos);
-                     if (tileToSearch == null) continue;
+               var tileName = reader.ReadString();
 
-                     tilemap.tileMapsTypesList[i].map.SetTile(tilePos,tileToSearch.tileBase);
-                     Debug.Log("Found");
-                     break;
-                  }
+               foreach (var tile in _tileBase)
+               {
+                  var tileSprite = tile.GetAllProperties<Sprite>().First();
+                  if (tileSprite == null) break;
+                  var tileSpriteName = tileSprite.name;
+                  if(tileSpriteName == tileName) tilemap.tileMapsTypesList[i].map.SetTile(tilePos,tile);
                }
             }
          }
-         
-         
-         /*
-         //sprite
-         var pixelCount = reader.ReadInt();
-         var pixel = new Color[pixelCount];
-         for (int i = 0; i < pixelCount; i++)
-         {
-            pixel[pixelCount] = reader.ReadColor();
-         }
-         
-         var sprite = */
       }
       private TileMapsTypes.MapTypes GetMapTypeByName(string mapName)
       {

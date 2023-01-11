@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -1437,7 +1437,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      dungeonDecoration_0 [blueCarpet]_55: 903204320
+      dungeonDecoration_0 [blueCarpet]_5: 29692716
       dungeonDecoration_0 [blueCarpet]_60: -95343219
       dungeonDecoration_0 [blueCarpet]_62: -153165870
       dungeonDecoration_0 [blueCarpet]_47: -564814356
@@ -1467,9 +1467,8 @@ TextureImporter:
       dungeonDecoration_0 [blueCarpet]_0: 1260448710
       dungeonDecoration_0 [blueCarpet]_19: -1623034040
       dungeonDecoration_0 [blueCarpet]_4: -1736087352
-      dungeonDecoration_0 [blueCarpet]_7: -817450784
       dungeonDecoration_0 [blueCarpet]_54: 2064053018
-      dungeonDecoration_0 [blueCarpet]_36: -534573301
+      dungeonDecoration_0 [blueCarpet]_7: -817450784
       dungeonDecoration_0 [blueCarpet]_20: -9664880
       dungeonDecoration_0 [blueCarpet]_13: 956311636
       dungeonDecoration_0 [blueCarpet]_21: -387280274
@@ -1478,6 +1477,7 @@ TextureImporter:
       dungeonDecoration_0 [blueCarpet]_11: 798805308
       dungeonDecoration_0 [blueCarpet]_3: -75825416
       dungeonDecoration_0 [blueCarpet]_38: 1950667345
+      dungeonDecoration_0 [blueCarpet]_36: -534573301
       dungeonDecoration_0 [blueCarpet]_25: -680039910
       dungeonDecoration_0 [blueCarpet]_51: -762101627
       dungeonDecoration_0 [blueCarpet]_58: -1417202760
@@ -1499,7 +1499,7 @@ TextureImporter:
       dungeonDecoration_0 [blueCarpet]_23: 1560496213
       dungeonDecoration_0 [blueCarpet]_46: -1100530273
       dungeonDecoration_0 [blueCarpet]_26: 184616871
-      dungeonDecoration_0 [blueCarpet]_5: 29692716
+      dungeonDecoration_0 [blueCarpet]_55: 903204320
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

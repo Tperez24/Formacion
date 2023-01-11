@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -895,11 +895,11 @@ TextureImporter:
       acid__48: 1376361553
       acid__12: 588714799
       acid__9: -2084689190
-      acid__2: 850837888
-      acid__45: -693370456
-      acid__49: -984339447
-      acid__17: 1293917325
       acid__24: 753187543
+      acid__49: -984339447
+      acid__45: -693370456
+      acid__17: 1293917325
+      acid__2: 850837888
       acid__10: 256771418
       acid__32: -154937956
       acid__27: 1592055038

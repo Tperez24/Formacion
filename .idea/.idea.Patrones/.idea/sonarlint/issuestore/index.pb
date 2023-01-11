@@ -159,3 +159,19 @@ V
 &Assets/Demo/LevelsManager/EnemyTile.cs,1\1\113db66ca456d24805a96a7625fb190b1369891d
 ]
 -Assets/Demo/Enemies/Behaviour/BatBehaviour.cs,e\6\e6986ec9f4539e7305de177faffce6b62d2e2e73
+d
+4Assets/ObjectManagement/Scripts/PersistableObject.cs,4\6\469f173c3dc11806b8f104e48f8867d29ad0a633
+q
+AAssets/Patrones Creacionales/Abstract Factory/IAbstractFactory.cs,b\6\b6d575a692197880e2060416b7a228ac7d1c65e7
+X
+(Assets/Demo/GameInputState/InputState.cs,b\4\b4daa8c8a7a976e1cefb38c9c14b42395968f863
+^
+.Assets/Demo/GameInputState/PlayerInputState.cs,f\d\fd56a4f3e20f64eb8cd2f82516dc9b3816b8c37d
+X
+(Assets/ObjectManagement/Scripts/Shape.cs,5\3\53a8d888a6a4c7f0e007a283c6403f579d858a43
+W
+'Assets/ObjectManagement/Scripts/Game.cs,3\9\39b4179ac0a57476a91581c373ff18ce941ae717
+v
+FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
+d
+4Assets/ObjectManagement/Scripts/PersistentStorage.cs,d\8\d8c9265dc2ee62d8f693c2e902d7a8b3f87f4989
