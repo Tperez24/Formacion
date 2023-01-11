@@ -202,6 +202,9 @@ namespace Demo.LevelsManager
             //Guardo el numero de tiles
             writer.Write( GetTilesFromMap(tileMapTypes.map).ToList().Count);
             
+            //Guardo el indice del tipo de mapa
+            writer.Write((int)tileMapTypes.mapTypes);
+            
             var savedTiles = GetTilesFromMap(tileMapTypes.map).ToList();
             foreach (var tile in savedTiles)
             {
@@ -221,6 +224,10 @@ namespace Demo.LevelsManager
          {
             //Contador de tiles
             var tileCount = reader.ReadInt();
+            
+            //Indice de Enum de mapa
+            var mapIndex = reader.ReadInt();
+            
             for (var j = 0; j < tileCount; j++)
             {
                //Tile pos y sprite
@@ -229,10 +236,12 @@ namespace Demo.LevelsManager
 
                foreach (var tile in _tileBase)
                {
-                  var tileSprite = tile.GetAllProperties<Sprite>().First();
-                  if (tileSprite == null) break;
-                  var tileSpriteName = tileSprite.name;
-                  if(tileSpriteName == tileName) tilemap.tileMapsTypesList[i].map.SetTile(tilePos,tile);
+                  var tileSprite = tile.GetAllProperties<Sprite>().ToList();
+                  if (!tileSprite.Any()) break;
+                  var tileSpriteName = tileSprite.First().name;
+                  if (tileSpriteName != tileName) continue;
+                  var map = tilemap.tileMapsTypesList.Find(map => (int)map.mapTypes == mapIndex).map;
+                  map.SetTile(tilePos,tile);
                }
             }
          }
