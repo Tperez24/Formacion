@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.5
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -266,6 +266,5 @@ PrefabInstance:
       propertyPath: voxelGridPrefab
       value: 
       objectReference: {fileID: 1235791576968293755, guid: 9cad2ffbc3b04644db04e6f8c8caf955, type: 3}
-    m_RemovedComponents:
-    - {fileID: 7697299437735922764, guid: be744428afd0cfe4fbe412d0a36c1627, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be744428afd0cfe4fbe412d0a36c1627, type: 3}
