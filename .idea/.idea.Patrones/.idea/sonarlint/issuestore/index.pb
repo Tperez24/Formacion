@@ -187,5 +187,3 @@ a
 -Assets/Demo/Enemies/Behaviour/BatBehaviour.cs,e\6\e6986ec9f4539e7305de177faffce6b62d2e2e73
 [
 +Assets/Demo/LevelsManager/TileMapManager.cs,e\9\e956e2a999b3543020acfdeeecc96dc1eb45cb3c
-[
-+Assets/MarchingSquares/Scripts/VoxelGrid.cs,9\3\93ad8ad02579f218db248521b8301cfb570c8364
