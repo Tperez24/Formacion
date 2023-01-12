@@ -169,3 +169,23 @@ v
 FAssets/Demo/Player/Player Scripts/Player Behaviour/PlayerController.cs,7\2\7276c84bcb3f5362df768389504e435147a27e54
 d
 4Assets/ObjectManagement/Scripts/PersistentStorage.cs,d\8\d8c9265dc2ee62d8f693c2e902d7a8b3f87f4989
+a
+1Assets/ObjectManagement/Scripts/GameDataWriter.cs,9\9\99514c594919f3a2cf09072f3a8233c806b8c62e
+a
+1Assets/ObjectManagement/Scripts/GameDataReader.cs,a\3\a39e3825e969e644dc2dfbd3445abf6ad4fb8165
+V
+&Assets/Demo/SaveManager/SaveManager.cs,3\f\3f4d889cf7216c267edc54059cb7ed7885c1f242
+e
+5Assets/Demo/LevelsManager/ChangeRoom/CreateNewRoom.cs,4\6\4633716e84484370e80d44c677f796ef66a492cb
+[
++Assets/Demo/LevelsManager/ChangeRoomTile.cs,8\a\8a36ed0ac19dd6a532d0921913133c2dc2a73e33
+\
+,Assets/Demo/LevelsManager/ScriptableLevel.cs,7\b\7be7f520140c6af0cd8692c16606489d96867461
+a
+1Assets/Demo/LevelsManager/TileMapManagerEditor.cs,a\7\a7aca2c2207d1ce02a50a093c32ea43e734234e8
+]
+-Assets/Demo/Enemies/Behaviour/BatBehaviour.cs,e\6\e6986ec9f4539e7305de177faffce6b62d2e2e73
+[
++Assets/Demo/LevelsManager/TileMapManager.cs,e\9\e956e2a999b3543020acfdeeecc96dc1eb45cb3c
+[
++Assets/MarchingSquares/Scripts/VoxelGrid.cs,9\3\93ad8ad02579f218db248521b8301cfb570c8364
