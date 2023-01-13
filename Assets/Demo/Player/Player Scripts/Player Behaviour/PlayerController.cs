@@ -1,28 +1,24 @@
 using System;
-using Demo.Input_Adapter;
+using Demo.Enemies.Behaviour;
+using Demo.GameInputState;
 using Demo.Player.PlayerMediator;
 using Demo.Scripts.StaticClasses;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Demo.Player.Player_Scripts.Player_Behaviour
 {
-    public class PlayerController : PlayerComponent
+    public class PlayerController : PlayerComponent,IDamageReceiver
     {
-        private IInput Input { get; set; }
         private Animator _playerAnimator;
-        private InputAction _moveAction,_attackAction,_specialAction;
         private Vector2 _direction,_lastDirection;
         private object _lastValueGiven;
         private Rigidbody2D _rigidbody;
 
-        private float _speed = 2f;
+        private float _speed = 3f;
         private UnityEvent _onDirectionChanged = new();
-        public UnityEvent<Vector2> onMoveInputChanged = new();
-        
-        public void SetInput(IInput input) => Input = input;
-
         protected PlayerController(IPlayerComponentsMediator mediator) : base(mediator) { }
         private Vector2 Direction
         {
@@ -38,19 +34,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         public void Initialize()
         {
             Getters();
-            SetActions();
-            InitializeEvents();
-            SubscribeToInputs();
             SubscribeToEvents();
-            SetSpeed(2);
-        }
-        private void OnDisable()
-        {
-            _moveAction.performed -= ChangeDirection;
-            _attackAction.performed -= Attack;
-            _specialAction.performed -= LaunchSpecialAttack;
-            _specialAction.started -= AimSpecialAttack;
-            _specialAction.canceled -= SpecialAttackCanceled;
+            SetSpeed(3);
         }
 
         private void Getters()
@@ -59,39 +44,35 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             _rigidbody = GetComponentInParent<Rigidbody2D>();
         }
 
-        private void SetActions()
-        {
-            _moveAction = Input.GetInput().Find(input => input.name == ActionNames.Movement());
-            _attackAction = Input.GetInput().Find(input => input.name == ActionNames.Attack());
-            _specialAction = Input.GetInput().Find(input => input.name == ActionNames.Special());
-        }
-
-        private void InitializeEvents()
-        {
-            onMoveInputChanged = new UnityEvent<Vector2>();
-            _onDirectionChanged = new UnityEvent();
-        }
-
-        private void SubscribeToInputs()
-        {
-            _moveAction.performed += ChangeDirection;
-            _attackAction.performed += Attack;
-            _specialAction.performed += LaunchSpecialAttack;
-            _specialAction.started += AimSpecialAttack;
-            _specialAction.canceled += SpecialAttackCanceled;
-        }
-
         private void SubscribeToEvents()
         {
             _onDirectionChanged = new UnityEvent();
             _onDirectionChanged.AddListener(MovePlayer);
+
+            PlayerInputState.MovePlayer += ChangeDirection;
+            PlayerInputState.ChargeSpecial += StopRigidbody;
+            PlayerInputState.Attack += Attack;
+            
+            PointerInputState.CancelSpecial += StopPlayerMovement;
+            PointerInputState.LaunchSpecial += StopPlayerMovement;
         }
 
-        private void ChangeDirection(InputAction.CallbackContext context)
+        private void OnDisable()
+        {
+            _onDirectionChanged.RemoveListener(MovePlayer);
+
+            PlayerInputState.MovePlayer -= ChangeDirection;
+            PlayerInputState.ChargeSpecial -= StopRigidbody;
+            PlayerInputState.Attack -= Attack;
+
+            PointerInputState.CancelSpecial -= StopPlayerMovement;
+            PointerInputState.LaunchSpecial -= StopPlayerMovement;
+        }
+
+        private void ChangeDirection(object sender, InputAction.CallbackContext context)
         {
             var dir = context.ReadValue<Vector2>();
-            onMoveInputChanged?.Invoke(dir);
-           
+
             if (dir == Vector2.zero)
             {
                 StopPlayer();
@@ -134,29 +115,13 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             AnimationAction(animationName, type).Invoke();
         }
         
-        private void Attack(InputAction.CallbackContext context)
+        private void Attack(object sender, InputAction.CallbackContext callbackContext)
         {
-            Mediator.Notify(this,MediatorActionNames.LaunchAttack());
-            
             AnimationAction(AnimationNames.IsSwordAttack(), null).Invoke();
-        }
-
-        private void AimSpecialAttack(InputAction.CallbackContext obj)
-        {
-            Mediator.Notify(this,MediatorActionNames.AimSpecialAttack());
-            SetSpeed(0);
-        }
-
-        private void LaunchSpecialAttack(InputAction.CallbackContext obj)
-        {
-            Mediator.Notify(this,MediatorActionNames.LaunchSpecialAttack());
-            SetSpeed(2);
-        }
-
-        private void SpecialAttackCanceled(InputAction.CallbackContext obj)
-        {
-            Mediator.Notify(this,MediatorActionNames.SpecialAttackCanceled());
-            SetSpeed(2);
+            var target = Physics2D.OverlapCircle(transform.position, 1f);
+            if(target == null) return;
+            var dirToTarget = Vector3.Normalize(transform.position - target.transform.position);
+            if(Vector3.Dot(dirToTarget, transform.forward) >= 0.3) target.gameObject.GetComponent<IDamageReceiver>().ReceiveDamage(1);
         }
 
         private Action AnimationAction (string animationName,object type)
@@ -170,6 +135,13 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
                 _     =>       throw new ArgumentOutOfRangeException( "animationName: " + animationName + " or type: " + type + " not valid or not implemented")
             };
         }
+        public void ReceiveDamage(int damage)
+        {
+            var pas = Resources.Load<ParticleSystem>("ParticleSystem/PAS_Explosion");
+            Instantiate(pas,transform.position,quaternion.identity);
+            Destroy(transform.parent.gameObject);
+        }
+
         private void SetVelocity(Vector2 velocity) => _rigidbody.velocity = velocity * _speed;
 
         private void SetSpeed(float speed) => _speed = speed;
@@ -177,6 +149,10 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private void SetDirectionWithoutNotify(Vector2 direction) => _direction = direction;
 
         private void SetDirectionNotifying(Vector2 direction) => Direction = direction;
+        
+        private void StopRigidbody(object sender, InputAction.CallbackContext e) => SetVelocity(Vector2.zero);
+
+        private void StopPlayerMovement(object sender, InputAction.CallbackContext e) => StopPlayer();
     }
 }
 

@@ -286,6 +286,134 @@ public partial class @Master : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SaveGame"",
+            ""id"": ""56d83399-fafd-4f60-a9d2-0b6beb881319"",
+            ""actions"": [
+                {
+                    ""name"": ""Create"",
+                    ""type"": ""Button"",
+                    ""id"": ""261f5931-a50d-4bbf-927b-854619b8c370"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""7303a9ad-fe30-4ff0-9c13-007923b59207"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8a035b8-372d-4236-972f-5de58253552e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NewGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8f89038-cdb1-4de1-96ef-11a87865d131"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""80399756-7400-4637-b376-b7ba3e5dd4c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""d6369135-6567-4ea5-84eb-60ea2bf4557b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6ac0f5df-feaa-4688-bc16-4e11a36e3b74"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Create"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""737c740f-416f-4f96-a9b2-765ac5fc1afe"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95b13924-fdca-403a-bec9-857bebd9b27c"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aaebc2db-fd00-4176-b3d9-44aea41bf7cd"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NewGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ff799ed-c6b3-489d-86c8-a02aab92368d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""102d59d0-aa47-47b1-8691-7b8155f99e6c"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -325,6 +453,14 @@ public partial class @Master : IInputActionCollection2, IDisposable
         m_PlayerInputKeyboard_Movement = m_PlayerInputKeyboard.FindAction("Movement", throwIfNotFound: true);
         m_PlayerInputKeyboard_SwordAttack = m_PlayerInputKeyboard.FindAction("SwordAttack", throwIfNotFound: true);
         m_PlayerInputKeyboard_SpecialAttack = m_PlayerInputKeyboard.FindAction("SpecialAttack", throwIfNotFound: true);
+        // SaveGame
+        m_SaveGame = asset.FindActionMap("SaveGame", throwIfNotFound: true);
+        m_SaveGame_Create = m_SaveGame.FindAction("Create", throwIfNotFound: true);
+        m_SaveGame_Save = m_SaveGame.FindAction("Save", throwIfNotFound: true);
+        m_SaveGame_Load = m_SaveGame.FindAction("Load", throwIfNotFound: true);
+        m_SaveGame_NewGame = m_SaveGame.FindAction("NewGame", throwIfNotFound: true);
+        m_SaveGame_Mouse = m_SaveGame.FindAction("Mouse", throwIfNotFound: true);
+        m_SaveGame_MousePosition = m_SaveGame.FindAction("MousePosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -494,6 +630,79 @@ public partial class @Master : IInputActionCollection2, IDisposable
         }
     }
     public PlayerInputKeyboardActions @PlayerInputKeyboard => new PlayerInputKeyboardActions(this);
+
+    // SaveGame
+    private readonly InputActionMap m_SaveGame;
+    private ISaveGameActions m_SaveGameActionsCallbackInterface;
+    private readonly InputAction m_SaveGame_Create;
+    private readonly InputAction m_SaveGame_Save;
+    private readonly InputAction m_SaveGame_Load;
+    private readonly InputAction m_SaveGame_NewGame;
+    private readonly InputAction m_SaveGame_Mouse;
+    private readonly InputAction m_SaveGame_MousePosition;
+    public struct SaveGameActions
+    {
+        private @Master m_Wrapper;
+        public SaveGameActions(@Master wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Create => m_Wrapper.m_SaveGame_Create;
+        public InputAction @Save => m_Wrapper.m_SaveGame_Save;
+        public InputAction @Load => m_Wrapper.m_SaveGame_Load;
+        public InputAction @NewGame => m_Wrapper.m_SaveGame_NewGame;
+        public InputAction @Mouse => m_Wrapper.m_SaveGame_Mouse;
+        public InputAction @MousePosition => m_Wrapper.m_SaveGame_MousePosition;
+        public InputActionMap Get() { return m_Wrapper.m_SaveGame; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SaveGameActions set) { return set.Get(); }
+        public void SetCallbacks(ISaveGameActions instance)
+        {
+            if (m_Wrapper.m_SaveGameActionsCallbackInterface != null)
+            {
+                @Create.started -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnCreate;
+                @Create.performed -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnCreate;
+                @Create.canceled -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnCreate;
+                @Save.started -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnSave;
+                @Save.performed -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnSave;
+                @Save.canceled -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnSave;
+                @Load.started -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnLoad;
+                @Load.performed -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnLoad;
+                @Load.canceled -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnLoad;
+                @NewGame.started -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnNewGame;
+                @NewGame.performed -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnNewGame;
+                @NewGame.canceled -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnNewGame;
+                @Mouse.started -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnMouse;
+                @MousePosition.started -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnMousePosition;
+                @MousePosition.performed -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnMousePosition;
+                @MousePosition.canceled -= m_Wrapper.m_SaveGameActionsCallbackInterface.OnMousePosition;
+            }
+            m_Wrapper.m_SaveGameActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Create.started += instance.OnCreate;
+                @Create.performed += instance.OnCreate;
+                @Create.canceled += instance.OnCreate;
+                @Save.started += instance.OnSave;
+                @Save.performed += instance.OnSave;
+                @Save.canceled += instance.OnSave;
+                @Load.started += instance.OnLoad;
+                @Load.performed += instance.OnLoad;
+                @Load.canceled += instance.OnLoad;
+                @NewGame.started += instance.OnNewGame;
+                @NewGame.performed += instance.OnNewGame;
+                @NewGame.canceled += instance.OnNewGame;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
+                @MousePosition.started += instance.OnMousePosition;
+                @MousePosition.performed += instance.OnMousePosition;
+                @MousePosition.canceled += instance.OnMousePosition;
+            }
+        }
+    }
+    public SaveGameActions @SaveGame => new SaveGameActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -525,5 +734,14 @@ public partial class @Master : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnSwordAttack(InputAction.CallbackContext context);
         void OnSpecialAttack(InputAction.CallbackContext context);
+    }
+    public interface ISaveGameActions
+    {
+        void OnCreate(InputAction.CallbackContext context);
+        void OnSave(InputAction.CallbackContext context);
+        void OnLoad(InputAction.CallbackContext context);
+        void OnNewGame(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

@@ -1,6 +1,9 @@
 using System;
+using Demo.GameInputState;
+using Demo.Input_Adapter;
 using Demo.Paths;
 using Demo.Player.Player_Scripts.Player_Creator;
+using Demo.Player.Player_Scripts.Player_Installers;
 using UnityEngine;
 
 namespace Demo.Player.Player_Scripts.Player_Creator
@@ -13,21 +16,33 @@ namespace Demo.Player.Player_Scripts.Player_Creator
         
         private IPlayerBuilder _playerBuilder;
         private IInputBuilder _inputBuilder;
+
+        public static EventHandler<Transform> OnPlayerSpawn;
         
         private void Start()
         {
             _builderOptions = new BuilderOptions();
             
             CreatePlayer();
+            CreateInput();
         }
-        
+        private void CreateInput()
+        {
+            _inputBuilder = new InputBuilderConfiguration(Resources.Load<GameObject>(PrefabsPath.Input()));
+            _builderOptions.InputBuilder = _inputBuilder;
+            _builderOptions.BuildInputSystem();
+        }
+
         private void CreatePlayer()
         {
             _playerBuilder = GetBuilder();
             _builderOptions.Builder = _playerBuilder;
             _builderOptions.BuildNormalPlayer();
+            
+            OnPlayerSpawn?.Invoke(this,_playerBuilder.GetPlayerBuilder().transform);
         }
-
+        
+        
         private IPlayerBuilder GetBuilder()
         {
             return selectPlayer.playerType switch

@@ -8,18 +8,18 @@ namespace Demo.Player.Player_Scripts.Player_Creator
 
         public void BuildNormalPlayer()
         {
-            Builder.GetPlayer();
+            Builder.GetPlayerBuilder();
             Builder.AddPlayerMediator();
             Builder.AddPlayerBehaviour();
             Builder.AddPlayerAttackSystem();
             Builder.AddPlayerAbilityTree();
-            Builder.AddPlayerConfiguration();
             Builder.Initialize();
         }
 
         public void BuildInputSystem()
         {
             InputBuilder.AddInputController();
+            InputBuilder.AddInputConfigurationInstaller();
         }
     }
 }

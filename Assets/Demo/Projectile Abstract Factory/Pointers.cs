@@ -5,10 +5,7 @@ namespace Demo.Projectile_Abstract_Factory
 {
     public class Pointer : MonoBehaviour,IAbstractPointer
     {
-        public string SpellType()
-        {
-            throw new NotImplementedException();
-        }
+        public string SpellType() => throw new NotImplementedException();
         public void MovePointer(Vector2 direction,float speed) => transform.Translate(direction * (Time.deltaTime * speed));
         public void Destroy() => Destroy(gameObject);
         public Vector2 GetPosition() => transform.position;

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using Demo.AnimatorChecker;
+using Demo.GameInputState;
 using Demo.Player.PlayerMediator;
 using Demo.Player.Spells.Scripts;
 using Demo.Projectile_Abstract_Factory;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Demo.Player.Player_Scripts.Player_Behaviour
 { 
@@ -16,32 +18,38 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
         private IAbstractSpell _spell;
 
         protected SpellAttackController(IPlayerComponentsMediator mediator) : base(mediator) { }
-        private void SubscribeToEvents() => Mediator.SubscribeTo(MediatorActionNames.PlayerMoveSubscription(), MovePointer,true);
-        private void UnsubscribeToEvents() => Mediator.SubscribeTo(MediatorActionNames.PlayerMoveSubscription(), MovePointer,false);
-        
-        public void Charge()
+
+        private void OnEnable()
+        {
+            PlayerInputState.ChargeSpecial += Charge;
+           
+            PointerInputState.MovePointer += MovePointer;
+            PointerInputState.CancelSpecial += Cancel;
+            PointerInputState.LaunchSpecial += Launch;
+        }
+
+        private void OnDisable()
+        {
+            PlayerInputState.ChargeSpecial -= Charge;
+         
+            PointerInputState.MovePointer -= MovePointer;
+            PointerInputState.CancelSpecial -= Cancel;
+            PointerInputState.LaunchSpecial -= Launch;
+        }
+
+        public void Charge(object sender, InputAction.CallbackContext callbackContext)
         {
             (_pointer,_spell) = SpellCreator.LaunchSpell((SpellCreator.SpellTypes)Mediator.GetReference(MediatorActionNames.CompositeType()));
-
-            SubscribeToEvents();
+            
             InitializeSpell();
             InitializePointer();
             StartCoroutine(WaitForAnimationEnds());
         }
 
-        private void InitializePointer() => _pointer.Translate((Vector3)Mediator.GetReference(MediatorActionNames.PlayerPosition()));
-
-        private void InitializeSpell()
-        {
-            _spell.SetAoc(Mediator.GetReference(MediatorActionNames.CompositeAnimator()) as AnimatorOverrideController);
-            _spell.Enable(false);
-        }
-
-        public void Launch()
+        public void Launch(object sender, InputAction.CallbackContext callbackContext)
         {
             Mediator.Notify(this,MediatorActionNames.ResumePlayerAnimator());
             
-            UnsubscribeToEvents();
             StopCoroutine(_movePointer);
 
             SetSpellToPointerPos();
@@ -50,27 +58,36 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
             StartCoroutine(AnimationChecks.CheckForAnimationFinished(_spell.GetAnimator(), _spell.DestroyParent));
         }
 
-        private void SetSpellToPointerPos()
-        {
-            _spell.Translate(_pointer);
-            _spell.Enable(true);
-        }
-        private void DestroyPointer() => _pointer.Destroy();
-
-        public void Cancel()
+        public void Cancel(object sender, InputAction.CallbackContext callbackContext)
         {
             Mediator.Notify(this,MediatorActionNames.ResumePlayerAnimator());
-            UnsubscribeToEvents();
-            
+
             StopCoroutine(_waitAnimationEnd);
             StopCoroutine(_movePointer);
 
             DestroyPointer();
             DestroySpell();
         }
-        private void DestroySpell() => _spell.DestroyParent();
-        private void MovePointer(Vector2 direction)
+
+        private void InitializeSpell()
         {
+            _spell.SetAoc(Mediator.GetReference(MediatorActionNames.CompositeAnimator()) as AnimatorOverrideController);
+            _spell.Enable(false);
+        }
+
+        private void InitializePointer() => _pointer.Translate((Vector3)Mediator.GetReference(MediatorActionNames.PlayerPosition()));
+
+        private void SetSpellToPointerPos()
+        {
+            _spell.Translate(_pointer);
+            _spell.Enable(true);
+        }
+
+        private void DestroyPointer() => _pointer.Destroy();
+        private void DestroySpell() => _spell.DestroyParent();
+        private void MovePointer(object sender, InputAction.CallbackContext callbackContext)
+        {
+            var direction = callbackContext.ReadValue<Vector2>();
             if(_movePointer != null) StopCoroutine(_movePointer);
             _movePointer = StartCoroutine(InputMovementPressed(direction, () => _pointer.MovePointer(direction,4)));
         }
@@ -85,7 +102,7 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
                 (MediatorActionNames.GetPlayerAnimator()), () => Mediator.Notify(this,MediatorActionNames.PausePlayerAnimator())));
         }
 
-        //TODO Observer¿?
+        //TODO CustomAttribute
         private IEnumerator InputMovementPressed(Vector2 direction,Action action)
         {
             do
@@ -99,8 +116,8 @@ namespace Demo.Player.Player_Scripts.Player_Behaviour
     public class AttackController : PlayerComponent,IAttack
     {
         protected AttackController(IPlayerComponentsMediator mediator) : base(mediator) { }
-        public void Charge() => throw new NotImplementedException();
-        public void Launch() => Mediator.Notify(this,MediatorActionNames.TriggerNormalAttack());
-        public void Cancel() => throw new NotImplementedException();
+        public void Charge(object sender, InputAction.CallbackContext callbackContext) => throw new NotImplementedException();
+        public void Launch(object sender, InputAction.CallbackContext callbackContext) => throw new NotImplementedException();
+        public void Cancel(object sender, InputAction.CallbackContext callbackContext) => throw new NotImplementedException();
     }
 }
