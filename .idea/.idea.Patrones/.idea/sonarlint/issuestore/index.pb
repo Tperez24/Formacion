@@ -199,5 +199,3 @@ Z
 *Assets/MarchingSquares/Scripts/VoxelMap.cs,a\6\a65f7c40695c16247e4fc265649d6e773233909b
 [
 +Assets/MarchingSquares/Scripts/VoxelGrid.cs,9\3\93ad8ad02579f218db248521b8301cfb570c8364
-Z
-*Assets/Neuronal Network/NeuronalNetwork.cs,8\1\81153aef78e7faec365af6909ba0a6f3a6559339
