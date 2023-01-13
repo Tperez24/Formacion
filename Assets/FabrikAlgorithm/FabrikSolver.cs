@@ -25,11 +25,8 @@ namespace FabrikAlgorithm
            set
            {
                if(_distance == value) return;
-               else
-               {
-                   if(_distance >= 1) _onDistanceChanged?.Invoke();
-                   _distance = value;
-               }
+               if(_distance >= 1) _onDistanceChanged?.Invoke();
+               _distance = value;
            }
        }
 
@@ -165,7 +162,7 @@ namespace FabrikAlgorithm
                float parabola = 1.0f - 4.0f * (_progress - 0.5f) * (_progress - 0.5f);
 
                // Travel in a straight line from our start position to the target.        
-               Vector3 nextPos = Vector3.Lerp(targetPosition.position, newTargetPoint.position, _progress);
+               Vector3 nextPos = Vector3.Slerp(targetPosition.position, newTargetPoint.position, _progress);
 
                // Then add a vertical arc in excess of this.
                nextPos.y += parabola * 0.5f;
