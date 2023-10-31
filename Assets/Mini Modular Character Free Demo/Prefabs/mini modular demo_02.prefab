@@ -372,7 +372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108356272930334231}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -509,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130454624652380824}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -741,7 +741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2531042114956902045}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -941,7 +941,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3020737331121972861}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1237,7 +1237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3860842901457261055}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1374,7 +1374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4046884308136552150}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1511,7 +1511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4161973593139300354}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1806,7 +1806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4331467492802228233}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1998,7 +1998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554607793835443596}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2230,7 +2230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6265820668016138675}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: -0.00000090499753}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2662,10 +2662,10 @@ Animator:
   m_GameObject: {fileID: 7868630683724534403}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d746e91531087c941aeb3dbd5d8249cc, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69ce5dd747afb75488c00ed0f554f1d6, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2723,29 +2723,38 @@ MonoBehaviour:
   rideSpringStrength: 2000
   upRightRotationDamper: 0.5
   upRightRotationStrength: 50
-  maxSpeed: 20
+  maxSpeed: 10
   acceleration: 10
-  breakAcceleration: 30
+  breakAcceleration: 45
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 15
-      inSlope: 0
-      outSlope: 0
+      inSlope: 1.9202443
+      outSlope: 1.9202443
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.12896407
+    - serializedVersion: 3
+      time: 0.75
+      value: 100
+      inSlope: 390.00623
+      outSlope: 390.00623
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.053611357
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 200
-      inSlope: 341.23172
-      outSlope: 341.23172
+      inSlope: 69.76268
+      outSlope: 69.76268
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.017970383
+      inWeight: 0.08834332
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
