@@ -10,7 +10,6 @@ namespace PlayerMovement.Scripts
 
             return a * Quaternion.Inverse(b);
         }
-        
         public static Quaternion Multiply(Quaternion input, float scalar) => new(input.x * scalar, input.y * scalar, input.z * scalar, input.w * scalar);
     }
 }

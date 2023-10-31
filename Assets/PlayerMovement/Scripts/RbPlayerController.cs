@@ -128,11 +128,40 @@ namespace PlayerMovement.Scripts
 
         private void ApplyUprightForce()
         {
-            var springTorque = upRightRotationStrength * Vector3.Cross(rigidbody.transform.up, Vector3.up);
             var dampTorque = upRightRotationDamper * -rigidbody.angularVelocity;
-            rigidbody.AddTorque(springTorque + dampTorque, ForceMode.Acceleration);
-        }
+            
+            if (_dir == Vector3.zero)
+            {
+                var springTorque = upRightRotationStrength * Vector3.Cross(rigidbody.transform.up, Vector3.up);
+                rigidbody.AddTorque(springTorque + dampTorque, ForceMode.Acceleration);
+                return;
+            }
+            
+            var lookRotation = transform.position + _dir * upRightRotationStrength;
+            
+            Quaternion targetOrientation = Quaternion.LookRotation(lookRotation);       
+            Quaternion rotationChange = targetOrientation * Quaternion.Inverse(rigidbody.rotation);
 
+            rotationChange.ToAngleAxis(out float angle, out Vector3 axis);
+            if (angle > 180f)
+                angle -= 360f;
+
+            if (Mathf.Approximately(angle, 0)) {
+                rigidbody.angularVelocity = Vector3.zero;
+                return;
+            }
+
+            angle *= Mathf.Deg2Rad;
+
+            var targetAngularVelocity = axis * angle / Time.deltaTime;
+
+            float catchUp = 1.0f;
+            targetAngularVelocity *= catchUp;
+
+            rigidbody.AddTorque(targetAngularVelocity - rigidbody.angularVelocity + dampTorque, ForceMode.VelocityChange);
+
+        }
+        
         private bool GroundRayHit(out RaycastHit hit) => Physics.Raycast(_groundRay,out hit ,groundRayDistance);
         
         private void ChangeDirection(object sender, InputAction.CallbackContext context)
@@ -143,6 +172,8 @@ namespace PlayerMovement.Scripts
 
         private void CalculateMovement()
         {
+            characterAnimator.SetFloat("Speed",rigidbody.velocity.magnitude);
+            
             if (_dir == Vector3.zero || _dir.normalized != Velocity.normalized) rigidbody.AddForce(-Velocity * breakAcceleration);
 
             if (Velocity.magnitude > maxSpeed)
@@ -166,6 +197,9 @@ namespace PlayerMovement.Scripts
 
         private void OnDrawGizmos()
         {
+            Handles.color = Color.yellow;
+            Handles.DrawLine(transform.position,transform.position+_dir,8);
+            
             if (!GroundRayHit(out var hit)) return;
             
             Handles.color = Color.green;
