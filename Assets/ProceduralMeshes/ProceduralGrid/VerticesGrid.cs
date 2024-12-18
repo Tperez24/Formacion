@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.U2D.Path;
 using UnityEngine;
 
 namespace ProceduralMeshes
